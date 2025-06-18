@@ -29,6 +29,11 @@ jobs:
           require('dotenv').config();
           const fetch = require('node-fetch');
 
+          // --- 新增：调试模式开关 ---
+          // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
+          // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
+          const DEBUG_MODE = true;
+
           // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
           const GITHUB_REPO = process.env.GITHUB_REPOSITORY;
@@ -211,23 +216,33 @@ jobs:
               const searchKeywords = Array.from(new Set([...manualKeywords, ...hotKeywords]));
               const existingPaperUrls = new Set((existingData.papers || []).map(p => p.url).filter(url => url));
 
-              // --- 步骤 2: 运行Agent获取新论文 ---
-              const newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls);
+              // --- 步骤 2: 运行Agent获取新论文 (含Debug模式) ---
+              let newPapers = [];
+              if (DEBUG_MODE) {
+                  console.log("🚀 调试模式已开启，跳过所有API调用。");
+                  // 在调试模式下，我们假装没有获取到新论文，以便测试后续的关键词统计和文件保存逻辑
+              } else {
+                  newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls);
+              }
 
-              if (newPapers.length === 0) {
+              if (!DEBUG_MODE && newPapers.length === 0) {
                   console.log("没有获取到需要处理的新论文，工作流正常结束。");
                   return;
               }
-              console.log(`✅ 成功处理了 ${newPapers.length} 篇新论文。`);
+              if (!DEBUG_MODE) {
+                  console.log(`✅ 成功处理了 ${newPapers.length} 篇新论文。`);
+              }
 
               // --- 步骤 3: 更新10日滚动热词 ---
               const todaysKeywords = newPapers.flatMap(p => p.paperKeywords || []);
-              const today = new Date().toISOString().split('T')[0];
-              keywordHistory.push({ date: today, keywords: todaysKeywords });
-              while (keywordHistory.length > 10) {
-                  keywordHistory.shift();
+              if (todaysKeywords.length > 0) {
+                  const today = new Date().toISOString().split('T')[0];
+                  keywordHistory.push({ date: today, keywords: todaysKeywords });
+                  while (keywordHistory.length > 10) {
+                      keywordHistory.shift();
+                  }
+                  await saveJsonFile(KEYWORD_HISTORY_FILE, keywordHistory, historySha);
               }
-              await saveJsonFile(KEYWORD_HISTORY_FILE, keywordHistory, historySha);
 
               const allKeywordsInWindow = keywordHistory.flatMap(day => day.keywords);
               const keywordFreq = allKeywordsInWindow.reduce((acc, k) => { acc[k] = (acc[k] || 0) + 1; return acc; }, {});
