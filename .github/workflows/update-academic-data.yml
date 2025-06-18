@@ -91,7 +91,7 @@ jobs:
           }
           
           // 新增：调用Semantic Scholar API的函数（包含指数退避重试逻辑）
-          async function searchSemanticScholar(keywords, limit = 10, maxRetries = 3) {
+          async function searchSemanticScholar(keywords, limit = 5, maxRetries = 3) {
               console.log(`向 Semantic Scholar 查询关键词: ${keywords.join(' ')}`);
               const query = encodeURIComponent(keywords.join(' '));
               const fields = 'paperId,url,title,abstract,authors,year,journal';
