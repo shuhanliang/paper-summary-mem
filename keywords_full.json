@@ -1,1 +1,258 @@
-[]
+[
+  {
+    "keyword": "6G",
+    "count": 4
+  },
+  {
+    "keyword": "6G网络",
+    "count": 3
+  },
+  {
+    "keyword": "数字孪生",
+    "count": 2
+  },
+  {
+    "keyword": "大型语言模型",
+    "count": 2
+  },
+  {
+    "keyword": "大语言模型",
+    "count": 2
+  },
+  {
+    "keyword": "多模态模型",
+    "count": 2
+  },
+  {
+    "keyword": "大语言模型代理",
+    "count": 1
+  },
+  {
+    "keyword": "物理层自动化",
+    "count": 1
+  },
+  {
+    "keyword": "知识注入",
+    "count": 1
+  },
+  {
+    "keyword": "专家模型",
+    "count": 1
+  },
+  {
+    "keyword": "任务编排",
+    "count": 1
+  },
+  {
+    "keyword": "AI驱动通信",
+    "count": 1
+  },
+  {
+    "keyword": "AI智能体",
+    "count": 1
+  },
+  {
+    "keyword": "网络架构",
+    "count": 1
+  },
+  {
+    "keyword": "网络自动化",
+    "count": 1
+  },
+  {
+    "keyword": "多模态通信",
+    "count": 1
+  },
+  {
+    "keyword": "能效",
+    "count": 1
+  },
+  {
+    "keyword": "安全",
+    "count": 1
+  },
+  {
+    "keyword": "智能体协作",
+    "count": 1
+  },
+  {
+    "keyword": "边缘AI",
+    "count": 1
+  },
+  {
+    "keyword": "O-RAN架构",
+    "count": 1
+  },
+  {
+    "keyword": "网络编排",
+    "count": 1
+  },
+  {
+    "keyword": "大模型",
+    "count": 1
+  },
+  {
+    "keyword": "无线资源控制RRC",
+    "count": 1
+  },
+  {
+    "keyword": "AI原生RAN",
+    "count": 1
+  },
+  {
+    "keyword": "协议自动化",
+    "count": 1
+  },
+  {
+    "keyword": "低秩适应LoRA",
+    "count": 1
+  },
+  {
+    "keyword": "领域专用语言",
+    "count": 1
+  },
+  {
+    "keyword": "通用人工智能",
+    "count": 1
+  },
+  {
+    "keyword": "AI实体化",
+    "count": 1
+  },
+  {
+    "keyword": "感官基础",
+    "count": 1
+  },
+  {
+    "keyword": "多模态认知",
+    "count": 1
+  },
+  {
+    "keyword": "分割学习",
+    "count": 1
+  },
+  {
+    "keyword": "多模态AI代理",
+    "count": 1
+  },
+  {
+    "keyword": "边缘计算",
+    "count": 1
+  },
+  {
+    "keyword": "模型缓存",
+    "count": 1
+  },
+  {
+    "keyword": "感知模块",
+    "count": 1
+  },
+  {
+    "keyword": "对齐模块",
+    "count": 1
+  },
+  {
+    "keyword": "隐私保护",
+    "count": 1
+  },
+  {
+    "keyword": "AIGC",
+    "count": 1
+  },
+  {
+    "keyword": "推理服务",
+    "count": 1
+  },
+  {
+    "keyword": "移动边缘计算（MEC）",
+    "count": 1
+  },
+  {
+    "keyword": "设备卸载",
+    "count": 1
+  },
+  {
+    "keyword": "强化学习",
+    "count": 1
+  },
+  {
+    "keyword": "本地计算",
+    "count": 1
+  },
+  {
+    "keyword": "多智能体系统",
+    "count": 1
+  },
+  {
+    "keyword": "协作机制",
+    "count": 1
+  },
+  {
+    "keyword": "集体智能",
+    "count": 1
+  },
+  {
+    "keyword": "分布式AI",
+    "count": 1
+  },
+  {
+    "keyword": "任务分配",
+    "count": 1
+  },
+  {
+    "keyword": "信息交互",
+    "count": 1
+  },
+  {
+    "keyword": "6G无线通信",
+    "count": 1
+  },
+  {
+    "keyword": "大型人工智能模型",
+    "count": 1
+  },
+  {
+    "keyword": "泛化能力",
+    "count": 1
+  },
+  {
+    "keyword": "网络智能化",
+    "count": 1
+  },
+  {
+    "keyword": "Transformer",
+    "count": 1
+  },
+  {
+    "keyword": "优化策略",
+    "count": 1
+  },
+  {
+    "keyword": "6G通信",
+    "count": 1
+  },
+  {
+    "keyword": "大型人工智能模型（LAMs）",
+    "count": 1
+  },
+  {
+    "keyword": "Agentic AI（智能体AI）",
+    "count": 1
+  },
+  {
+    "keyword": "大语言模型（LLMs）",
+    "count": 1
+  },
+  {
+    "keyword": "智能体系统",
+    "count": 1
+  },
+  {
+    "keyword": "通信智能化",
+    "count": 1
+  },
+  {
+    "keyword": "网络自适应",
+    "count": 1
+  }
+]
