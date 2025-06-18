@@ -29,437 +29,242 @@ jobs:
           require('dotenv').config();
           const fetch = require('node-fetch');
 
-          // --- 调试模式开关 ---
-          // 设置为 true 来跳过API调用，使用已有的 academic_data.json 中的论文数据
-          // 设置为 false 以正常调用 Perplexity API
-          const DEBUG_MODE = false; 
-
-          // 配置
+          // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
           const GITHUB_REPO = process.env.GITHUB_REPOSITORY;
-          const DATA_FILE = 'academic_data.json';
           const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
+          
+          const DATA_FILE = 'academic_data.json';
+          const KEYWORD_HISTORY_FILE = 'daily_keyword_history.json';
+          const FULL_KEYWORDS_FILE = 'keywords_full.json';
+
           const DEFAULT_KEYWORDS = ["通信", "AI 6G", "Agent", "LLM", "语义通信"];
-          // English keyword mapping for better API results
           const KEYWORDS_ENGLISH_MAPPING = {
-            "通信": "Communications",
-            "AI 6G": "AI 6G",
-            "Agent": "Agent",
-            "LLM": "Large Language Model",
-            "语义通信": "Semantic Communications"
+            "通信": "Communications", "AI 6G": "AI 6G", "Agent": "Agent",
+            "LLM": "Large Language Model", "语义通信": "Semantic Communications"
           };
 
-          // 获取北京时间
-          function getBeijingTime() {
-            const now = new Date();
-            const utcOffset = now.getTimezoneOffset() * 60000;
-            const utcTime = now.getTime() + utcOffset;
-            const beijingTime = new Date(utcTime + (3600000 * 8)); 
-            return beijingTime;
-          }
+          // --- 核心工具函数 ---
 
-          // 从GitHub获取现有数据
-          async function fetchExistingData() {
+          // 从GitHub获取通用JSON文件
+          async function fetchJsonFile(fileName, defaultValue = null) {
             try {
-              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_FILE}`;
+              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}` };
-              
               const response = await fetch(url, { headers });
-              
               if (!response.ok) {
                 if (response.status === 404) {
-                  console.log("Data file not found on GitHub. Will create it.");
-                  return { keywords: DEFAULT_KEYWORDS, papers: [] };
+                  console.log(`文件 ${fileName} 未找到，将使用默认值。`);
+                  return { content: defaultValue, sha: null };
                 }
-                throw new Error(`GitHub API error: ${response.status}`);
+                throw new Error(`GitHub API error for ${fileName}: ${response.status}`);
               }
-              
               const data = await response.json();
               const content = Buffer.from(data.content, 'base64').toString('utf8');
-              const parsedData = JSON.parse(content);
-              console.log("Successfully fetched existing data from GitHub");
-              return { ...parsedData, sha: data.sha };
+              console.log(`✅ 成功获取文件 ${fileName}`);
+              return { content: JSON.parse(content), sha: data.sha };
             } catch (error) {
-              console.error("Error fetching existing data:", error.message);
-              return { keywords: DEFAULT_KEYWORDS, papers: [] };
+              console.error(`获取文件 ${fileName} 时出错:`, error.message);
+              return { content: defaultValue, sha: null };
             }
           }
 
-          // 调用Perplexity API获取论文
-          async function querySonarPro(question) {
-            if (!PERPLEXITY_API_KEY) {
-              throw new Error("Perplexity API key is missing");
+          // 保存通用JSON文件到GitHub
+          async function saveJsonFile(fileName, data, sha) {
+            try {
+              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
+              const headers = { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
+              const content = JSON.stringify(data, null, 2);
+              const encodedContent = Buffer.from(content).toString('base64');
+              const body = { message: `更新数据文件: ${fileName}`, content: encodedContent, branch: 'main' };
+              if (sha) body.sha = sha;
+              const response = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
+              if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`保存到GitHub文件 ${fileName} 失败 (${response.status}): ${errorText}`);
+              }
+              console.log(`✅ 成功保存文件到 ${fileName}`);
+            } catch (error) {
+              console.error(`保存文件 ${fileName} 时出错:`, error);
+              throw error;
             }
-            
+          }
+          
+          // 新增：调用Semantic Scholar API的函数（包含指数退避重试逻辑）
+          async function searchSemanticScholar(keywords, limit = 10, maxRetries = 3) {
+              console.log(`向 Semantic Scholar 查询关键词: ${keywords.join(' ')}`);
+              const query = encodeURIComponent(keywords.join(' '));
+              const fields = 'paperId,url,title,abstract,authors,year,journal';
+              const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${query}&limit=${limit}&fields=${fields}`;
+
+              for (let i = 0; i < maxRetries; i++) {
+                  try {
+                      const response = await fetch(url);
+                      if (response.status === 429 || response.status >= 500) {
+                          throw new Error(`可重试的API错误: ${response.status}`);
+                      }
+                      if (!response.ok) {
+                          console.error(`不可重试的API错误: ${response.status}`);
+                          return [];
+                      }
+                      const data = await response.json();
+                      console.log("✅ 成功从 Semantic Scholar 获取数据。");
+                      return data.data || [];
+                  } catch (error) {
+                      console.warn(`查询 Semantic Scholar 时出错 (第 ${i + 1} 次尝试):`, error.message);
+                      if (i === maxRetries - 1) {
+                        console.error("已达到最大重试次数，放弃请求。");
+                        return [];
+                      }
+                      const delay = Math.pow(2, i) * 1000 + (Math.random() * 500);
+                      console.log(`将在 ${Math.round(delay / 1000)} 秒后重试...`);
+                      await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
+                return [];
+            }
+
+          // 调用Perplexity API的函数
+          async function querySonarPro(question) {
+            if (!PERPLEXITY_API_KEY) throw new Error("Perplexity API key is missing");
             const url = "https://api.perplexity.ai/chat/completions";
             const response = await fetch(url, {
               method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                model: "sonar-pro",
-                messages: [{ role: "user", content: question }]
-              })
+              headers: { 'Authorization': `Bearer ${PERPLEXITY_API_KEY}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model: "sonar-pro", messages: [{ role: "user", content: question }] })
             });
-            
             if (!response.ok) {
               const errorText = await response.text();
               throw new Error(`Perplexity API error (${response.status}): ${errorText}`);
             }
-            
-            const result = await response.json();
-            return {
-              content: result.choices[0].message.content,
-              citations: result.citations || []
-            };
+            return await response.json();
           }
-
-          // 解析API响应为论文对象
-          function parsePaperInfo(content, citations, englishKeyword, originalKeyword) {
-            // 简化的解析逻辑
-            function extractField(text, labelStarts, nextLabelStarts = []) {
-              const labelEndChars = ":：";
-              for (const start of labelStarts) {
-                for (const endChar of labelEndChars) {
-                  const fullLabel = start + endChar;
-                  let startIndex = text.toLowerCase().indexOf(fullLabel.toLowerCase());
-                  if (startIndex === -1) continue;
-                  
-                  startIndex += fullLabel.length;
-                  
-                  let endIndex = text.length;
-                  for (const nextStart of nextLabelStarts) {
-                    for (const nextEndChar of labelEndChars) {
-                      const nextFullLabel = nextStart + nextEndChar;
-                      const tempEndIndex = text.toLowerCase().indexOf(nextFullLabel.toLowerCase(), startIndex);
-                      if (tempEndIndex !== -1 && tempEndIndex < endIndex) {
-                        endIndex = tempEndIndex;
-                      }
-                    }
-                  }
-                  
-                  return text.substring(startIndex, endIndex).trim();
-                }
-              }
-              return null;
-            }
-            
-            try {
-              const paper = {
-                id: `paper-api-${Date.now()}-${Math.random().toString(36).substring(7)}`,
-                title: "标题提取失败",
-                url: "#",
-                authors: ["作者提取失败"],
-                affiliations: ["单位提取失败"],
-                journal: "期刊/会议提取失败",
-                publicationDate: `${getBeijingTime().getFullYear()}年`,
-                paperKeywords: ["自动更新"], // 去掉originalKeyword（就是那个长的并在一起的关键词）
-                snippet: "摘要未能提取。",
-                interpretation: "深入解读未能提取。"
-              };
-              
-              const allLabels = ["title", "标题", "authors", "作者", "affiliations", "单位", 
-                                "journal/conference", "期刊/会议", "publication year", "发表年份", 
-                                "url", "abstract", "摘要", "in-depth analysis", "深入解读", "keywords", "关键词"];
-              
-              const title = extractField(content, ["title", "标题"], 
-                allLabels.filter(l => !["title", "标题"].includes(l.toLowerCase())));
-              if (title) paper.title = title;
-              
-              const authorsText = extractField(content, ["authors", "作者"], 
-                allLabels.filter(l => !["authors", "作者"].includes(l.toLowerCase())));
-              if (authorsText) paper.authors = authorsText.split(/,|、|and/i).map(a => a.trim()).filter(a => a.length > 0);
-              
-              const affiliationsText = extractField(content, ["affiliations", "单位"], 
-                allLabels.filter(l => !["affiliations", "单位"].includes(l.toLowerCase())));
-              if (affiliationsText) paper.affiliations = affiliationsText.split(/;/).map(a => a.trim()).filter(a => a.length > 0);
-              
-              const journal = extractField(content, ["journal/conference", "期刊/会议"], 
-                allLabels.filter(l => !["journal/conference", "期刊/会议"].includes(l.toLowerCase())));
-              if (journal) paper.journal = journal;
-              
-              const publicationDate = extractField(content, ["publication year", "发表年份"], 
-                allLabels.filter(l => !["publication year", "发表年份"].includes(l.toLowerCase())));
-              if (publicationDate) paper.publicationDate = publicationDate;
-              
-              const urlText = extractField(content, ["url"], 
-                allLabels.filter(l => !["url"].includes(l.toLowerCase())));
-              if (urlText && urlText.startsWith("http")) paper.url = urlText;
-              else if (citations && citations.length > 0) {
-                const potentialUrl = citations.find(c => c.url && 
-                  (c.url.includes('arxiv.org') || c.url.includes('doi.org') || 
-                   c.url.includes('acm.org') || c.url.includes('ieee.org')))?.url;
-                if (potentialUrl) paper.url = potentialUrl;
-                else if (citations[0].url) paper.url = citations[0].url;
-              }
-              
-              const snippet = extractField(content, ["abstract", "摘要"], 
-                allLabels.filter(l => !["abstract", "摘要"].includes(l.toLowerCase())));
-              if (snippet) paper.snippet = snippet;
-              
-              const interpretation = extractField(content, ["in-depth analysis", "深入解读与分析", "深入解读"], 
-                allLabels.filter(l => !["in-depth analysis", "深入解读与分析", "深入解读"].includes(l.toLowerCase())));
-              if (interpretation) paper.interpretation = interpretation;
-              
-              let keywordsText = extractField(content, ["keywords", "关键词"]);
-              if (keywordsText) {
-                // --- 新增：清理逻辑，只取第一行并过滤无效内容 ---
-                // 1. 按换行符分割，只取第一行，防止抓取到后面的总结性文字
-                let cleanText = keywordsText.split('\n')[0];
-                
-                // 2. 移除可能存在 "---" 等分隔符及其后的内容
-                cleanText = cleanText.split('---')[0];
-                
-                // 3. 分割并增加长度限制，过滤掉可能混入的长句子
-                paper.paperKeywords = [...cleanText.split(/,|、/)
-                    .map(k => k.trim())
-                    .filter(k => k.length > 0 && k.length < 50)]; 
-                // --- 修改结束 ---
-              }
-              
-              // 验证必要字段是否有效
-              if (paper.title === "标题提取失败" || paper.snippet === "摘要未能提取。") {
-                console.log(`解析失败: 关键词 "${originalKeyword}" 的论文标题或摘要提取失败`);
-                return null;
-              }
-              
-              return paper;
-            } catch (error) {
-              console.error(`解析关键词 "${originalKeyword}" 的内容时出错:`, error);
-              return null;
-            }
-          }
-
-          // 获取所有论文
-          async function fetchPapers(keywords) {
-            const fetchedPapers = [];
-            
-            if (keywords.length === 0) {
-              console.log("No keywords provided for search.");
-              return fetchedPapers;
-            }
-
-            try {
-              const combinedKeywords = keywords.join(', ');
-              const englishKeywords = keywords.map(keyword => KEYWORDS_ENGLISH_MAPPING[keyword] || keyword);
-              const combinedEnglishKeywords = englishKeywords.join(', ');
-              
-              const maxPapersToFetch = 5;
-              
-              console.log(`正在为组合关键词 "${combinedKeywords}" 获取论文...`);
-              console.log(`使用英文关键词: "${combinedEnglishKeywords}"`);
-              
-              const question = `
-              Please find ${maxPapersToFetch} highly relevant research papers that are related to the following keywords as a whole: "${combinedEnglishKeywords}". Focus on papers published in the last 12-18 months.
-              
-              For each paper, provide the information using the following exact format:
-              
-              PAPER 1:
-              Title: [The full title of the paper]
-              Authors: [List of authors, separated by commas. Example: John Doe, Jane Smith]
-              Affiliations: [List of main affiliations, separated by semicolons. Example: University A; Organization B]
-              Journal/Conference: [Name of the journal or conference]
-              Publication Year: [Year, e.g., 2024]
-              URL: [A direct, accessible URL to the paper (e.g., ArXiv, DOI, official publisher page)]
-              Abstract: [请用中文提供详细的论文摘要，大约150-250字。]
-              In-depth Analysis: [请用中文对论文的重要性、创新点、潜在影响和局限性进行深入解读与分析，大约200-300字。]
-              Keywords: [5-7 relevant keywords for this paper, separated by commas]
-              
-              PAPER 2:
-              Title: ...
-              [repeat format for each paper]
-              
-              It's very important that each paper is related to multiple keywords rather than just focusing on one keyword. The papers should be at the intersection of as many of these areas as possible: ${englishKeywords.join(', ')}
-              `;
-              
-              const { content, citations } = await querySonarPro(question);
-              
-              const paperSections = content.split(/PAPER \d+:/g).filter(section => section.trim().length > 0);
-              
-              if (paperSections.length === 0) {
-                const paperInfo = parsePaperInfo(content, citations, combinedEnglishKeywords, combinedKeywords);
-                if (paperInfo) {
-                  fetchedPapers.push(paperInfo);
-                  console.log(`成功获取组合关键词的论文: ${paperInfo.title}`);
-                }
-              } else {
-                for (let i = 0; i < Math.min(paperSections.length, maxPapersToFetch); i++) {
-                  const section = paperSections[i];
-                  const paperInfo = parsePaperInfo(section, citations, combinedEnglishKeywords, combinedKeywords);
-                  
-                  if (paperInfo) {
-                    fetchedPapers.push(paperInfo);
-                    console.log(`成功获取第 ${i+1} 篇论文: ${paperInfo.title}`);
-                  } else {
-                    console.warn(`无法从第 ${i+1} 部分提取有效的论文信息`);
-                  }
-                }
-              }
-            } catch (error) {
-              console.error(`处理组合关键词时出错:`, error);
-            }
-            
-            return fetchedPapers;
-          }
-
-          // 保存数据到GitHub
-          async function saveToGitHub(data, sha) {
-            try {
-              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${DATA_FILE}`;
-              const headers = {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Content-Type': 'application/json'
-              };
-              
-              const content = JSON.stringify(data, null, 2);
-              const encodedContent = Buffer.from(content).toString('base64');
-              
-              const body = {
-                message: `更新学术数据 - ${new Date().toISOString()}`,
-                content: encodedContent,
-                branch: 'main'
-              };
-              
-              if (sha) body.sha = sha;
-              
-              const response = await fetch(url, {
-                method: 'PUT',
-                headers,
-                body: JSON.stringify(body)
-              });
-              
-              if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`保存到GitHub失败 (${response.status}): ${errorText}`);
-              }
-              
-              console.log("成功保存数据到GitHub");
-            } catch (error) {
-              console.error("保存数据到GitHub时出错:", error);
-              throw error;
-            }
-          }
-
           
+          // 解析Perplexity返回的JSON
+          async function queryPerplexityAndParseJson(prompt) {
+              try {
+                  const result = await querySonarPro(prompt);
+                  const content = result.choices[0].message.content;
+                  const jsonMatch = content.match(/\{[\s\S]*\}/);
+                  if (jsonMatch) return JSON.parse(jsonMatch[0]);
+                  return null;
+              } catch (e) {
+                  console.error("解析Perplexity返回的JSON时出错:", e);
+                  return null;
+              }
+          }
 
-          // 主函数
+          // Agent核心逻辑：获取并处理论文
+          async function runAgentAndFetchPapers(keywords, existingPaperUrls) {
+              console.log("🤔 思考: 需要寻找新论文。");
+              console.log("🎬 行动: 调用 searchSemanticScholar");
+              const papersFromScholar = await searchSemanticScholar(keywords);
+              console.log(`👀 观察: 从Semantic Scholar获得 ${papersFromScholar.length} 篇论文。`);
+
+              const newUniquePapersFromScholar = papersFromScholar.filter(p => p.url && !existingPaperUrls.has(p.url));
+              console.log(`筛选后得到 ${newUniquePapersFromScholar.length} 篇全新论文需要处理。`);
+
+              const processedPapers = [];
+              for (const paper of newUniquePapersFromScholar) {
+                  console.log(`🤔 思考: 正在处理论文 "${paper.title}"`);
+                  const summarizationPrompt = `
+                      请扮演一个专业的科研助理。根据以下真实论文的标题和摘要，为我生成中文的“摘要（snippet）”、“深入解读（interpretation）”和“关键词（paperKeywords）”。
+                      请严格按照JSON格式返回，不要包含任何额外的解释或开头语。
+                      格式: {"snippet": "...", "interpretation": "...", "paperKeywords": ["keyword1", "keyword2"]}
+
+                      论文标题: ${paper.title}
+                      论文摘要 (Abstract): ${paper.abstract}
+                  `;
+                  console.log("🎬 行动: 调用 Perplexity API 进行总结...");
+                  const summaryData = await queryPerplexityAndParseJson(summarizationPrompt); 
+
+                  if (summaryData) {
+                      console.log(`👀 观察: 已成功生成论文 "${paper.title}" 的摘要和解读。`);
+                      processedPapers.push({
+                          id: paper.paperId || `scholar-${Date.now()}`,
+                          title: paper.title,
+                          url: paper.url,
+                          authors: paper.authors ? paper.authors.map(a => a.name) : [],
+                          affiliations: [],
+                          journal: paper.journal && paper.journal.name ? paper.journal.name : "N/A",
+                          publicationDate: paper.year,
+                          ...summaryData
+                      });
+                  } else {
+                      console.log(`👀 观察: 论文 "${paper.title}" 的摘要生成失败，已跳过。`);
+                  }
+              }
+              return processedPapers;
+          }
+
+
+          // --- 主函数 ---
           async function main() {
             try {
-              // --- 步骤 1: 获取现有数据和已存在的论文URL ---
-              const existingData = await fetchExistingData();
+              // --- 步骤 1: 加载所有状态文件 ---
+              const { content: existingData, sha: dataSha } = await fetchJsonFile(DATA_FILE, { keywords: { manual: DEFAULT_KEYWORDS, hot: [] }, papers: [] });
+              const { content: keywordHistory, sha: historySha } = await fetchJsonFile(KEYWORD_HISTORY_FILE, []);
+              const { sha: fullKeywordsSha } = await fetchJsonFile(FULL_KEYWORDS_FILE, []);
 
-              // --- 新增：处理手动和热门关键词 ---
-              // 检查是否为新数据结构，并提供向后兼容性
-              const isNewStructure = existingData.keywords && typeof existingData.keywords === 'object' && !Array.isArray(existingData.keywords);
-              const manualKeywords = isNewStructure ? existingData.keywords.manual : (existingData.keywords || DEFAULT_KEYWORDS);
-              const hotKeywords = isNewStructure ? existingData.keywords.hot : [];
-
-              // 使用手动和热门关键词的并集进行本次搜索
+              const manualKeywords = existingData.keywords.manual || DEFAULT_KEYWORDS;
+              const hotKeywords = existingData.keywords.hot || [];
               const searchKeywords = Array.from(new Set([...manualKeywords, ...hotKeywords]));
-              // --- 修改结束 ---
+              const existingPaperUrls = new Set((existingData.papers || []).map(p => p.url).filter(url => url));
 
-              
-              const existingPaperUrls = new Set((existingData.papers || []).map(p => p.url).filter(url => url && url !== "#"));
-              
-              console.log(`将使用以下关键词: ${searchKeywords.join(', ')}`);
-              console.log(`目前已记录 ${existingPaperUrls.size} 篇论文的URL。`);
-              
-              // (调试模式逻辑，保持不变)
-              let papers;
-              if (DEBUG_MODE) {
-                console.log("🚀 调试模式已开启，将使用缓存数据，跳过 Perplexity API 调用。");
-                papers = existingData.papers || [];
-              } else {
-                console.log("调用 Perplexity API 获取新论文...");
-                papers = await fetchPapers(searchKeywords);
-              }
-              
-              if (papers.length === 0) {
-                console.log("未能获取任何论文数据，工作流结束。");
-                return;
-              }
+              // --- 步骤 2: 运行Agent获取新论文 ---
+              const newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls);
 
-              // --- 步骤 2 & 3: 过滤掉重复论文 ---
-              const newUniquePapers = papers.filter(p => !existingPaperUrls.has(p.url));
-
-              // --- 步骤 4: 如果没有新论文则提前结束 ---
-              if (newUniquePapers.length === 0) {
-                  console.log("本次获取的论文均已存在，没有新内容可更新。");
+              if (newPapers.length === 0) {
+                  console.log("没有获取到需要处理的新论文，工作流正常结束。");
                   return;
               }
-              console.log(`API返回了 ${papers.length} 篇论文，其中 ${newUniquePapers.length} 篇是全新的。`);
+              console.log(`✅ 成功处理了 ${newPapers.length} 篇新论文。`);
 
-              // --- 后续所有操作，都基于 newUniquePapers ---
-              const allKeywords = newUniquePapers.flatMap(p => p.paperKeywords).filter(k => typeof k === 'string' && k.length > 0);
-
-              const keywordFreq = allKeywords.reduce((acc, k) => {
-                acc[k] = (acc[k] || 0) + 1;
-                return acc;
-              }, {});
-
-              const sortedKeywordsFull = Object.entries(keywordFreq)
-                .sort((a, b) => b[1] - a[1])
-                .map(([k, count]) => ({ keyword: k, count }));
-
-              // (saveKeywordsFullToGitHub 函数定义保持不变)
-              async function saveKeywordsFullToGitHub(keywordsFullData) {
-                try {
-                  const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/keywords_full.json`;
-                  const headers = { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
-                  const content = JSON.stringify(keywordsFullData, null, 2);
-                  const encodedContent = Buffer.from(content).toString('base64');
-                  const body = { message: `更新全景关键词 - ${new Date().toISOString()}`, content: encodedContent, branch: 'main' };
-                  try {
-                    const response = await fetch(url, { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } });
-                    if (response.ok) { body.sha = (await response.json()).sha; }
-                  } catch (error) { console.log("keywords_full.json not found. Creating a new one."); }
-                  const response = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
-                  if (!response.ok) { throw new Error(`保存全景关键词失败 (${response.status}): ${await response.text()}`); }
-                  console.log("✅ 成功保存全景关键词到 keywords_full.json");
-                } catch (error) { console.error("❌ 保存全景关键词时出错:", error); }
+              // --- 步骤 3: 更新10日滚动热词 ---
+              const todaysKeywords = newPapers.flatMap(p => p.paperKeywords || []);
+              const today = new Date().toISOString().split('T')[0];
+              keywordHistory.push({ date: today, keywords: todaysKeywords });
+              while (keywordHistory.length > 10) {
+                  keywordHistory.shift();
               }
-              
-              if (sortedKeywordsFull.length > 0) {
-                  await saveKeywordsFullToGitHub(sortedKeywordsFull);
-              }
+              await saveJsonFile(KEYWORD_HISTORY_FILE, keywordHistory, historySha);
 
-              // --- 修改：更新热门关键词，并保持手动关键词不变 ---
-              const TOP_N_HOT = 3; 
-              const newHotKeywords = sortedKeywordsFull.slice(0, TOP_N_HOT).map(item => item.keyword);
-              console.log(`新的热门关键词为: ${newHotKeywords.join(', ')}`);
-              // --- 修改结束 ---
+              const allKeywordsInWindow = keywordHistory.flatMap(day => day.keywords);
+              const keywordFreq = allKeywordsInWindow.reduce((acc, k) => { acc[k] = (acc[k] || 0) + 1; return acc; }, {});
+              const sortedKeywords = Object.entries(keywordFreq).sort((a, b) => b[1] - a[1]);
+              const newHotKeywords = sortedKeywords.slice(0, 3).map(item => item[0]);
+              console.log(`🔥 新的滚动热门关键词为: ${newHotKeywords.join(', ')}`);
+
+              // --- 步骤 4: 更新全景关键词文件 ---
+              const sortedKeywordsFull = sortedKeywords.map(([k, count]) => ({ keyword: k, count }));
+              await saveJsonFile(FULL_KEYWORDS_FILE, sortedKeywordsFull, fullKeywordsSha);
               
-              // --- 步骤 5 & 6: 合并并截取最终的论文列表 ---
-              const combinedPapers = [...newUniquePapers, ...(existingData.papers || [])];
-              const MAX_PAPERS_TO_KEEP = 100; // 定义最多保留多少篇论文
+              // --- 步骤 5: 合并与归档论文 ---
+              const combinedPapers = [...newPapers, ...(existingData.papers || [])];
+              const MAX_PAPERS_TO_KEEP = 50;
               const finalPapers = combinedPapers.slice(0, MAX_PAPERS_TO_KEEP);
-
               console.log(`将保留最新的 ${finalPapers.length} 篇论文。`);
 
-              // --- 步骤 7: 准备并保存最终数据 ---
-              // --- 步骤 7: 准备并保存最终数据 ---
+              // --- 步骤 6: 准备并保存最终的主数据文件 ---
               const newData = {
-                papers: finalPapers, // 使用合并、去重、截取后的最终列表
-                lastUpdate: getBeijingTime().toISOString(),
-                // --- 新增：保存新的关键词对象结构 ---
+                papers: finalPapers,
+                lastUpdate: new Date().toISOString(),
                 keywords: {
-                  manual: manualKeywords, // 手动关键词列表保持不变
-                  hot: newHotKeywords      // 热门关键词列表被完全替换
+                  manual: manualKeywords,
+                  hot: newHotKeywords
                 },
-                // --- 修改结束 ---
-                lastAutoUpdateDate: getBeijingTime().toLocaleDateString('zh-CN', {timeZone: 'Asia/Shanghai'})
+                lastAutoUpdateDate: new Date().toLocaleDateString('zh-CN', {timeZone: 'Asia/Shanghai'})
               };
               
-              await saveToGitHub(newData, existingData.sha);
-              console.log(`成功处理了 ${newUniquePapers.length} 篇新论文`);
+              await saveJsonFile(DATA_FILE, newData, dataSha);
+              console.log("🚀 所有数据更新成功，工作流结束。");
               
             } catch (error) {
               console.error("更新过程中出错:", error);
               process.exit(1);
             }
           }
+          
           main();
           EOL
 
@@ -468,7 +273,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
         run: node update-data.js
-
 
       - name: Send email notification
         if: success()
