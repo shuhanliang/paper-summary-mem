@@ -21,13 +21,16 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install node-fetch@2 dotenv
+        run: npm install node-fetch@2 dotenv @xenova/transformers hnswlib-node
 
       - name: Create updater script
         run: |
           cat > update-data.js << 'EOL'
           require('dotenv').config();
           const fetch = require('node-fetch');
+          const { pipeline } = require('@xenova/transformers');
+          const { HierarchicalNSW } = require('hnswlib-node');
+
 
           // --- 新增：调试模式开关 ---
           // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
@@ -48,6 +51,8 @@ jobs:
             "通信": "Communications", "AI 6G": "AI 6G", "Agent": "Agent",
             "LLM": "Large Language Model", "语义通信": "Semantic Communications"
           };
+          const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2'; // 新增：定义嵌入模型
+          const VECTOR_DIMENSIONS = 384; // 新增：嵌入模型的维度，all-MiniLM-L6-v2是384
 
           // --- 核心工具函数 ---
 
@@ -159,8 +164,8 @@ jobs:
               }
           }
 
-          // Agent核心逻辑：获取并处理论文
-          async function runAgentAndFetchPapers(keywords, existingPaperUrls) {
+          // Agent核心逻辑：获取并处理论文 -- 修改：集成向量搜索
+          async function runAgentAndFetchPapers(keywords, existingPaperUrls, embedder, memoryIndex, memoryContent) {
               console.log("🤔 思考: 需要寻找新论文。");
               console.log("🎬 行动: 调用 searchSemanticScholar");
               const papersFromScholar = await searchSemanticScholar(keywords);
@@ -172,8 +177,37 @@ jobs:
               const processedPapers = [];
               for (const paper of newUniquePapersFromScholar) {
                   console.log(`🤔 思考: 正在处理论文 "${paper.title}"`);
+
+                  // --- 新增：向量化并搜索相似记忆 ---
+                  let similarMemoriesPrompt = "";
+                  if (paper.abstract && memoryIndex.getCurrentCount() > 0) {
+                      console.log("🎬 行动: 向量化新论文摘要并搜索记忆库...");
+                      const queryVector = await embedder(paper.abstract, { pooling: 'mean', normalize: true });
+                      const searchResult = memoryIndex.searchKnn(queryVector.data, 2); // 寻找最相似的2篇
+            
+                      if (searchResult.neighbors.length > 0) {
+                        const similarPapersContent = searchResult.neighbors
+                            .map(index => memoryContent[index])
+                            .filter(Boolean)
+                            .map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`)
+                            .join("\n\n");
+
+                            similarMemoriesPrompt = `
+                              作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析，从而提供更有深度的解读。
+                              --- 历史相似论文上下文 ---
+                              ${similarPapersContent}
+                              --------------------------
+                              `;
+                        }
+                    }
+
+
+
+                  // --- 修改：构建包含“相似记忆”的Prompt ---
                   const summarizationPrompt = `
-                      请扮演一个专业的科研助理。根据以下真实论文的标题和摘要，为我生成中文的“摘要（snippet）”、“深入解读（interpretation）”和“关键词（paperKeywords）”。
+                      请扮演一个专业的科研助理。
+                      ${similarMemoriesPrompt}
+                      根据以下真实论文的标题和摘要，为我生成中文的“摘要（snippet）”、“深入解读（interpretation）”和“关键词（paperKeywords）”。
                       请严格按照JSON格式返回，不要包含任何额外的解释或开头语。
                       格式: {"snippet": "...", "interpretation": "...", "paperKeywords": ["keyword1", "keyword2"]}
 
@@ -216,13 +250,34 @@ jobs:
               const searchKeywords = Array.from(new Set([...manualKeywords, ...hotKeywords]));
               const existingPaperUrls = new Set((existingData.papers || []).map(p => p.url).filter(url => url));
 
+              // ------ 新增：初始化嵌入模型和向量记忆库 ---
+              console.log("🚀 初始化文本嵌入模型...");
+              const embedder = await pipeline('feature-extraction', EMBEDDING_MODEL);
+
+              console.log("🧠 正在从 academic_data.json 构建向量记忆库...");
+              const memoryIndex = new HierarchicalNSW('l2', VECTOR_DIMENSIONS);
+              memoryIndex.initIndex(existingData.papers.length);
+              const memoryContent = {}; // 用于根据索引ID查找论文原文
+
+              for (let i = 0; i < existingData.papers.length; i++) {
+                  const paper = existingData.papers[i];
+                  if (paper.snippet) {
+                      const embedding = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
+                      memoryIndex.addPoint(embedding.data, i);
+                      memoryContent[i] = { title: paper.title, snippet: paper.snippet };
+                  }
+              }
+              console.log(`✅ 向量记忆库构建完成，包含 ${memoryIndex.getCurrentCount()} 条记忆。`);
+              // --- 新增逻辑结束 ---
+
               // --- 步骤 2: 运行Agent获取新论文 (含Debug模式) ---
               let newPapers = [];
               if (DEBUG_MODE) {
                   console.log("🚀 调试模式已开启，跳过所有API调用。");
                   // 在调试模式下，我们假装没有获取到新论文，以便测试后续的关键词统计和文件保存逻辑
               } else {
-                  newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls);
+                  // 修改：传入记忆库相关参数
+                  newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls, embedder, memoryIndex, memoryContent);
               }
 
               if (!DEBUG_MODE && newPapers.length === 0) {
@@ -238,7 +293,7 @@ jobs:
               if (todaysKeywords.length > 0) {
                   const today = new Date().toISOString().split('T')[0];
                   keywordHistory.push({ date: today, keywords: todaysKeywords });
-                  while (keywordHistory.length > 10) {
+                  while (keywordHistory.length > 15) {
                       keywordHistory.shift();
                   }
                   await saveJsonFile(KEYWORD_HISTORY_FILE, keywordHistory, historySha);
