@@ -29,7 +29,7 @@ jobs:
           require('dotenv').config();
           const fetch = require('node-fetch');
           // const { pipeline } = require('@xenova/transformers');
-          // const { HierarchicalNSW } = require('hnswlib-node');
+          const { HierarchicalNSW } = require('hnswlib-node');
 
 
           // --- 新增：调试模式开关 ---
@@ -242,7 +242,7 @@ jobs:
             // --- 新增：使用动态 import() 加载ESM模块 ---
             const { pipeline } = await import('@xenova/transformers');
             // --- 修正：使用最终正确的命名导出语法 ---
-            const { HierarchicalNSW } = await import('hnswlib-node');
+            // const { HierarchicalNSW } = await import('hnswlib-node');
 
             try {
               // --- 步骤 1: 加载所有状态文件 ---
