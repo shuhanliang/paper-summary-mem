@@ -35,7 +35,7 @@ jobs:
           // --- 新增：调试模式开关 ---
           // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
           // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
-          const DEBUG_MODE = true;
+          const DEBUG_MODE = false;
 
           // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
