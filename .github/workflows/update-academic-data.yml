@@ -241,18 +241,9 @@ jobs:
           async function main() {
             // --- 新增：使用动态 import() 加载ESM模块 ---
             const { pipeline } = await import('@xenova/transformers');
-            // --- 修正：分两步导入 hnswlib-node ---
-            // 1. 先将整个模块导入到一个变量中
-            const HnswlibModule = await import('hnswlib-node');
-            // 2. 然后从这个模块对象中，获取构造函数
-            const HierarchicalNSW = HnswlibModule.HierarchicalNSW;
+            // --- 修正：使用最终正确的命名导出语法 ---
+            const { HierarchicalNSW } = await import('hnswlib-node');
 
-            // 3. (可选但推荐) 增加一个检查，确保我们成功获取到了构造函数
-            if (!HierarchicalNSW) {
-                throw new Error('Failed to import HierarchicalNSW constructor from hnswlib-node module.');
-            }
-            // --- 修正结束 ---
-            // --- 新增逻辑结束 ---
             try {
               // --- 步骤 1: 加载所有状态文件 ---
               const { content: existingData, sha: dataSha } = await fetchJsonFile(DATA_FILE, { keywords: { manual: DEFAULT_KEYWORDS, hot: [] }, papers: [] });
@@ -270,19 +261,23 @@ jobs:
 
               console.log("🧠 正在从 academic_data.json 构建向量记忆库...");
               const memoryIndex = new HierarchicalNSW('l2', VECTOR_DIMENSIONS);
-              memoryIndex.initIndex(existingData.papers.length);
-              const memoryContent = {}; // 用于根据索引ID查找论文原文
 
-              for (let i = 0; i < existingData.papers.length; i++) {
-                  const paper = existingData.papers[i];
-                  if (paper.snippet) {
+              // 如果initIndex需要一个非零参数，我们需要确保即使在没有论文的情况下也能工作
+              const maxElements = existingData.papers.length > 0 ? existingData.papers.length : 1;
+              memoryIndex.initIndex(maxElements);
+
+              if (existingData.papers.length > 0) {
+                for (let i = 0; i < existingData.papers.length; i++) {
+                    const paper = existingData.papers[i];
+                    if (paper.snippet) {
                       const embedding = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
                       memoryIndex.addPoint(embedding.data, i);
                       memoryContent[i] = { title: paper.title, snippet: paper.snippet };
-                  }
+                    }
+                }
               }
               console.log(`✅ 向量记忆库构建完成，包含 ${memoryIndex.getCurrentCount()} 条记忆。`);
-              // --- 新增逻辑结束 ---
+
 
               // --- 步骤 2: 运行Agent获取新论文 (含Debug模式) ---
               let newPapers = [];
