@@ -28,14 +28,14 @@ jobs:
           cat > update-data.js << 'EOL'
           require('dotenv').config();
           const fetch = require('node-fetch');
-          const { pipeline } = require('@xenova/transformers');
-          const { HierarchicalNSW } = require('hnswlib-node');
+          // const { pipeline } = require('@xenova/transformers');
+          // const { HierarchicalNSW } = require('hnswlib-node');
 
 
           // --- 新增：调试模式开关 ---
           // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
           // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
-          const DEBUG_MODE = false;
+          const DEBUG_MODE = true;
 
           // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -239,6 +239,10 @@ jobs:
 
           // --- 主函数 ---
           async function main() {
+            // --- 新增：使用动态 import() 加载ESM模块 ---
+            const { pipeline } = await import('@xenova/transformers');
+            const { HierarchicalNSW } = await import('hnswlib-node');
+            // --- 新增逻辑结束 ---
             try {
               // --- 步骤 1: 加载所有状态文件 ---
               const { content: existingData, sha: dataSha } = await fetchJsonFile(DATA_FILE, { keywords: { manual: DEFAULT_KEYWORDS, hot: [] }, papers: [] });
