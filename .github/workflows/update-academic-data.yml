@@ -241,7 +241,17 @@ jobs:
           async function main() {
             // --- 新增：使用动态 import() 加载ESM模块 ---
             const { pipeline } = await import('@xenova/transformers');
-            const { default: HierarchicalNSW } = await import('hnswlib-node');
+            // --- 修正：分两步导入 hnswlib-node ---
+            // 1. 先将整个模块导入到一个变量中
+            const HnswlibModule = await import('hnswlib-node');
+            // 2. 然后从这个模块对象中，获取构造函数
+            const HierarchicalNSW = HnswlibModule.HierarchicalNSW;
+
+            // 3. (可选但推荐) 增加一个检查，确保我们成功获取到了构造函数
+            if (!HierarchicalNSW) {
+                throw new Error('Failed to import HierarchicalNSW constructor from hnswlib-node module.');
+            }
+            // --- 修正结束 ---
             // --- 新增逻辑结束 ---
             try {
               // --- 步骤 1: 加载所有状态文件 ---
