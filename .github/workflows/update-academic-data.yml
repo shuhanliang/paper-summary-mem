@@ -266,6 +266,9 @@ jobs:
               const maxElements = existingData.papers.length > 0 ? existingData.papers.length : 1;
               memoryIndex.initIndex(maxElements);
 
+              // 【修改】声明 memoryContent 用于存储原文
+              const memoryContent = {}; // 【修改】
+
               if (existingData.papers.length > 0) {
                 for (let i = 0; i < existingData.papers.length; i++) {
                     const paper = existingData.papers[i];
@@ -277,6 +280,7 @@ jobs:
                 }
               }
               console.log(`✅ 向量记忆库构建完成，包含 ${memoryIndex.getCurrentCount()} 条记忆。`);
+
 
 
               // --- 步骤 2: 运行Agent获取新论文 (含Debug模式) ---
