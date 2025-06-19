@@ -21,7 +21,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install node-fetch@2 dotenv @xenova/transformers hnswlib-node
+        run: npm install node-fetch@2 dotenv @xenova/transformers hnswlib-node fast-xml-parser
 
       - name: Create updater script
         run: |
@@ -32,10 +32,10 @@ jobs:
           const { HierarchicalNSW } = require('hnswlib-node');
 
 
-          // --- 新增：调试模式开关 ---
+          // --- 调试模式开关 ---
           // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
           // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
-          const DEBUG_MODE = false;
+          const DEBUG_MODE = true;
 
           // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -100,28 +100,76 @@ jobs:
             }
           }
           
-          // 新增：调用Semantic Scholar API的函数（包含指数退避重试逻辑）
-          async function searchSemanticScholar(keywords, limit = 5, maxRetries = 3) {
-              console.log(`向 Semantic Scholar 查询关键词: ${keywords.join(' ')}`);
-              const query = encodeURIComponent(keywords.join(' '));
-              const fields = 'paperId,url,title,abstract,authors,year,journal';
-              const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${query}&limit=${limit}&fields=${fields}`;
+          // 新增：调用arxiv API的函数
+          async function searchArxiv(keywords, limit = 5, maxRetries = 3) {
+            const { XMLParser } = await import('fast-xml-parser');
 
-              for (let i = 0; i < maxRetries; i++) {
-                  try {
-                      const response = await fetch(url);
-                      if (response.status === 429 || response.status >= 500) {
-                          throw new Error(`可重试的API错误: ${response.status}`);
-                      }
-                      if (!response.ok) {
-                          console.error(`不可重试的API错误: ${response.status}`);
-                          return [];
-                      }
-                      const data = await response.json();
-                      console.log("✅ 成功从 Semantic Scholar 获取数据。");
-                      return data.data || [];
-                  } catch (error) {
-                      console.warn(`查询 Semantic Scholar 时出错 (第 ${i + 1} 次尝试):`, error.message);
+            // 1. 构建关键词查询部分 (arXiv语法)
+            // 将中文关键词映射为英文
+            const englishKeywords = keywords.map(k => KEYWORDS_ENGLISH_MAPPING[k] || k);
+            // 构建 ti:() OR abs:() 格式
+            const keywordQuery = englishKeywords.map(k => `(ti:"${k}" OR abs:"${k}")`).join(' OR ');
+
+            // 2. 构建日期范围查询部分
+            const now = new Date();
+            const threeMonthsAgo = new Date();
+            threeMonthsAgo.setMonth(now.getMonth() - 3);
+            const formatDate = (date) => `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+            const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
+
+            // 3. 组合最终查询
+            const searchQuery = `(${keywordQuery}) AND ${dateFilter}`;
+            console.log(`向 arXiv API 查询: ${searchQuery}`);
+
+            // 4. 构建完整URL
+            const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
+
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url);
+                    if (response.status !== 200) throw new Error(`API 返回错误: ${response.status}`);
+                    
+                    const xmlData = await response.text();
+                    const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
+                    const jsonData = parser.parse(xmlData);
+
+                    if (!jsonData.feed || !jsonData.feed.entry) {
+                        console.log("✅ arXiv API 返回空结果或格式不符。");
+                        return [];
+                    }
+
+                    // 5. 映射数据格式
+                    const entries = Array.isArray(jsonData.feed.entry) ? jsonData.feed.entry : [jsonData.feed.entry];
+                    const papers = entries.map(entry => {
+                        // 作者处理
+                        let authors = [];
+                        if (Array.isArray(entry.author)) {
+                            authors = entry.author.map(a => a.name);
+                        } else if (entry.author) {
+                            authors = [entry.author.name];
+                        }
+                        
+                        // 从PDF链接中提取ID
+                        const pdfLink = Array.isArray(entry.link) ? entry.link.find(l => l['@_title'] === 'pdf') : entry.link;
+                        const paperId = pdfLink ? pdfLink['@_href'].split('/').pop().replace('v1', '').replace('v2','') : entry.id;
+
+                        return {
+                            id: paperId,
+                            title: entry.title.replace(/\s+/g, ' ').trim(),
+                            url: entry.id,
+                            authors: authors,
+                            journal: 'arXiv', // 直接标记为arXiv
+                            publicationDate: entry.published.split('T')[0], // YYYY-MM-DD
+                            snippet: entry.summary.replace(/\s+/g, ' ').trim(), // 作为初始摘要
+                            // interpretation 和 paperKeywords 留给下一步的LLM处理
+                        };
+                    });
+                    
+                    console.log(`✅ 成功从 arXiv 获取并解析了 ${papers.length} 篇论文。`);
+                    return papers;
+
+                } catch (error) {
+                      console.warn(`查询 arXiv 时出错 (第 ${i + 1} 次尝试):`, error.message);
                       if (i === maxRetries - 1) {
                         console.error("已达到最大重试次数，放弃请求。");
                         return [];
@@ -167,15 +215,15 @@ jobs:
           // Agent核心逻辑：获取并处理论文 -- 修改：集成向量搜索
           async function runAgentAndFetchPapers(keywords, existingPaperUrls, embedder, memoryIndex, memoryContent) {
               console.log("🤔 思考: 需要寻找新论文。");
-              console.log("🎬 行动: 调用 searchSemanticScholar");
-              const papersFromScholar = await searchSemanticScholar(keywords);
-              console.log(`👀 观察: 从Semantic Scholar获得 ${papersFromScholar.length} 篇论文。`);
+              console.log("🎬 行动: 调用 searchArxiv");
+              const papersFromArxiv = await searchArxiv(keywords);
+              console.log(`👀 观察: 从 arXiv 获得 ${papersFromArxiv.length} 篇论文。`);
 
-              const newUniquePapersFromScholar = papersFromScholar.filter(p => p.url && !existingPaperUrls.has(p.url));
+              const newUniquePapersFromScholar = papersFromArxiv.filter(p => p.url && !existingPaperUrls.has(p.url));
               console.log(`筛选后得到 ${newUniquePapersFromScholar.length} 篇全新论文需要处理。`);
 
               const processedPapers = [];
-              for (const paper of newUniquePapersFromScholar) {
+              for (const paper of newUniquePapersFromArxiv) {
                   console.log(`🤔 思考: 正在处理论文 "${paper.title}"`);
 
                   // --- 新增：向量化并搜索相似记忆 ---
