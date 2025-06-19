@@ -241,7 +241,7 @@ jobs:
           async function main() {
             // --- 新增：使用动态 import() 加载ESM模块 ---
             const { pipeline } = await import('@xenova/transformers');
-            const { HierarchicalNSW } = await import('hnswlib-node');
+            const { default: HierarchicalNSW } = await import('hnswlib-node');
             // --- 新增逻辑结束 ---
             try {
               // --- 步骤 1: 加载所有状态文件 ---
