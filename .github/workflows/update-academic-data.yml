@@ -55,7 +55,7 @@ jobs:
           // --- 核心工具函数 ---
           async function fetchJsonFile(fileName, defaultValue = null) {
             try {
-              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`; // 【修正点1】
+              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}` };
               const response = await fetch(url, { headers });
               if (!response.ok) {
@@ -74,14 +74,14 @@ jobs:
 
           async function saveJsonFile(fileName, data, sha) {
             try {
-              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`; // 【修正点1】
+              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
               const content = JSON.stringify(data, null, 2);
               const encodedContent = Buffer.from(content).toString('base64');
               const body = { message: `更新数据文件: ${fileName}`, content: encodedContent, branch: 'main' };
               if (sha) body.sha = sha;
               const response = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
-              if (!response.ok) { const errorText = await response.text(); throw new Error(`保存到GitHub文件 <span class="math-inline">\{fileName\} 失败 \(</span>{response.status}): ${errorText}`); } // 【修正点1】
+              if (!response.ok) { const errorText = await response.text(); throw new Error(`保存到GitHub文件 ${fileName} 失败 (${response.status}): ${errorText}`); } // 【修正点1】
               console.log(`✅ 成功保存文件到 ${fileName}`);
             } catch (error) {
               console.error(`保存文件 ${fileName} 时出错:`, error);
@@ -323,13 +323,13 @@ jobs:
           secure: true
           username: 13937372851@163.com
           password: PCf7BnBBtXx9c6wk
-          subject: 学术周报已更新 - <span class="math-inline">\{\{ github\.repository \}\}
+          subject: 学术周报已更新 - ${{ github.repository }}
           body\: \|
             您好，
             您的学术周报已成功更新！新的学术论文已经添加到数据库中。
             您可以通过以下链接访问您的学术周报：
             https\://shuhanliang\.github\.io/paper\_summary/
-            更新时间：</span>{{ github.event.repository.updated_at }}
+            更新时间：${{ github.event.repository.updated_at }}
             仓库：${{ github.repository }}
             
             此邮件由GitHub Actions自动发送，请勿回复。
