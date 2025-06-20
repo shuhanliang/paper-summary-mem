@@ -1,6 +1,71 @@
 {
-  "papers": [],
-  "lastUpdate": "2025-06-20T04:01:01.337Z",
+  "papers": [
+    {
+      "id": "2506.15683",
+      "title": "PhantomHunter: Detecting Unseen Privately-Tuned LLM-Generated Text via Family-Aware Learning",
+      "url": "http://arxiv.org/abs/2506.15683v1",
+      "authors": [
+        "Yuhui Shi",
+        "Yehan Yang",
+        "Qiang Sheng",
+        "Hao Mi",
+        "Beizhe Hu",
+        "Chaoxi Xu",
+        "Juan Cao"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-18",
+      "snippet": "本文提出PhantomHunter，一种面向“未见过的私有调优大语言模型（LLMs）”生成文本的检测框架。该方法通过家族感知学习，识别基模型及其私有衍生版本共享的特征，有效提升了检测泛化能力。实验覆盖LLaMA、Gemma和Mistral等知名模型家族，显著优于7种主流基线和3款工业检测服务，F1分数超过96%，为防范学术不端和虚假信息提供了有力工具。",
+      "interpretation": {
+        "core_contribution": "提出了PhantomHunter，一种基于家族感知学习的新型LLM生成文本检测器，专门针对未见过的私有调优模型有效识别其生成文本，解决了现有方法在泛化能力上的不足。[1][3][4]",
+        "methodology_summary": "PhantomHunter将待检测文本输入多个已知基座模型，分析其对下一个词的预测概率分布，抽取模型家族层面的共性特征，并通过神经网络实现家族感知判别，而非仅依赖特定模型特征，从而提升对私有/未见调优模型输出的检测能力。[2][4]",
+        "performance_evaluation": "在LLaMA、Gemma、Mistral等主流模型家族的数据集上，与7个主流基线和3种工业级检测系统对比，PhantomHunter的F1分数均超过96%，实验验证了其优越的准确率和泛化能力。[1][3][4]",
+        "inferred_application": "最直接应用于高校学术诚信检测、社交媒体虚假信息过滤、内容安全审查等需识别私有调优LLM文本的场景，目标用户包括学术机构、内容平台及监管部门。[1][3][4]"
+      },
+      "paperKeywords": [
+        "大语言模型",
+        "文本检测",
+        "家族感知学习",
+        "私有调优",
+        "泛化能力",
+        "人工智能安全",
+        "F1分数"
+      ]
+    },
+    {
+      "id": "2506.15681",
+      "title": "GenRecal: Generation after Recalibration from Large to Small Vision-Language Models",
+      "url": "http://arxiv.org/abs/2506.15681v1",
+      "authors": [
+        "Byung-Kwan Lee",
+        "Ryo Hachiuma",
+        "Yong Man Ro",
+        "Yu-Chiang Frank Wang",
+        "Yueh-Hua Wu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-18",
+      "snippet": "本文提出了GenRecal框架，用于将大规模视觉-语言模型（VLMs）的能力蒸馏到小型模型上。GenRecal通过引入Recalibrator模块，对不同架构的VLMs之间的特征表示进行对齐与适应，突破了因词表、分词及索引排序差异导致的知识迁移困难。实验结果显示，GenRecal在多个基准任务上显著提升了小模型性能，超过了大型开源和闭源VLM的表现。",
+      "interpretation": {
+        "core_contribution": "提出了GenRecal，一个支持异构视觉-语言模型间知识无缝迁移的新型通用蒸馏框架，能有效克服模型架构和词表差异带来的迁移障碍。",
+        "methodology_summary": "核心方法是在蒸馏过程中引入Recalibrator模块，对大模型与小模型的特征表示进行对齐和重标定。该机制解决了不同VLM架构（如词表大小、分词方式、token索引顺序等差异）导致的表征不一致，使知识迁移更为通用和高效。",
+        "performance_evaluation": "通过在多个具有挑战性的视觉-语言模型基准数据集上进行广泛实验，与现有基线及大型VLM（包括开源和闭源系统如GPT-4V）进行对比，数据显示小型模型在引入GenRecal后性能有大幅提升，并反超部分大型VLM。",
+        "inferred_application": "该研究最直接的应用场景是在算力受限的终端、移动设备或边缘设备上部署高效、高性能的视觉-语言模型，目标用户包括移动AI开发者、机器人视觉系统和智能嵌入式设备等。"
+      },
+      "paperKeywords": [
+        "视觉-语言模型",
+        "知识蒸馏",
+        "模型压缩",
+        "特征对齐",
+        "异构迁移",
+        "Recalibrator",
+        "生成式模型"
+      ]
+    }
+  ],
+  "lastUpdate": "2025-06-20T05:56:34.707Z",
   "keywords": {
     "manual": [
       "通信",
@@ -9,7 +74,11 @@
       "LLM",
       "语义通信"
     ],
-    "hot": []
+    "hot": [
+      "大语言模型",
+      "文本检测",
+      "家族感知学习"
+    ]
   },
   "lastAutoUpdateDate": "2025/6/20"
 }
