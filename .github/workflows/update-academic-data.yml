@@ -101,7 +101,7 @@ jobs:
           }
           
           // 新增：调用arxiv API的函数
-          async function searchArxiv(keywords, limit = 5, maxRetries = 3) {
+          async function searchArxiv(keywords, limit = 2, maxRetries = 3) {
             const { XMLParser } = await import('fast-xml-parser');
 
             // 1. 构建关键词查询部分 (arXiv语法)
@@ -212,57 +212,106 @@ jobs:
               }
           }
 
-          // Agent核心逻辑：获取并处理论文 -- 修改：集成向量搜索
+          // ---【修改点 1】---: 重构 Agent 核心逻辑，实现两步式自适应分析
           async function runAgentAndFetchPapers(keywords, existingPaperUrls, embedder, memoryIndex, memoryContent) {
               console.log("🤔 思考: 需要寻找新论文。");
               console.log("🎬 行动: 调用 searchArxiv");
               const papersFromArxiv = await searchArxiv(keywords);
               console.log(`👀 观察: 从 arXiv 获得 ${papersFromArxiv.length} 篇论文。`);
 
-              const newUniquePapersFromScholar = papersFromArxiv.filter(p => p.url && !existingPaperUrls.has(p.url));
-              console.log(`筛选后得到 ${newUniquePapersFromScholar.length} 篇全新论文需要处理。`);
+              const newUniquePapers = papersFromArxiv.filter(p => p.url && !existingPaperUrls.has(p.url));
+              console.log(`筛选后得到 ${newUniquePapers.length} 篇全新论文需要处理。`);
 
               const processedPapers = [];
-              for (const paper of newUniquePapersFromArxiv) {
+              for (const paper of newUniquePapers) {
                   console.log(`🤔 思考: 正在处理论文 "${paper.title}"`);
+                  
+                  // ---【修改点 2】---: 步骤一：论文类型分类
+                  console.log("🔍 步骤一: 判断论文类型...");
+                  const classificationPrompt = `
+                    根据以下论文的标题和摘要，请判断这篇论文最接近哪种类型？
+                    只需从 ["实验/方法型", "综述/回顾型", "观点/立场型"] 中选择一个返回。
+                    请严格按照JSON格式返回，例如: {"paper_type": "实验/方法型"}
 
-                  // --- 新增：向量化并搜索相似记忆 ---
+                    标题: ${paper.title}
+                    摘要: ${paper.snippet}
+                  `;
+                  const classificationResult = await queryPerplexityAndParseJson(classificationPrompt);
+                  const paperType = classificationResult ? classificationResult.paper_type : "实验/方法型"; // 默认为实验型
+                  console.log(`✅ 论文类型判断为: ${paperType}`);
+
+                  // --- 相似性搜索逻辑 (保持不变) ---
                   let similarMemoriesPrompt = "";
                   if (paper.snippet && memoryIndex.getCurrentCount() > 0) {
                       console.log("🎬 行动: 向量化新论文摘要并搜索记忆库...");
                       const queryVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
-                      const searchResult = memoryIndex.searchKnn(queryVector.data, 2); // 寻找最相似的2篇
-            
+                      const searchResult = memoryIndex.searchKnn(queryVector.data, 2);
                       if (searchResult.neighbors.length > 0) {
-                        const similarPapersContent = searchResult.neighbors
-                            .map(index => memoryContent[index])
-                            .filter(Boolean)
-                            .map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`)
-                            .join("\n\n");
+                        const similarPapersContent = searchResult.neighbors.map(index => memoryContent[index]).filter(Boolean).map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`).join("\n\n");
+                        similarMemoriesPrompt = `
+                          作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析。
+                          --- 历史相似论文上下文 ---\n${similarPapersContent}\n--------------------------
+                          `;
+                      }
+                  }
 
-                            similarMemoriesPrompt = `
-                              作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析，从而提供更有深度的解读。
-                              --- 历史相似论文上下文 ---
-                              ${similarPapersContent}
-                              --------------------------
-                              `;
-                        }
-                    }
+                  // ---【修改点 3】---: 步骤二：根据论文类型，选择不同的分析框架 (Prompt)
+                  let summarizationPrompt = '';
+                  switch (paperType) {
+                    case "综述/回顾型":
+                      console.log("📘 使用“综述/回顾型”分析框架...");
+                      summarizationPrompt = `
+                        请扮演一个专业的科研助理。
+                        ${similarMemoriesPrompt}
+                        根据我提供的“综述/回顾型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。
+                        
+                        ### JSON格式要求:
+                        {"snippet": "...", "interpretation": {"survey_scope": "...", "taxonomy_or_structure": "...", "key_trends_and_insights": "...", "target_audience": "..."}, "paperKeywords": ["..."]}
 
+                        ### 各字段生成要求:
+                        1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心内容。
+                        2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：
+                           - survey_scope: 这篇综述覆盖了哪个具体研究领域？
+                           - taxonomy_or_structure: 作者是如何对该领域的现有工作进行分类和组织的？
+                           - key_trends_and_insights: 作者从回顾中总结出了哪些关键的技术发展趋势或未来洞见？
+                           - target_audience: 这篇综述最适合哪类读者阅读？
+                        3. paperKeywords: 提取或生成5-7个核心关键词。
 
+                        ### 待分析的论文信息：
+                        标题: ${paper.title}
+                        摘要: ${paper.snippet}
+                      `;
+                      break;
+                    
+                    // ---【修改点 4】---: 默认使用我们优化后的“实验/方法型”分析框架
+                    case "实验/方法型":
+                    default:
+                      console.log("🧪 使用“实验/方法型”分析框架...");
+                      summarizationPrompt = `
+                        请扮演一个专业的科研助理。
+                        ${similarMemoriesPrompt}
+                        根据我提供的“实验/方法型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。
 
-                  // --- 修改：构建包含“相似记忆”的Prompt ---
-                  const summarizationPrompt = `
-                      请扮演一个专业的科研助理。
-                      ${similarMemoriesPrompt}
-                      根据以下真实论文的标题和摘要，为我生成中文的“摘要（snippet）”、“深入解读（interpretation）”和“关键词（paperKeywords）”。
-                      请严格按照JSON格式返回，不要包含任何额外的解释或开头语。
-                      格式: {"snippet": "...", "interpretation": "...", "paperKeywords": ["keyword1", "keyword2"]}
+                        ### JSON格式要求:
+                        {"snippet": "...", "interpretation": {"core_contribution": "...", "methodology_summary": "...", "performance_evaluation": "...", "inferred_application": "..."}, "paperKeywords": ["..."]}
 
-                      论文标题: ${paper.title}
-                      论文摘要 (Abstract): ${paper.snippet}
-                  `;
-                  console.log("🎬 行动: 调用 Perplexity API 进行总结...");
+                        ### 各字段生成要求:
+                        1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心背景、方法和结论。
+                        2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：
+                           - core_contribution: 本文最关键的技术贡献、方法创新或观点突破是什么？
+                           - methodology_summary: 其核心方法的技术原理是什么？
+                           - performance_evaluation: 论文是如何评估其性能的？（如：数据集、基线模型、评估指标）
+                           - inferred_application: 这项研究最直接的应用场景或目标用户是谁？
+                        3. paperKeywords: 提取或生成5-7个核心关键词。
+
+                        ### 待分析的论文信息：
+                        标题: ${paper.title}
+                        摘要: ${paper.snippet}
+                      `;
+                      break;
+                  }
+
+                  console.log("🎬 行动: 调用 Perplexity API 进行深度分析...");
                   const summaryData = await queryPerplexityAndParseJson(summarizationPrompt); 
 
                   if (summaryData) {
@@ -372,7 +421,7 @@ jobs:
               
               // --- 步骤 5: 合并与归档论文 ---
               const combinedPapers = [...newPapers, ...(existingData.papers || [])];
-              const MAX_PAPERS_TO_KEEP = 100;
+              const MAX_PAPERS_TO_KEEP = 50;
               const finalPapers = combinedPapers.slice(0, MAX_PAPERS_TO_KEEP);
               console.log(`将保留最新的 ${finalPapers.length} 篇论文。`);
 
