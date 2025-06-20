@@ -1,6 +1,100 @@
 {
-  "papers": [],
-  "lastUpdate": "2025-06-20T09:15:35.441Z",
+  "papers": [
+    {
+      "id": "2505.22311",
+      "title": "From Large AI Models to Agentic AI: A Tutorial on Future Intelligent Communications",
+      "url": "http://arxiv.org/abs/2505.22311v1",
+      "authors": [
+        "Feibo Jiang",
+        "Cunhua Pan",
+        "Li Dong",
+        "Kezhi Wang",
+        "Octavia A. Dobre",
+        "Merouane Debbah"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-28",
+      "snippet": "本文系统性梳理了大规模人工智能模型（LAMs）及Agentic AI在6G智能通信系统中的原理、设计与应用。作者回顾了从LAMs到Agentic AI的技术演进，细致分析了LLMs、LVMs、LMMs、LRMs及轻量级模型等关键类型，提出了以LAM为核心的通信设计范式，并构建了面向6G的Agentic AI系统框架，涵盖多智能体协同、数据检索和反思机制。文章还总结了相关应用和面临的主要挑战，展望了未来智能通信系统的发展趋势。",
+      "interpretation": {
+        "survey_scope": "本综述聚焦于6G智能通信系统中大规模人工智能模型（LAMs）与Agentic AI的原理、设计理念及其在实际通信场景中的应用与挑战。",
+        "taxonomy_or_structure": "作者首先回顾了6G通信的背景与技术演进，随后对LAMs进行详细分类，包括大语言模型（LLMs）、大视觉模型（LVMs）、大多模模型（LMMs）、大推理模型（LRMs）及轻量级LAMs。继而提出了基于LAMs的数据集构建、内外部学习范式，并进一步展开了Agentic AI系统的核心组件（如规划器、知识库、工具与记忆模块）及多智能体交互机制，最后按通信应用场景梳理实践案例和研究难题。",
+        "key_trends_and_insights": "作者指出，未来通信系统将以通用大模型为中心，整合感知、推理与智能决策，实现高度自适应与协同。Agentic AI的多智能体框架和反思机制有望突破传统通信系统的感知和响应瓶颈。研究挑战包括高效数据利用、安全保障与可持续性等，这些问题将在6G智能通信发展中成为核心突破方向。",
+        "target_audience": "该综述适合通信与人工智能领域的研究人员、6G系统与架构设计工程师，以及希望把握AI驱动智能通信最新进展的高校师生和行业开发者。"
+      },
+      "paperKeywords": [
+        "6G",
+        "智能通信",
+        "大规模人工智能模型（LAMs）",
+        "Agentic AI",
+        "多模态模型",
+        "大模型驱动",
+        "多智能体系统"
+      ]
+    },
+    {
+      "id": "2505.20964",
+      "title": "Semantic Communication meets System 2 ML: How Abstraction, Compositionality and Emergent Languages Shape Intelligence",
+      "url": "http://arxiv.org/abs/2505.20964v1",
+      "authors": [
+        "Mehdi Bennis",
+        "Salem Lahlou"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-27",
+      "snippet": "本文指出，为实现6G与AI的深度融合，需要突破当前5G渐进式演进和AI模型推理能力有限的瓶颈。作者提出基于抽象、组合性和涌现语言三大支柱的System-2认知范式，实现智能体对世界的有意义建模、复杂概念的组合以及自适应语言的生成。该框架有望提升智能系统的推理、适应和协作能力，推动通信、机器学习与机器人等领域的融合与发展。",
+      "interpretation": {
+        "core_contribution": "本文的核心贡献在于首次系统性提出以System-2认知为核心的6G与AI融合新范式，强调抽象、组合性和涌现语言对智能体推理能力及语义通信的基础作用，推动智能通信从数据传递转向有意义的语义和目标导向交互。",
+        "methodology_summary": "该方法以三大技术原理为核心：抽象用于从传感数据中学习结构化的世界模型；组合性提供代数工具以组合不同概念和子系统；涌现语言使智能体根据环境自发生成和使用语义自洽的通信语言。这一体系整合机器学习、语义压缩和知识推理，通过端到端训练与自组织机制推动智能体自主优化交流与协作。",
+        "performance_evaluation": "论文主要提出理论范式与研究框架，未给出具体实验数据。但可借鉴相关领域评估方法，如利用基准数据集（视觉、语言或机器人任务）、与传统通信范式的对比、端到端任务完成率、语义信息压缩率及多智能体协作效率等来衡量性能。",
+        "inferred_application": "该研究极适用于未来6G智能网络、分布式机器人群体、智能物联网系统及需复杂推理与自主协作的场景，其目标用户包括通信网络设计者、AI系统开发者和智能体自治系统领域的研究者。"
+      },
+      "paperKeywords": [
+        "System-2认知",
+        "语义通信",
+        "抽象",
+        "组合性",
+        "涌现语言",
+        "智能体协作",
+        "6G网络"
+      ]
+    },
+    {
+      "id": "2505.03556",
+      "title": "A Comprehensive Survey of Large AI Models for Future Communications: Foundations, Applications and Challenges",
+      "url": "http://arxiv.org/abs/2505.03556v1",
+      "authors": [
+        "Feibo Jiang",
+        "Cunhua Pan",
+        "Li Dong",
+        "Kezhi Wang",
+        "Merouane Debbah",
+        "Dusit Niyato",
+        "Zhu Han"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-06",
+      "snippet": "本综述系统梳理了大规模人工智能模型（LAMs）在未来无线通信领域的基础、应用与挑战。作者介绍了6G时代LAMs因其庞大规模和卓越认知能力对通信领域的重要性，回顾了AI赋能通信系统的现状、主要架构及各类LAMs模型，并详细探讨其在通信场景中的应用、训练与评估方法。综述还总结了如思维链、检索增强生成等优化策略，梳理了LAMs赋能通信的最新进展、面临的关键挑战及未来发展方向。",
+      "interpretation": {
+        "survey_scope": "本文综述了大规模人工智能模型（LAMs）在6G及未来无线通信系统中的基础理论、应用实践和核心挑战，涵盖模型架构、分类、训练方法、优化策略等多个维度。",
+        "taxonomy_or_structure": "作者首先回顾了AI与通信系统的融合动机及现状，随后按模型架构（如Transformer、扩散模型、Mamba）和类型（LLMs、LVMs、LMMs、世界模型）进行分类，进一步分析了LAMs在不同通信场景（如物理层设计、资源分配、边缘智能、语义通信等）的应用，辅以训练、评估及优化策略，并以挑战与未来展望作为收束。",
+        "key_trends_and_insights": "LAMs正成为6G智能通信的核心驱动力，其通用性与泛化能力推动通信系统智能化转型。未来趋势包括多模态与世界模型在通信中的深度融合，优化算法（如CoT、RAG）推动复杂应用落地，以及面向自进化与智能体系统的架构创新。作者指出模型规模、数据安全、能耗与可靠性是亟需突破的关键挑战。",
+        "target_audience": "面向无线通信、人工智能、6G系统研发与标准化的研究人员、高校师生及产业技术开发者，尤其关注AI大模型与通信深度融合的新兴学者和工程师。"
+      },
+      "paperKeywords": [
+        "大规模人工智能模型",
+        "6G通信",
+        "大型语言模型",
+        "多模态模型",
+        "智能体系统",
+        "网络优化",
+        "模型泛化"
+      ]
+    }
+  ],
+  "lastUpdate": "2025-06-20T09:22:58.311Z",
   "keywords": {
     "manual": [
       "通信",
@@ -9,7 +103,11 @@
       "LLM",
       "语义通信"
     ],
-    "hot": []
+    "hot": [
+      "多模态模型",
+      "6G",
+      "智能通信"
+    ]
   },
   "lastAutoUpdateDate": "2025/6/20"
 }
