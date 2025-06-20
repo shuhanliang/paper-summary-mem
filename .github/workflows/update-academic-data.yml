@@ -35,7 +35,7 @@ jobs:
           // --- 调试模式开关 ---
           // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
           // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
-          const DEBUG_MODE = false;
+          const DEBUG_MODE = true;
 
           // --- 配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -104,25 +104,31 @@ jobs:
           async function searchArxiv(keywords, limit = 2, maxRetries = 3) {
             const { XMLParser } = await import('fast-xml-parser');
 
-            // 1. 构建关键词查询部分 (arXiv语法)
-            // 将中文关键词映射为英文
-            const englishKeywords = keywords.map(k => KEYWORDS_ENGLISH_MAPPING[k] || k);
-            // 构建 ti:() OR abs:() 格式
-            const keywordQuery = englishKeywords.map(k => `(ti:"${k}" OR abs:"${k}")`).join(' OR ');
+            // ---【新逻辑】---
+            // 1. 定义核心主题和交叉主题
+            const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
+            const crossTopics = ["Agent", "Memory Management"]; // 您可以随时增删这里的词
+            const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
 
-            // 2. 构建日期范围查询部分
+            // 2. 构建日期范围查询 (保持不变)
             const now = new Date();
             const threeMonthsAgo = new Date();
             threeMonthsAgo.setMonth(now.getMonth() - 3);
             const formatDate = (date) => `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
             const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
 
-            // 3. 组合最终查询
-            const searchQuery = `(${keywordQuery}) AND ${dateFilter}`;
-            console.log(`向 arXiv API 查询: ${searchQuery}`);
+            // 3. 组合最终查询：(核心主题) AND (交叉主题) AND (日期)
+            const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
 
-            // 4. 构建完整URL
+            // 4. 构建并打印测试URL
             const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
+
+            console.log("---------- arXiv API 查询测试 ----------");
+            console.log("构建的查询语句:", searchQuery);
+            console.log("您可以复制以下链接到浏览器中，检查返回的论文数量和相关性:");
+            console.log(url);
+            console.log("-----------------------------------------");
+
 
             for (let i = 0; i < maxRetries; i++) {
                 try {
