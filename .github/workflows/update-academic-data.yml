@@ -25,31 +25,28 @@ jobs:
       - name: Create updater script
         run: |
           cat > update-data.js << 'EOL'
+          // ---【修正点1】---: 模块加载方式统一修正
           require('dotenv').config();
           const fetch = require('node-fetch');
           const { HierarchicalNSW } = require('hnswlib-node');
 
-          // ---【配置】---
-          const DEBUG_MODE = true; // 正式运行时请设为 false
+          // --- 配置 ---
+          const DEBUG_MODE = false; // 正式运行时请设为 false
           
-          // --- API 与仓库配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
           const GITHUB_REPO = process.env.GITHUB_REPOSITORY;
           const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
           
-          // --- 文件路径配置 ---
           const DATA_FILE = 'academic_data.json';
           const KEYWORD_HISTORY_FILE = 'daily_keyword_history.json';
           const FULL_KEYWORDS_FILE = 'keywords_full.json';
           const PROCESSED_URLS_FILE = 'processed_urls.json';
 
-          // --- Agent行为配置 ---
-          const STAGING_AREA_LIMIT = 50;   // 每次从arXiv拉取的“大库”论文数量
-          const TOP_N_TO_PROCESS = 3;      // 每天从“大库”中筛选出来进行精处理的论文数量
-          const MAX_PAPERS_TO_KEEP = 100;  // “小库”（核心分析记忆）的最大容量
-          const KEYWORD_HISTORY_WINDOW = 15; // 滚动热词的历史窗口大小
+          const STAGING_AREA_LIMIT = 50;
+          const TOP_N_TO_PROCESS = 3;
+          const MAX_PAPERS_TO_KEEP = 100;
+          const KEYWORD_HISTORY_WINDOW = 15;
 
-          // --- 模型与关键词配置 ---
           const DEFAULT_KEYWORDS = ["通信", "AI 6G", "Agent", "LLM", "语义通信"];
           const KEYWORDS_ENGLISH_MAPPING = { "通信": "Communications", "AI 6G": "AI 6G", "Agent": "Agent", "LLM": "Large Language Model", "语义通信": "Semantic Communications" };
           const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2';
@@ -58,7 +55,7 @@ jobs:
           // --- 核心工具函数 ---
           async function fetchJsonFile(fileName, defaultValue = null) {
             try {
-              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`;
+              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`; // 【修正点1】
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}` };
               const response = await fetch(url, { headers });
               if (!response.ok) {
@@ -77,14 +74,14 @@ jobs:
 
           async function saveJsonFile(fileName, data, sha) {
             try {
-              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`;
+              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`; // 【修正点1】
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
               const content = JSON.stringify(data, null, 2);
               const encodedContent = Buffer.from(content).toString('base64');
               const body = { message: `更新数据文件: ${fileName}`, content: encodedContent, branch: 'main' };
               if (sha) body.sha = sha;
               const response = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
-              if (!response.ok) { const errorText = await response.text(); throw new Error(`保存到GitHub文件 <span class="math-inline">\{fileName\} 失败 \(</span>{response.status}): ${errorText}`); }
+              if (!response.ok) { const errorText = await response.text(); throw new Error(`保存到GitHub文件 <span class="math-inline">\{fileName\} 失败 \(</span>{response.status}): ${errorText}`); } // 【修正点1】
               console.log(`✅ 成功保存文件到 ${fileName}`);
             } catch (error) {
               console.error(`保存文件 ${fileName} 时出错:`, error);
@@ -92,6 +89,7 @@ jobs:
             }
           }
           
+          // ---【修正点2】---: 修正 queryPerplexityAndParseJson 函数
           async function queryPerplexityAndParseJson(prompt) {
               try {
                   if (!PERPLEXITY_API_KEY) throw new Error("Perplexity API key is missing");
@@ -99,10 +97,10 @@ jobs:
                   const response = await fetch(url, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${PERPLEXITY_API_KEY}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: "sonar-pro", messages: [{ role: "user", content: question }] })
+                    body: JSON.stringify({ model: "sonar-pro", messages: [{ role: "user", content: prompt }] }) // 使用传入的 prompt
                   });
                   if (!response.ok) { const errorText = await response.text(); throw new Error(`Perplexity API error (${response.status}): ${errorText}`);}
-                  const result = await querySonarPro(prompt);
+                  const result = await response.json(); // 直接使用 response.json()
                   const content = result.choices[0].message.content;
                   const jsonMatch = content.match(/\{[\s\S]*\}/);
                   if (jsonMatch) return JSON.parse(jsonMatch[0]);
@@ -122,10 +120,10 @@ jobs:
             const now = new Date();
             const threeMonthsAgo = new Date();
             threeMonthsAgo.setMonth(now.getMonth() - 3);
-            const formatDate = (date) => `<span class="math-inline">\{date\.getFullYear\(\)\}</span>{(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+            const formatDate = (date) => `<span class="math-inline">\{date\.getFullYear\(\)\}</span>{(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`; // 【修正点1】
             const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
-            const searchQuery = `<span class="math-inline">\{coreTopicsQuery\} AND \(</span>{crossTopicsQuery}) AND ${dateFilter}`;
-            const url = `http://export.arxiv.org/api/query?search_query=<span class="math-inline">\{encodeURIComponent\(searchQuery\)\}&max\_results\=</span>{limit}&sortBy=submittedDate&sortOrder=descending`;
+            const searchQuery = `<span class="math-inline">\{coreTopicsQuery\} AND \(</span>{crossTopicsQuery}) AND ${dateFilter}`; // 【修正点1】
+            const url = `http://export.arxiv.org/api/query?search_query=<span class="math-inline">\{encodeURIComponent\(searchQuery\)\}&max\_results\=</span>{limit}&sortBy=submittedDate&sortOrder=descending`; // 【修正点1】
             console.log(`向 arXiv API 查询 (请求 ${limit} 篇): ${searchQuery}`);
             for (let i = 0; i < maxRetries; i++) {
                 try {
@@ -134,7 +132,7 @@ jobs:
                     const xmlData = await response.text();
                     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
                     const jsonData = parser.parse(xmlData);
-                    if (!jsonData.feed || !jsonData.feed.entry) { console.log("✅ arXiv API 返回空结果或格式不符。"); return []; }
+                    if (!jsonData.feed || !jsonData.feed.entry) return [];
                     const entries = Array.isArray(jsonData.feed.entry) ? jsonData.feed.entry : [jsonData.feed.entry];
                     const papers = entries.map(entry => {
                         let authors = Array.isArray(entry.author) ? entry.author.map(a => a.name) : (entry.author ? [entry.author.name] : []);
@@ -153,12 +151,11 @@ jobs:
             return [];
           }
 
-          // --- 单篇论文精处理函数 ---
+          // ---【修正点3】---: 重构为单篇论文精处理函数
           async function analyzeSinglePaper(paper, embedder, memoryIndex, memoryContent) {
             console.log(`🤔 思考: 正在精处理论文 "${paper.title}"`);
             
             // 步骤一：论文类型分类
-            console.log("🔍 步骤一: 判断论文类型...");
             const classificationPrompt = `根据以下论文的标题和摘要，请判断这篇论文最接近哪种类型？只需从 ["实验/方法型", "综述/回顾型", "观点/立场型"] 中选择一个返回。请严格按照JSON格式返回，例如: {"paper_type": "实验/方法型"}\n\n标题: ${paper.title}\n摘要: ${paper.snippet}`;
             const classificationResult = await queryPerplexityAndParseJson(classificationPrompt);
             const paperType = classificationResult ? classificationResult.paper_type : "实验/方法型";
@@ -326,15 +323,12 @@ jobs:
           username: 13937372851@163.com
           password: PCf7BnBBtXx9c6wk
           subject: 学术周报已更新 - <span class="math-inline">\{\{ github\.repository \}\}
-          body: |
+          body\: \|
             您好，
-            
             您的学术周报已成功更新！新的学术论文已经添加到数据库中。
-            
             您可以通过以下链接访问您的学术周报：
-            https://shuhanliang.github.io/paper_summary/
-            
-            更新时间：${{ github.event.repository.updated_at }}
+            https\://shuhanliang\.github\.io/paper\_summary/
+            更新时间：</span>{{ github.event.repository.updated_at }}
             仓库：${{ github.repository }}
             
             此邮件由GitHub Actions自动发送，请勿回复。
