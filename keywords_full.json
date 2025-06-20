@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "keyword": "大语言模型",
+    "count": 1
+  },
+  {
+    "keyword": "文本检测",
+    "count": 1
+  },
+  {
+    "keyword": "家族感知学习",
+    "count": 1
+  },
+  {
+    "keyword": "私有调优",
+    "count": 1
+  },
+  {
+    "keyword": "泛化能力",
+    "count": 1
+  },
+  {
+    "keyword": "人工智能安全",
+    "count": 1
+  },
+  {
+    "keyword": "F1分数",
+    "count": 1
+  },
+  {
+    "keyword": "视觉-语言模型",
+    "count": 1
+  },
+  {
+    "keyword": "知识蒸馏",
+    "count": 1
+  },
+  {
+    "keyword": "模型压缩",
+    "count": 1
+  },
+  {
+    "keyword": "特征对齐",
+    "count": 1
+  },
+  {
+    "keyword": "异构迁移",
+    "count": 1
+  },
+  {
+    "keyword": "Recalibrator",
+    "count": 1
+  },
+  {
+    "keyword": "生成式模型",
+    "count": 1
+  }
+]
