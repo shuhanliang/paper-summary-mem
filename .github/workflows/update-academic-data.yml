@@ -228,9 +228,9 @@ jobs:
 
                   // --- 新增：向量化并搜索相似记忆 ---
                   let similarMemoriesPrompt = "";
-                  if (paper.abstract && memoryIndex.getCurrentCount() > 0) {
+                  if (paper.snippet && memoryIndex.getCurrentCount() > 0) {
                       console.log("🎬 行动: 向量化新论文摘要并搜索记忆库...");
-                      const queryVector = await embedder(paper.abstract, { pooling: 'mean', normalize: true });
+                      const queryVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
                       const searchResult = memoryIndex.searchKnn(queryVector.data, 2); // 寻找最相似的2篇
             
                       if (searchResult.neighbors.length > 0) {
@@ -260,7 +260,7 @@ jobs:
                       格式: {"snippet": "...", "interpretation": "...", "paperKeywords": ["keyword1", "keyword2"]}
 
                       论文标题: ${paper.title}
-                      论文摘要 (Abstract): ${paper.abstract}
+                      论文摘要 (Abstract): ${paper.snippet}
                   `;
                   console.log("🎬 行动: 调用 Perplexity API 进行总结...");
                   const summaryData = await queryPerplexityAndParseJson(summarizationPrompt); 
@@ -268,13 +268,13 @@ jobs:
                   if (summaryData) {
                       console.log(`👀 观察: 已成功生成论文 "${paper.title}" 的摘要和解读。`);
                       processedPapers.push({
-                          id: paper.paperId || `scholar-${Date.now()}`,
+                          id: paper.id,
                           title: paper.title,
                           url: paper.url,
-                          authors: paper.authors ? paper.authors.map(a => a.name) : [],
+                          authors: paper.authors || [],
                           affiliations: [],
-                          journal: paper.journal && paper.journal.name ? paper.journal.name : "N/A",
-                          publicationDate: paper.year,
+                          journal: paper.journal,
+                          publicationDate: paper.publicationDate,
                           ...summaryData
                       });
                   } else {
@@ -372,7 +372,7 @@ jobs:
               
               // --- 步骤 5: 合并与归档论文 ---
               const combinedPapers = [...newPapers, ...(existingData.papers || [])];
-              const MAX_PAPERS_TO_KEEP = 50;
+              const MAX_PAPERS_TO_KEEP = 100;
               const finalPapers = combinedPapers.slice(0, MAX_PAPERS_TO_KEEP);
               console.log(`将保留最新的 ${finalPapers.length} 篇论文。`);
 
