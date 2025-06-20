@@ -3,7 +3,6 @@ name: Update Academic Data
 on:
   schedule:
     # 每个工作日（周一至周五）北京时间早上8:00运行（UTC时间0:00）
-    # 格式: 分 时 日 月 周几 (0-6，0是周日)
     - cron: '0 0 * * 1-5'
   # 允许手动触发
   workflow_dispatch:
@@ -28,45 +27,42 @@ jobs:
           cat > update-data.js << 'EOL'
           require('dotenv').config();
           const fetch = require('node-fetch');
-          // const { pipeline } = require('@xenova/transformers');
           const { HierarchicalNSW } = require('hnswlib-node');
 
-
-          // --- 调试模式开关 ---
-          // 设置为 true 来跳过所有API调用，直接用已有的数据测试后续流程
-          // 设置为 false 以正常调用 Semantic Scholar 和 Perplexity API
-          const DEBUG_MODE = true;
-
-          // --- 配置 ---
+          // ---【配置】---
+          const DEBUG_MODE = true; // 正式运行时请设为 false
+          
+          // --- API 与仓库配置 ---
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
           const GITHUB_REPO = process.env.GITHUB_REPOSITORY;
           const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
           
+          // --- 文件路径配置 ---
           const DATA_FILE = 'academic_data.json';
           const KEYWORD_HISTORY_FILE = 'daily_keyword_history.json';
           const FULL_KEYWORDS_FILE = 'keywords_full.json';
+          const PROCESSED_URLS_FILE = 'processed_urls.json';
 
+          // --- Agent行为配置 ---
+          const STAGING_AREA_LIMIT = 50;   // 每次从arXiv拉取的“大库”论文数量
+          const TOP_N_TO_PROCESS = 3;      // 每天从“大库”中筛选出来进行精处理的论文数量
+          const MAX_PAPERS_TO_KEEP = 100;  // “小库”（核心分析记忆）的最大容量
+          const KEYWORD_HISTORY_WINDOW = 15; // 滚动热词的历史窗口大小
+
+          // --- 模型与关键词配置 ---
           const DEFAULT_KEYWORDS = ["通信", "AI 6G", "Agent", "LLM", "语义通信"];
-          const KEYWORDS_ENGLISH_MAPPING = {
-            "通信": "Communications", "AI 6G": "AI 6G", "Agent": "Agent",
-            "LLM": "Large Language Model", "语义通信": "Semantic Communications"
-          };
-          const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2'; // 新增：定义嵌入模型
-          const VECTOR_DIMENSIONS = 384; // 新增：嵌入模型的维度，all-MiniLM-L6-v2是384
+          const KEYWORDS_ENGLISH_MAPPING = { "通信": "Communications", "AI 6G": "AI 6G", "Agent": "Agent", "LLM": "Large Language Model", "语义通信": "Semantic Communications" };
+          const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2';
+          const VECTOR_DIMENSIONS = 384;
 
           // --- 核心工具函数 ---
-
-          // 从GitHub获取通用JSON文件
           async function fetchJsonFile(fileName, defaultValue = null) {
             try {
-              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
+              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`;
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}` };
               const response = await fetch(url, { headers });
               if (!response.ok) {
-                if (response.status === 404) {
-                  console.log(`文件 ${fileName} 未找到，将使用默认值。`);
-                  return { content: defaultValue, sha: null };
-                }
+                if (response.status === 404) { console.log(`文件 ${fileName} 未找到，将使用默认值。`); return { content: defaultValue, sha: null }; }
                 throw new Error(`GitHub API error for ${fileName}: ${response.status}`);
               }
               const data = await response.json();
@@ -79,20 +75,16 @@ jobs:
             }
           }
 
-          // 保存通用JSON文件到GitHub
           async function saveJsonFile(fileName, data, sha) {
             try {
-              const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${fileName}`;
+              const url = `https://api.github.com/repos/<span class="math-inline">\{GITHUB\_REPO\}/contents/</span>{fileName}`;
               const headers = { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' };
               const content = JSON.stringify(data, null, 2);
               const encodedContent = Buffer.from(content).toString('base64');
               const body = { message: `更新数据文件: ${fileName}`, content: encodedContent, branch: 'main' };
               if (sha) body.sha = sha;
               const response = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(body) });
-              if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(`保存到GitHub文件 ${fileName} 失败 (${response.status}): ${errorText}`);
-              }
+              if (!response.ok) { const errorText = await response.text(); throw new Error(`保存到GitHub文件 <span class="math-inline">\{fileName\} 失败 \(</span>{response.status}): ${errorText}`); }
               console.log(`✅ 成功保存文件到 ${fileName}`);
             } catch (error) {
               console.error(`保存文件 ${fileName} 时出错:`, error);
@@ -100,113 +92,16 @@ jobs:
             }
           }
           
-          // 新增：调用arxiv API的函数
-          async function searchArxiv(keywords, limit = 2, maxRetries = 3) {
-            const { XMLParser } = await import('fast-xml-parser');
-
-            // ---【新逻辑】---
-            // 1. 定义核心主题和交叉主题
-            const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
-            const crossTopics = ["Agent", "Memory Management"]; // 您可以随时增删这里的词
-            const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
-
-            // 2. 构建日期范围查询 (保持不变)
-            const now = new Date();
-            const threeMonthsAgo = new Date();
-            threeMonthsAgo.setMonth(now.getMonth() - 3);
-            const formatDate = (date) => `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-            const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
-
-            // 3. 组合最终查询：(核心主题) AND (交叉主题) AND (日期)
-            const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
-
-            // 4. 构建并打印测试URL
-            const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
-
-            console.log("---------- arXiv API 查询测试 ----------");
-            console.log("构建的查询语句:", searchQuery);
-            console.log("您可以复制以下链接到浏览器中，检查返回的论文数量和相关性:");
-            console.log(url);
-            console.log("-----------------------------------------");
-
-
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url);
-                    if (response.status !== 200) throw new Error(`API 返回错误: ${response.status}`);
-                    
-                    const xmlData = await response.text();
-                    const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
-                    const jsonData = parser.parse(xmlData);
-
-                    if (!jsonData.feed || !jsonData.feed.entry) {
-                        console.log("✅ arXiv API 返回空结果或格式不符。");
-                        return [];
-                    }
-
-                    // 5. 映射数据格式
-                    const entries = Array.isArray(jsonData.feed.entry) ? jsonData.feed.entry : [jsonData.feed.entry];
-                    const papers = entries.map(entry => {
-                        // 作者处理
-                        let authors = [];
-                        if (Array.isArray(entry.author)) {
-                            authors = entry.author.map(a => a.name);
-                        } else if (entry.author) {
-                            authors = [entry.author.name];
-                        }
-                        
-                        // 从PDF链接中提取ID
-                        const pdfLink = Array.isArray(entry.link) ? entry.link.find(l => l['@_title'] === 'pdf') : entry.link;
-                        const paperId = pdfLink ? pdfLink['@_href'].split('/').pop().replace('v1', '').replace('v2','') : entry.id;
-
-                        return {
-                            id: paperId,
-                            title: entry.title.replace(/\s+/g, ' ').trim(),
-                            url: entry.id,
-                            authors: authors,
-                            journal: 'arXiv', // 直接标记为arXiv
-                            publicationDate: entry.published.split('T')[0], // YYYY-MM-DD
-                            snippet: entry.summary.replace(/\s+/g, ' ').trim(), // 作为初始摘要
-                            // interpretation 和 paperKeywords 留给下一步的LLM处理
-                        };
-                    });
-                    
-                    console.log(`✅ 成功从 arXiv 获取并解析了 ${papers.length} 篇论文。`);
-                    return papers;
-
-                } catch (error) {
-                      console.warn(`查询 arXiv 时出错 (第 ${i + 1} 次尝试):`, error.message);
-                      if (i === maxRetries - 1) {
-                        console.error("已达到最大重试次数，放弃请求。");
-                        return [];
-                      }
-                      const delay = Math.pow(2, i) * 1000 + (Math.random() * 500);
-                      console.log(`将在 ${Math.round(delay / 1000)} 秒后重试...`);
-                      await new Promise(resolve => setTimeout(resolve, delay));
-                    }
-                }
-                return [];
-            }
-
-          // 调用Perplexity API的函数
-          async function querySonarPro(question) {
-            if (!PERPLEXITY_API_KEY) throw new Error("Perplexity API key is missing");
-            const url = "https://api.perplexity.ai/chat/completions";
-            const response = await fetch(url, {
-              method: 'POST',
-              headers: { 'Authorization': `Bearer ${PERPLEXITY_API_KEY}`, 'Content-Type': 'application/json' },
-              body: JSON.stringify({ model: "sonar-pro", messages: [{ role: "user", content: question }] })
-            });
-            if (!response.ok) {
-              const errorText = await response.text();
-              throw new Error(`Perplexity API error (${response.status}): ${errorText}`);
-            }
-            return await response.json();
-          }
-          
-          // 解析Perplexity返回的JSON
           async function queryPerplexityAndParseJson(prompt) {
               try {
+                  if (!PERPLEXITY_API_KEY) throw new Error("Perplexity API key is missing");
+                  const url = "https://api.perplexity.ai/chat/completions";
+                  const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${PERPLEXITY_API_KEY}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ model: "sonar-pro", messages: [{ role: "user", content: question }] })
+                  });
+                  if (!response.ok) { const errorText = await response.text(); throw new Error(`Perplexity API error (${response.status}): ${errorText}`);}
                   const result = await querySonarPro(prompt);
                   const content = result.choices[0].message.content;
                   const jsonMatch = content.match(/\{[\s\S]*\}/);
@@ -218,233 +113,194 @@ jobs:
               }
           }
 
-          // ---【修改点 1】---: 重构 Agent 核心逻辑，实现两步式自适应分析
-          async function runAgentAndFetchPapers(keywords, existingPaperUrls, embedder, memoryIndex, memoryContent) {
-              console.log("🤔 思考: 需要寻找新论文。");
-              console.log("🎬 行动: 调用 searchArxiv");
-              const papersFromArxiv = await searchArxiv(keywords);
-              console.log(`👀 观察: 从 arXiv 获得 ${papersFromArxiv.length} 篇论文。`);
-
-              const newUniquePapers = papersFromArxiv.filter(p => p.url && !existingPaperUrls.has(p.url));
-              console.log(`筛选后得到 ${newUniquePapers.length} 篇全新论文需要处理。`);
-
-              const processedPapers = [];
-              for (const paper of newUniquePapers) {
-                  console.log(`🤔 思考: 正在处理论文 "${paper.title}"`);
-                  
-                  // ---【修改点 2】---: 步骤一：论文类型分类
-                  console.log("🔍 步骤一: 判断论文类型...");
-                  const classificationPrompt = `
-                    根据以下论文的标题和摘要，请判断这篇论文最接近哪种类型？
-                    只需从 ["实验/方法型", "综述/回顾型", "观点/立场型"] 中选择一个返回。
-                    请严格按照JSON格式返回，例如: {"paper_type": "实验/方法型"}
-
-                    标题: ${paper.title}
-                    摘要: ${paper.snippet}
-                  `;
-                  const classificationResult = await queryPerplexityAndParseJson(classificationPrompt);
-                  const paperType = classificationResult ? classificationResult.paper_type : "实验/方法型"; // 默认为实验型
-                  console.log(`✅ 论文类型判断为: ${paperType}`);
-
-                  // --- 相似性搜索逻辑 (保持不变) ---
-                  let similarMemoriesPrompt = "";
-                  if (paper.snippet && memoryIndex.getCurrentCount() > 0) {
-                      console.log("🎬 行动: 向量化新论文摘要并搜索记忆库...");
-                      const queryVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
-                      const searchResult = memoryIndex.searchKnn(queryVector.data, 2);
-                      if (searchResult.neighbors.length > 0) {
-                        const similarPapersContent = searchResult.neighbors.map(index => memoryContent[index]).filter(Boolean).map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`).join("\n\n");
-                        similarMemoriesPrompt = `
-                          作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析。
-                          --- 历史相似论文上下文 ---\n${similarPapersContent}\n--------------------------
-                          `;
-                      }
-                  }
-
-                  // ---【修改点 3】---: 步骤二：根据论文类型，选择不同的分析框架 (Prompt)
-                  let summarizationPrompt = '';
-                  switch (paperType) {
-                    case "综述/回顾型":
-                      console.log("📘 使用“综述/回顾型”分析框架...");
-                      summarizationPrompt = `
-                        请扮演一个专业的科研助理。
-                        ${similarMemoriesPrompt}
-                        根据我提供的“综述/回顾型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。
-                        
-                        ### JSON格式要求:
-                        {"snippet": "...", "interpretation": {"survey_scope": "...", "taxonomy_or_structure": "...", "key_trends_and_insights": "...", "target_audience": "..."}, "paperKeywords": ["..."]}
-
-                        ### 各字段生成要求:
-                        1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心内容。
-                        2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：
-                           - survey_scope: 这篇综述覆盖了哪个具体研究领域？
-                           - taxonomy_or_structure: 作者是如何对该领域的现有工作进行分类和组织的？
-                           - key_trends_and_insights: 作者从回顾中总结出了哪些关键的技术发展趋势或未来洞见？
-                           - target_audience: 这篇综述最适合哪类读者阅读？
-                        3. paperKeywords: 提取或生成5-7个核心关键词。
-
-                        ### 待分析的论文信息：
-                        标题: ${paper.title}
-                        摘要: ${paper.snippet}
-                      `;
-                      break;
-                    
-                    // ---【修改点 4】---: 默认使用我们优化后的“实验/方法型”分析框架
-                    case "实验/方法型":
-                    default:
-                      console.log("🧪 使用“实验/方法型”分析框架...");
-                      summarizationPrompt = `
-                        请扮演一个专业的科研助理。
-                        ${similarMemoriesPrompt}
-                        根据我提供的“实验/方法型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。
-
-                        ### JSON格式要求:
-                        {"snippet": "...", "interpretation": {"core_contribution": "...", "methodology_summary": "...", "performance_evaluation": "...", "inferred_application": "..."}, "paperKeywords": ["..."]}
-
-                        ### 各字段生成要求:
-                        1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心背景、方法和结论。
-                        2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：
-                           - core_contribution: 本文最关键的技术贡献、方法创新或观点突破是什么？
-                           - methodology_summary: 其核心方法的技术原理是什么？
-                           - performance_evaluation: 论文是如何评估其性能的？（如：数据集、基线模型、评估指标）
-                           - inferred_application: 这项研究最直接的应用场景或目标用户是谁？
-                        3. paperKeywords: 提取或生成5-7个核心关键词。
-
-                        ### 待分析的论文信息：
-                        标题: ${paper.title}
-                        摘要: ${paper.snippet}
-                      `;
-                      break;
-                  }
-
-                  console.log("🎬 行动: 调用 Perplexity API 进行深度分析...");
-                  const summaryData = await queryPerplexityAndParseJson(summarizationPrompt); 
-
-                  if (summaryData) {
-                      console.log(`👀 观察: 已成功生成论文 "${paper.title}" 的摘要和解读。`);
-                      processedPapers.push({
-                          id: paper.id,
-                          title: paper.title,
-                          url: paper.url,
-                          authors: paper.authors || [],
-                          affiliations: [],
-                          journal: paper.journal,
-                          publicationDate: paper.publicationDate,
-                          ...summaryData
-                      });
-                  } else {
-                      console.log(`👀 观察: 论文 "${paper.title}" 的摘要生成失败，已跳过。`);
-                  }
-              }
-              return processedPapers;
+          // --- 拉取“大库”函数 ---
+          async function fetchStagingPapers(limit = STAGING_AREA_LIMIT, maxRetries = 3) {
+            const { XMLParser } = await import('fast-xml-parser');
+            const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
+            const crossTopics = ["Agent", "Memory Management"];
+            const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
+            const now = new Date();
+            const threeMonthsAgo = new Date();
+            threeMonthsAgo.setMonth(now.getMonth() - 3);
+            const formatDate = (date) => `<span class="math-inline">\{date\.getFullYear\(\)\}</span>{(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+            const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
+            const searchQuery = `<span class="math-inline">\{coreTopicsQuery\} AND \(</span>{crossTopicsQuery}) AND ${dateFilter}`;
+            const url = `http://export.arxiv.org/api/query?search_query=<span class="math-inline">\{encodeURIComponent\(searchQuery\)\}&max\_results\=</span>{limit}&sortBy=submittedDate&sortOrder=descending`;
+            console.log(`向 arXiv API 查询 (请求 ${limit} 篇): ${searchQuery}`);
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url);
+                    if (response.status !== 200) throw new Error(`API 返回错误: ${response.status}`);
+                    const xmlData = await response.text();
+                    const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
+                    const jsonData = parser.parse(xmlData);
+                    if (!jsonData.feed || !jsonData.feed.entry) { console.log("✅ arXiv API 返回空结果或格式不符。"); return []; }
+                    const entries = Array.isArray(jsonData.feed.entry) ? jsonData.feed.entry : [jsonData.feed.entry];
+                    const papers = entries.map(entry => {
+                        let authors = Array.isArray(entry.author) ? entry.author.map(a => a.name) : (entry.author ? [entry.author.name] : []);
+                        const pdfLink = Array.isArray(entry.link) ? entry.link.find(l => l['@_title'] === 'pdf') : entry.link;
+                        const paperId = pdfLink ? pdfLink['@_href'].split('/').pop().replace(/v\d+$/, '') : entry.id;
+                        return { id: paperId, title: entry.title.replace(/\s+/g, ' ').trim(), url: entry.id, authors: authors, journal: 'arXiv', publicationDate: entry.published.split('T')[0], snippet: entry.summary.replace(/\s+/g, ' ').trim() };
+                    });
+                    console.log(`✅ 成功从 arXiv 获取并解析了 ${papers.length} 篇论文。`);
+                    return papers;
+                } catch (error) {
+                    console.warn(`查询 arXiv 时出错 (第 ${i + 1} 次尝试):`, error.message);
+                    if (i === maxRetries - 1) { console.error("已达到最大重试次数。"); return []; }
+                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+                }
+            }
+            return [];
           }
 
+          // --- 单篇论文精处理函数 ---
+          async function analyzeSinglePaper(paper, embedder, memoryIndex, memoryContent) {
+            console.log(`🤔 思考: 正在精处理论文 "${paper.title}"`);
+            
+            // 步骤一：论文类型分类
+            console.log("🔍 步骤一: 判断论文类型...");
+            const classificationPrompt = `根据以下论文的标题和摘要，请判断这篇论文最接近哪种类型？只需从 ["实验/方法型", "综述/回顾型", "观点/立场型"] 中选择一个返回。请严格按照JSON格式返回，例如: {"paper_type": "实验/方法型"}\n\n标题: ${paper.title}\n摘要: ${paper.snippet}`;
+            const classificationResult = await queryPerplexityAndParseJson(classificationPrompt);
+            const paperType = classificationResult ? classificationResult.paper_type : "实验/方法型";
+            console.log(`✅ 论文类型判断为: ${paperType}`);
+
+            // 步骤二：相似性搜索
+            let similarMemoriesPrompt = "";
+            if (paper.snippet && memoryIndex.getCurrentCount() > 0) {
+              const queryVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
+              const searchResult = memoryIndex.searchKnn(queryVector.data, 2);
+              if (searchResult.neighbors.length > 0) {
+                const similarPapersContent = searchResult.neighbors.map(index => memoryContent[index]).filter(Boolean).map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`).join("\n\n");
+                similarMemoriesPrompt = `作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析。\n--- 历史相似论文上下文 ---\n${similarPapersContent}\n--------------------------\n`;
+              }
+            }
+            
+            // 步骤三：根据类型选择分析框架
+            let summarizationPrompt = '';
+            switch (paperType) {
+              case "综述/回顾型":
+                console.log("📘 使用“综述/回顾型”分析框架...");
+                summarizationPrompt = `请扮演一个专业的科研助理。${similarMemoriesPrompt}根据我提供的“综述/回顾型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。\n\n### JSON格式要求:\n{"snippet": "...", "interpretation": {"survey_scope": "...", "taxonomy_or_structure": "...", "key_trends_and_insights": "...", "target_audience": "..."}, "paperKeywords": ["..."]}\n\n### 各字段生成要求:\n1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心内容。\n2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：\n   - survey_scope: 这篇综述覆盖了哪个具体研究领域？\n   - taxonomy_or_structure: 作者是如何对该领域的现有工作进行分类和组织的？\n   - key_trends_and_insights: 作者从回顾中总结出了哪些关键的技术发展趋势或未来洞见？\n   - target_audience: 这篇综述最适合哪类读者阅读？\n3. paperKeywords: 提取或生成5-7个核心关键词。\n\n### 待分析的论文信息：\n标题: ${paper.title}\n摘要: ${paper.snippet}`;
+                break;
+              default:
+                console.log("🧪 使用“实验/方法型”分析框架...");
+                summarizationPrompt = `请扮演一个专业的科研助理。${similarMemoriesPrompt}根据我提供的“实验/方法型”论文的标题和摘要，请严格按照下面的JSON格式返回你的分析结果。\n\n### JSON格式要求:\n{"snippet": "...", "interpretation": {"core_contribution": "...", "methodology_summary": "...", "performance_evaluation": "...", "inferred_application": "..."}, "paperKeywords": ["..."]}\n\n### 各字段生成要求:\n1. snippet: 生成一个约150字的“学术摘要”，客观概括其核心背景、方法和结论。\n2. interpretation: 提供“深入解读”，必须是一个包含以下四个键的JSON对象：\n   - core_contribution: 本文最关键的技术贡献、方法创新或观点突破是什么？\n   - methodology_summary: 其核心方法的技术原理是什么？\n   - performance_evaluation: 论文是如何评估其性能的？（如：数据集、基线模型、评估指标）\n   - inferred_application: 这项研究最直接的应用场景或目标用户是谁？\n3. paperKeywords: 提取或生成5-7个核心关键词。\n\n### 待分析的论文信息：\n标题: ${paper.title}\n摘要: ${paper.snippet}`;
+                break;
+            }
+
+            const summaryData = await queryPerplexityAndParseJson(summarizationPrompt);
+            if (!summaryData) { console.log(`👀 观察: 论文 "${paper.title}" 的摘要生成失败，已跳过。`); return null; }
+            
+            console.log(`👀 观察: 已成功生成论文 "${paper.title}" 的摘要和解读。`);
+            return { id: paper.id, title: paper.title, url: paper.url, authors: paper.authors || [], affiliations: [], journal: paper.journal, publicationDate: paper.publicationDate, ...summaryData };
+          }
 
           // --- 主函数 ---
           async function main() {
-            // --- 新增：使用动态 import() 加载ESM模块 ---
-            const { pipeline } = await import('@xenova/transformers');
-            // --- 修正：使用最终正确的命名导出语法 ---
-            // const { HierarchicalNSW } = await import('hnswlib-node');
-
             try {
-              // --- 步骤 1: 加载所有状态文件 ---
-              const { content: existingData, sha: dataSha } = await fetchJsonFile(DATA_FILE, { keywords: { manual: DEFAULT_KEYWORDS, hot: [] }, papers: [] });
+              const { pipeline } = await import('@xenova/transformers');
+            
+              // 1. 加载所有状态文件
+              console.log("--- 步骤 1: 加载状态文件 ---");
+              const { content: existingData, sha: dataSha } = await fetchJsonFile(DATA_FILE, { papers: [], keywords: { manual: DEFAULT_KEYWORDS, hot: [] } });
               const { content: keywordHistory, sha: historySha } = await fetchJsonFile(KEYWORD_HISTORY_FILE, []);
               const { sha: fullKeywordsSha } = await fetchJsonFile(FULL_KEYWORDS_FILE, []);
+              const { content: processedUrlsData, sha: urlsSha } = await fetchJsonFile(PROCESSED_URLS_FILE, { processed_urls: [] });
 
-              const manualKeywords = existingData.keywords.manual || DEFAULT_KEYWORDS;
-              const hotKeywords = existingData.keywords.hot || [];
-              const searchKeywords = Array.from(new Set([...manualKeywords, ...hotKeywords]));
-              const existingPaperUrls = new Set((existingData.papers || []).map(p => p.url).filter(url => url));
+              const manualKeywords = existingData.keywords.manual || [];
+              const existingUrls = new Set(processedUrlsData.processed_urls);
 
-              // ------ 新增：初始化嵌入模型和向量记忆库 ---
-              console.log("🚀 初始化文本嵌入模型...");
-              const embedder = await pipeline('feature-extraction', EMBEDDING_MODEL);
-
-              console.log("🧠 正在从 academic_data.json 构建向量记忆库...");
+              // 2. 构建分析记忆库 (小库)
+              console.log("--- 步骤 2: 构建分析记忆库 (小库) ---");
               const memoryIndex = new HierarchicalNSW('l2', VECTOR_DIMENSIONS);
-
-              // 如果initIndex需要一个非零参数，我们需要确保即使在没有论文的情况下也能工作
               const maxElements = existingData.papers.length > 0 ? existingData.papers.length : 1;
               memoryIndex.initIndex(maxElements);
-
-              // 【修改】声明 memoryContent 用于存储原文
-              const memoryContent = {}; // 【修改】
-
+              const memoryContent = {};
+              const embedder = await pipeline('feature-extraction', EMBEDDING_MODEL);
               if (existingData.papers.length > 0) {
+                console.log("🧠 正在向量化分析记忆库...");
                 for (let i = 0; i < existingData.papers.length; i++) {
                     const paper = existingData.papers[i];
                     if (paper.snippet) {
-                      const embedding = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
-                      memoryIndex.addPoint(embedding.data, i);
-                      memoryContent[i] = { title: paper.title, snippet: paper.snippet };
+                        const embedding = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
+                        memoryIndex.addPoint(embedding.data, i);
+                        memoryContent[i] = { title: paper.title, snippet: paper.snippet };
                     }
                 }
               }
-              console.log(`✅ 向量记忆库构建完成，包含 ${memoryIndex.getCurrentCount()} 条记忆。`);
+              console.log(`✅ 分析记忆库构建完成，包含 ${memoryIndex.getCurrentCount()} 条记忆。`);
 
+              // 3. 拉取"大库"并去重
+              console.log("--- 步骤 3: 从arXiv拉取“大库”并去重 ---");
+              const stagingPapers = await fetchStagingPapers(STAGING_AREA_LIMIT);
+              const newUniqueStagingPapers = stagingPapers.filter(p => p.url && !existingUrls.has(p.url));
+              console.log(`从"大库"中发现 ${newUniqueStagingPapers.length} 篇全新论文。`);
+              
+              if (newUniqueStagingPapers.length === 0 && !DEBUG_MODE) {
+                  console.log("没有可处理的全新论文，工作流正常结束。"); return;
+              }
 
+              // 4. 智能筛选
+              console.log("--- 步骤 4: 智能筛选Top N篇论文 ---");
+              const interestQuery = manualKeywords.join(' ');
+              const queryVector = await embedder(interestQuery, { pooling: 'mean', normalize: true });
+              const paperSimilarities = [];
+              for(const paper of newUniqueStagingPapers) {
+                  const paperVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
+                  const similarity = queryVector.data.reduce((sum, val, i) => sum + val * paperVector.data[i], 0);
+                  paperSimilarities.push({ paper, similarity });
+              }
+              paperSimilarities.sort((a, b) => b.similarity - a.similarity);
+              const topPapersToProcess = paperSimilarities.slice(0, TOP_N_TO_PROCESS).map(item => item.paper);
+              console.log(`✅ 已筛选出 Top ${topPapersToProcess.length} 篇最相关的论文进行精处理。`);
 
-              // --- 步骤 2: 运行Agent获取新论文 (含Debug模式) ---
-              let newPapers = [];
+              // 5. 精处理选出的论文
+              console.log("--- 步骤 5: 对Top N篇论文进行精处理 ---");
+              let processedPapers = [];
               if (DEBUG_MODE) {
-                  console.log("🚀 调试模式已开启，跳过所有API调用。");
-                  // 在调试模式下，我们假装没有获取到新论文，以便测试后续的关键词统计和文件保存逻辑
+                console.log("🚀 调试模式已开启，跳过所有精处理API调用。");
               } else {
-                  // 修改：传入记忆库相关参数
-                  newPapers = await runAgentAndFetchPapers(searchKeywords, existingPaperUrls, embedder, memoryIndex, memoryContent);
+                  for (const paper of topPapersToProcess) {
+                      const processedPaper = await analyzeSinglePaper(paper, embedder, memoryIndex, memoryContent);
+                      if (processedPaper) { processedPapers.push(processedPaper); }
+                  }
               }
+              
+              if (processedPapers.length === 0 && !DEBUG_MODE) { console.log("精处理后没有可用的新论文，工作流结束。"); return; }
+              if (processedPapers.length > 0) { console.log(`✅ 成功精处理了 ${processedPapers.length} 篇论文。`); }
 
-              if (!DEBUG_MODE && newPapers.length === 0) {
-                  console.log("没有获取到需要处理的新论文，工作流正常结束。");
-                  return;
-              }
-              if (!DEBUG_MODE) {
-                  console.log(`✅ 成功处理了 ${newPapers.length} 篇新论文。`);
-              }
-
-              // --- 步骤 3: 更新10日滚动热词 ---
-              const todaysKeywords = newPapers.flatMap(p => p.paperKeywords || []);
+              // 6. 更新关键词历史与热词
+              console.log("--- 步骤 6: 更新关键词 ---");
+              const todaysKeywords = processedPapers.flatMap(p => p.paperKeywords || []);
               if (todaysKeywords.length > 0) {
                   const today = new Date().toISOString().split('T')[0];
                   keywordHistory.push({ date: today, keywords: todaysKeywords });
-                  while (keywordHistory.length > 15) {
-                      keywordHistory.shift();
-                  }
+                  while (keywordHistory.length > KEYWORD_HISTORY_WINDOW) { keywordHistory.shift(); }
                   await saveJsonFile(KEYWORD_HISTORY_FILE, keywordHistory, historySha);
               }
-
               const allKeywordsInWindow = keywordHistory.flatMap(day => day.keywords);
               const keywordFreq = allKeywordsInWindow.reduce((acc, k) => { acc[k] = (acc[k] || 0) + 1; return acc; }, {});
               const sortedKeywords = Object.entries(keywordFreq).sort((a, b) => b[1] - a[1]);
               const newHotKeywords = sortedKeywords.slice(0, 3).map(item => item[0]);
               console.log(`🔥 新的滚动热门关键词为: ${newHotKeywords.join(', ')}`);
-
-              // --- 步骤 4: 更新全景关键词文件 ---
-              const sortedKeywordsFull = sortedKeywords.map(([k, count]) => ({ keyword: k, count }));
-              await saveJsonFile(FULL_KEYWORDS_FILE, sortedKeywordsFull, fullKeywordsSha);
+              await saveJsonFile(FULL_KEYWORDS_FILE, sortedKeywords.map(([k, count]) => ({ keyword: k, count })), fullKeywordsSha);
               
-              // --- 步骤 5: 合并与归档论文 ---
-              const combinedPapers = [...newPapers, ...(existingData.papers || [])];
-              const MAX_PAPERS_TO_KEEP = 50;
+              // 7. 更新永久去重URL列表
+              console.log("--- 步骤 7: 更新永久去重URL列表 ---");
+              const newUrls = processedPapers.map(p => p.url);
+              processedUrlsData.processed_urls.push(...newUrls);
+              await saveJsonFile(PROCESSED_URLS_FILE, processedUrlsData, urlsSha);
+
+              // 8. 更新核心分析记忆库 (小库)
+              console.log("--- 步骤 8: 更新核心分析记忆库 (小库) ---");
+              const combinedPapers = [...processedPapers, ...existingData.papers];
               const finalPapers = combinedPapers.slice(0, MAX_PAPERS_TO_KEEP);
-              console.log(`将保留最新的 ${finalPapers.length} 篇论文。`);
-
-              // --- 步骤 6: 准备并保存最终的主数据文件 ---
-              const newData = {
-                papers: finalPapers,
-                lastUpdate: new Date().toISOString(),
-                keywords: {
-                  manual: manualKeywords,
-                  hot: newHotKeywords
-                },
-                lastAutoUpdateDate: new Date().toLocaleDateString('zh-CN', {timeZone: 'Asia/Shanghai'})
-              };
-              
+              console.log(`将保留最新的 ${finalPapers.length} 篇论文到核心分析记忆库。`);
+              const newData = { papers: finalPapers, lastUpdate: new Date().toISOString(), keywords: { manual: manualKeywords, hot: newHotKeywords }, lastAutoUpdateDate: new Date().toLocaleDateString('zh-CN', {timeZone: 'Asia/Shanghai'})};
               await saveJsonFile(DATA_FILE, newData, dataSha);
-              console.log("🚀 所有数据更新成功，工作流结束。");
               
+              console.log("🚀 所有数据更新成功，工作流结束。");
+
             } catch (error) {
               console.error("更新过程中出错:", error);
               process.exit(1);
@@ -469,7 +325,7 @@ jobs:
           secure: true
           username: 13937372851@163.com
           password: PCf7BnBBtXx9c6wk
-          subject: 学术周报已更新 - ${{ github.repository }}
+          subject: 学术周报已更新 - <span class="math-inline">\{\{ github\.repository \}\}
           body: |
             您好，
             
