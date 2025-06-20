@@ -31,7 +31,7 @@ jobs:
           const { HierarchicalNSW } = require('hnswlib-node');
 
           // --- 配置 ---
-          const DEBUG_MODE = false; // 正式运行时请设为 false
+          const DEBUG_MODE = true; // 正式运行时请设为 false
           
           const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
           const GITHUB_REPO = process.env.GITHUB_REPOSITORY;
@@ -120,10 +120,11 @@ jobs:
             const now = new Date();
             const threeMonthsAgo = new Date();
             threeMonthsAgo.setMonth(now.getMonth() - 3);
-            const formatDate = (date) => `<span class="math-inline">\{date\.getFullYear\(\)\}</span>{(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`; // 【修正点1】
+            const formatDate = (date) =>
+              `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
             const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
-            const searchQuery = `<span class="math-inline">\{coreTopicsQuery\} AND \(</span>{crossTopicsQuery}) AND ${dateFilter}`; // 【修正点1】
-            const url = `http://export.arxiv.org/api/query?search_query=<span class="math-inline">\{encodeURIComponent\(searchQuery\)\}&max\_results\=</span>{limit}&sortBy=submittedDate&sortOrder=descending`; // 【修正点1】
+            const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
+            const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
             console.log(`向 arXiv API 查询 (请求 ${limit} 篇): ${searchQuery}`);
             for (let i = 0; i < maxRetries; i++) {
                 try {
