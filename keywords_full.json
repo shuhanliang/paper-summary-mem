@@ -1,11 +1,11 @@
 [
   {
     "keyword": "6G",
-    "count": 7
+    "count": 10
   },
   {
     "keyword": "语义通信",
-    "count": 7
+    "count": 8
   },
   {
     "keyword": "大语言模型",
@@ -17,6 +17,10 @@
   },
   {
     "keyword": "多智能体系统",
+    "count": 2
+  },
+  {
+    "keyword": "数字孪生",
     "count": 2
   },
   {
@@ -33,6 +37,18 @@
   },
   {
     "keyword": "多模态融合",
+    "count": 2
+  },
+  {
+    "keyword": "深度学习",
+    "count": 2
+  },
+  {
+    "keyword": "6G无线通信",
+    "count": 2
+  },
+  {
+    "keyword": "信道估计",
     "count": 2
   },
   {
@@ -105,10 +121,6 @@
   },
   {
     "keyword": "6G网络架构",
-    "count": 1
-  },
-  {
-    "keyword": "数字孪生",
     "count": 1
   },
   {
@@ -380,10 +392,6 @@
     "count": 1
   },
   {
-    "keyword": "深度学习",
-    "count": 1
-  },
-  {
     "keyword": "联邦学习",
     "count": 1
   },
@@ -509,6 +517,134 @@
   },
   {
     "keyword": "系统性架构",
+    "count": 1
+  },
+  {
+    "keyword": "分布鲁棒优化",
+    "count": 1
+  },
+  {
+    "keyword": "Wasserstein距离",
+    "count": 1
+  },
+  {
+    "keyword": "大模型",
+    "count": 1
+  },
+  {
+    "keyword": "语义保真",
+    "count": 1
+  },
+  {
+    "keyword": "鲁棒性",
+    "count": 1
+  },
+  {
+    "keyword": "隐式网络",
+    "count": 1
+  },
+  {
+    "keyword": "自适应推理",
+    "count": 1
+  },
+  {
+    "keyword": "车联网",
+    "count": 1
+  },
+  {
+    "keyword": "资源优化",
+    "count": 1
+  },
+  {
+    "keyword": "无线接入网虚拟化",
+    "count": 1
+  },
+  {
+    "keyword": "软件定义网络",
+    "count": 1
+  },
+  {
+    "keyword": "O-RAN/vRAN",
+    "count": 1
+  },
+  {
+    "keyword": "载波聚合",
+    "count": 1
+  },
+  {
+    "keyword": "AI原生6G",
+    "count": 1
+  },
+  {
+    "keyword": "异构加速",
+    "count": 1
+  },
+  {
+    "keyword": "BSoC",
+    "count": 1
+  },
+  {
+    "keyword": "RISC-V",
+    "count": 1
+  },
+  {
+    "keyword": "向量DSP",
+    "count": 1
+  },
+  {
+    "keyword": "物理层加速",
+    "count": 1
+  },
+  {
+    "keyword": "大规模MIMO",
+    "count": 1
+  },
+  {
+    "keyword": "端到端深度联合源信道编码(JSCC)",
+    "count": 1
+  },
+  {
+    "keyword": "语义感知传输",
+    "count": 1
+  },
+  {
+    "keyword": "关键特征提取",
+    "count": 1
+  },
+  {
+    "keyword": "前景-背景分离",
+    "count": 1
+  },
+  {
+    "keyword": "AI驱动多媒体处理",
+    "count": 1
+  },
+  {
+    "keyword": "低信噪比鲁棒性",
+    "count": 1
+  },
+  {
+    "keyword": "用户中心无小区大规模MIMO",
+    "count": 1
+  },
+  {
+    "keyword": "频谱资源分配",
+    "count": 1
+  },
+  {
+    "keyword": "强化学习",
+    "count": 1
+  },
+  {
+    "keyword": "元启发式优化",
+    "count": 1
+  },
+  {
+    "keyword": "多用户调度",
+    "count": 1
+  },
+  {
+    "keyword": "QuaDRiGa信道建模",
     "count": 1
   }
 ]
