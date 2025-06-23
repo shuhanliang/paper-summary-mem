@@ -1,11 +1,15 @@
 [
   {
     "keyword": "语义通信",
-    "count": 5
+    "count": 6
   },
   {
     "keyword": "6G",
-    "count": 2
+    "count": 3
+  },
+  {
+    "keyword": "大语言模型",
+    "count": 3
   },
   {
     "keyword": "多模态模型",
@@ -16,7 +20,7 @@
     "count": 2
   },
   {
-    "keyword": "大语言模型",
+    "keyword": "网络安全",
     "count": 2
   },
   {
@@ -153,10 +157,6 @@
   },
   {
     "keyword": "Transformer检测",
-    "count": 1
-  },
-  {
-    "keyword": "网络安全",
     "count": 1
   },
   {
@@ -297,6 +297,74 @@
   },
   {
     "keyword": "信息冗余抑制",
+    "count": 1
+  },
+  {
+    "keyword": "6G网络管理",
+    "count": 1
+  },
+  {
+    "keyword": "层次化辩论",
+    "count": 1
+  },
+  {
+    "keyword": "复杂任务规划",
+    "count": 1
+  },
+  {
+    "keyword": "协同AI",
+    "count": 1
+  },
+  {
+    "keyword": "6GPlan数据集",
+    "count": 1
+  },
+  {
+    "keyword": "智能内生",
+    "count": 1
+  },
+  {
+    "keyword": "6G无线网络",
+    "count": 1
+  },
+  {
+    "keyword": "高级持续威胁（APT）检测",
+    "count": 1
+  },
+  {
+    "keyword": "大语言模型（LLM）",
+    "count": 1
+  },
+  {
+    "keyword": "边缘智能",
+    "count": 1
+  },
+  {
+    "keyword": "语义分析",
+    "count": 1
+  },
+  {
+    "keyword": "系统综述",
+    "count": 1
+  },
+  {
+    "keyword": "多模态融合",
+    "count": 1
+  },
+  {
+    "keyword": "多址接入",
+    "count": 1
+  },
+  {
+    "keyword": "NOMA",
+    "count": 1
+  },
+  {
+    "keyword": "卫星网络",
+    "count": 1
+  },
+  {
+    "keyword": "资源分配",
     "count": 1
   }
 ]
