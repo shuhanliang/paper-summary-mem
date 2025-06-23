@@ -165,6 +165,14 @@
                         
                         // ... 填充 card.innerHTML 的逻辑与上一版相同，保持不变 ...
                         // (使用 renderInterpretation 函数来处理 interpretation)
+
+                        const authorsHtml = (paper.authors || []).map(author => `${author}`).join(', ');
+                        const keywordsHtml = (paper.paperKeywords || []).map(k => `<span class="poster-keywords-tag bg-sky-100 text-sky-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${k}</span>`).join('');
+                        const interpretationHtml = renderInterpretation(paper.interpretation); 
+                        const snippetHtml = paper.snippet || "摘要信息不可用。";
+                        const titleHtml = paper.title || "标题不可用";
+                        const journalHtml = paper.journal || "N/A";
+                        const pubDateHtml = paper.publicationDate || "N/A";
                         
                         if(isNew) {
                             const newBadge = document.createElement('div');
