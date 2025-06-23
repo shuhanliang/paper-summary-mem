@@ -1,6 +1,194 @@
 {
   "papers": [
     {
+      "id": "2506.03167",
+      "title": "Distributionally Robust Wireless Semantic Communication with Large AI Models",
+      "url": "http://arxiv.org/abs/2506.03167v1",
+      "authors": [
+        "Long Tan Le",
+        "Senura Hansaja Wanasekara",
+        "Zerun Niu",
+        "Yansong Shi",
+        "Nguyen H. Tran",
+        "Phuong Vo",
+        "Walid Saad",
+        "Dusit Niyato",
+        "Zhu Han",
+        "Choong Seon Hong",
+        "H. Vincent Poor"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-28",
+      "snippet": "本文针对6G无线系统对海量数据与超低延迟的需求，提出了分布式鲁棒语义通信（WaSeCom）框架。该方法创新性地采用Wasserstein分布鲁棒优化，提升了系统对语义误判与信道扰动的鲁棒性。理论分析与图像、文本实验表明，WaSeCom在噪声及对抗扰动环境下具备更优的语义保真能力，显著增强了泛化与适应性，为6G下高效智能通信奠定基础。",
+      "interpretation": {
+        "core_contribution": "提出首个面向6G无线环境的分布鲁棒语义通信框架WaSeCom，通过Wasserstein分布鲁棒优化显著提升了语义误解与信道扰动下的可靠性，突破了以往依赖领域特定架构、泛化能力受限的瓶颈。",
+        "methodology_summary": "方法核心在于用Wasserstein分布鲁棒优化（DRO）指导语义特征编码和解码流程，全面建模信道噪声及语义层面不确定性，从而设计出能够在极端无线环境下自适应语义表达与恢复的端到端大模型通信系统。",
+        "performance_evaluation": "性能验证包括严密的理论鲁棒性分析，并在图像与文本传输任务上，通过噪声与对抗扰动场景下实测，指标涵盖语义精度、鲁棒性与适应性，对比传统和深度学习基线模型，WaSeCom展现出更高的语义保真率。",
+        "inferred_application": "主要应用于6G无线环境下对鲁棒性和效率要求极高的智能通信场景，如自动驾驶车联网、远程实时监控、无人系统协同，以及面向智能制造的工业物联网等领域。"
+      },
+      "paperKeywords": [
+        "6G无线通信",
+        "语义通信",
+        "分布鲁棒优化",
+        "Wasserstein距离",
+        "大模型",
+        "语义保真",
+        "鲁棒性"
+      ]
+    },
+    {
+      "id": "2505.17421",
+      "title": "Adaptive Implicit-Based Deep Learning Channel Estimation for 6G Communications",
+      "url": "http://arxiv.org/abs/2505.17421v1",
+      "authors": [
+        "Zhen Qiao",
+        "Jiang Xue",
+        "Junkai Zhang",
+        "Guanzhang Liu",
+        "Xiaoqin Ma",
+        "Runhua Li",
+        "Faheem A. Khan",
+        "John S. Thompson",
+        "Zongben Xu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "本文针对6G通信中信道估计的资源与精度权衡难题，提出了一种自适应隐式深度学习信道估计网络（ICENet）。ICENet利用轻量化隐式迭代结构，可根据实际信道质量动态调整计算资源分配，实现内存占用低且高性能的信道估计。实验显示，其在车联网等对资源敏感场景下，可有效提升信道估计精度并兼顾系统开销。文章还展望了未来研究方向及挑战。",
+      "interpretation": {
+        "core_contribution": "提出了一种自适应隐式深度学习信道估计网络（ICENet），突破传统显式堆叠神经网络结构的适应性壁垒，实现了信道估计精度与计算资源消耗的动态平衡，尤其适用于资源受限的6G场景。",
+        "methodology_summary": "方法核心是轻量化隐式迭代层结构，根据输入信道条件动态调整迭代次数，从而自适应分配计算资源，并在保持精度的同时降低模型内存及算力需求。与传统固定层数的深度学习模型不同，ICENet基于隐式结构和自适应推理机制，既提升灵活性又简化部署。",
+        "performance_evaluation": "论文通过车载通信等实际场景测试，比较ICENet与主流多层深度学习方法在计算复杂度、内存消耗及信道估计精度等指标下的表现，显示ICENet在高精度和低资源消耗间达到优良平衡。",
+        "inferred_application": "最直接应用为对资源敏感、需高精度信道估计的6G物理层场景，典型如车联网（V2X）、物联网、智能终端接入等高动态无线环境下的通信系统开发者与运营者。"
+      },
+      "paperKeywords": [
+        "6G",
+        "信道估计",
+        "深度学习",
+        "隐式网络",
+        "自适应推理",
+        "车联网",
+        "资源优化"
+      ]
+    },
+    {
+      "id": "2506.09878",
+      "title": "Virtualizing RAN: Science, Strategy, and Architecture of Software-Defined Mobile Networks",
+      "url": "http://arxiv.org/abs/2506.09878v2",
+      "authors": [
+        "Ryan Barker"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本文系统分析了无线接入网（RAN）虚拟化作为5G扩展和迈向AI原生6G的关键路径，通过科学、工程、战略与文化四大支柱，提出整合视角。以美国为案例，论文定量评估了中频段连续性和毫米波叠加容量在软件定义载波聚合下对覆盖率与用户流失的影响，并推导Split 7.2 vRAN/O-RAN部署下的容量与时延界限。论文同时分析了端到端加密对吞吐量的影响，以及GPU/FPGA异构加速和数字孪生自动化对HARQ往返时延的优化作用。最终结合控制论原理，提出面向6G的行动性建议。",
+      "interpretation": {
+        "core_contribution": "论文首创性地提出了跨科学、技术、商业和文化的集成视角，系统阐释了通过软件定义和虚拟化实现RAN架构创新，量化了AI赋能6G演进中技术与管理协同的实际路径，填补了以往只聚焦某单一维度的研究空白。",
+        "methodology_summary": "论文基于美国中频及毫米波混合组网的案例研究，采用理论推导和仿真分析推算Split 7.2 vRAN/O-RAN架构下的容量与时延界，结合加密和加速器方案的定量对比，并引入数字孪生自动化与控制论模板，分析自动化、异构硬件及文化因子对集成成本与性能的影响。",
+        "performance_evaluation": "论文通过美国实际网络案例及仿真，利用容量、时延、吞吐量损耗（如256位加密开销）、及HARQ往返时延等关键指标，对比分析了多种vRAN/O-RAN技术方案，并借助控制论框架系统评估了自动化在不同组织方案下的集成风险。",
+        "inferred_application": "最直接的应用场景为5G/6G运营商、设备商及标准制定者，尤其适用于计划部署端到端vRAN/O-RAN、探索AI原生和自动化无线网络架构的网络运营与管理决策者。"
+      },
+      "paperKeywords": [
+        "无线接入网虚拟化",
+        "软件定义网络",
+        "O-RAN/vRAN",
+        "载波聚合",
+        "AI原生6G",
+        "数字孪生",
+        "异构加速"
+      ]
+    },
+    {
+      "id": "2506.07873",
+      "title": "Towards a Base-Station-on-Chip: RISC-V Hardware Acceleration for wireless communication",
+      "url": "http://arxiv.org/abs/2506.07873v1",
+      "authors": [
+        "Javier Acevedo",
+        "Frank H. P. Fitzek"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-09",
+      "snippet": "本文面向5G及6G无线通信对前端计算能力与低功耗的极致需求，提出了'基站级芯片'(BSoC)理念，旨在将信号处理、神经网络推理与网络管理集成于一枚高性能、低延迟且可扩展的系统芯片。研究通过在RISC-V向量DSP上实现信道估计、大规模多天线(mMIMO)和波束赋形等关键物理层核，并结合RISC-V向量扩展及定制指令，显著提升物理层吞吐与时延性能，为新一代无线网络的智能接入节点提供硬件基础。",
+      "interpretation": {
+        "core_contribution": "首次以硬件/软件协同方式，基于RISC-V向量DSP与自定义指令，提出并实现了支持AI功能的无线通信物理层内核集成方案，为未来6G基站级芯片BSoC奠定技术框架。",
+        "methodology_summary": "将传统的信道估计、大规模MIMO、波束赋形等物理层实时计算任务，通过RISC-V向量DSP实现硬件级加速，利用向量扩展和定制指令充分挖掘数据级并行性，实现信号处理与AI推理并存的高效平台。",
+        "performance_evaluation": "论文通过实际在RISC-V向量DSP芯片上实现关键物理层核，重点考察了数据级并行性下的吞吐率与延迟指标，并对比传统方法展示了电路性能、功耗和扩展性方面的优势。",
+        "inferred_application": "最直接应用于面向6G的智能基站、边缘节点、低功耗无线接入设备及AI增强型无线基础设施开发商。"
+      },
+      "paperKeywords": [
+        "BSoC",
+        "RISC-V",
+        "向量DSP",
+        "物理层加速",
+        "6G",
+        "信道估计",
+        "大规模MIMO"
+      ]
+    },
+    {
+      "id": "2506.12786",
+      "title": "Semantic-Aware Visual Information Transmission With Key Information Extraction Over Wireless Networks",
+      "url": "http://arxiv.org/abs/2506.12786v1",
+      "authors": [
+        "Chen Zhu",
+        "Kang Liang",
+        "Jianrong Bao",
+        "Zhouxiang Zhao",
+        "Zhaohui Yang",
+        "Zhaoyang Zhang",
+        "Mohammad Shikh-Bahaei"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-15",
+      "snippet": "随着6G网络对智能化和自适应性提出更高要求，传统无线图像传输方案在复杂场景下面临计算效率、鲁棒性和质量的三难困境。本文提出一种AI原生的端到端深度联合源信道编码（JSCC）框架，将关键语义信息提取与背景自适应合成机制融入传输流程。通过集成智能人体姿态检测与背景消除工具，模型在降低数据负载的同时有效提升画面保真度。实验结果验证了该方法在低信噪比等极端条件下的优越性能，对资源受限无线多媒体通信具有实际应用价值。",
+      "interpretation": {
+        "core_contribution": "本文首次将关键语义信息提取与自适应背景合成机制系统融入端到端JSCC框架，实现了在6G无线环境下对图像信息的智能、语义感知、高效传输，显著缩减数据量并提升视觉质量，突破了传统静态源信道分离编码的局限。",
+        "methodology_summary": "方法上，模型利用Mediapipe对人体关键点进行检测，采用Rembg实现前景与背景分离，前景关键特征被编码并与预训练背景库动态匹配，联合深度学习驱动的JSCC网络进行端到端优化，以适应动态信道环境，实现语义感知、按需编码和高效还原。",
+        "performance_evaluation": "性能评估通过与传统JSCC方法在不同信噪比(SNR)下比较PSNR（峰值信噪比）进行，结果显示在低SNR等严苛无线环境下，语义感知框架在画质保真和鲁棒性上均有显著优势。",
+        "inferred_application": "该研究适用于资源受限的6G移动无线多媒体通信场景，尤其面向智能视频监控、无人机图像回传、实时AR/VR传输等对带宽敏感且视觉语义重要的任务。"
+      },
+      "paperKeywords": [
+        "6G无线通信",
+        "端到端深度联合源信道编码(JSCC)",
+        "语义感知传输",
+        "关键特征提取",
+        "前景-背景分离",
+        "AI驱动多媒体处理",
+        "低信噪比鲁棒性"
+      ]
+    },
+    {
+      "id": "2505.22443",
+      "title": "Frequency Resource Management in 6G User-Centric CFmMIMO: A Hybrid Reinforcement Learning and Metaheuristic Approach",
+      "url": "http://arxiv.org/abs/2505.22443v1",
+      "authors": [
+        "Selina Cheggour",
+        "Valeria Loscri"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-28",
+      "snippet": "本论文针对6G用户中心无小区大规模多输入多输出（UC-CFmMIMO）网络中的频率资源分配难题，提出了一种融合强化学习（RL）与元启发式优化的多用户分配策略。该方法综合利用RL的自适应决策能力和元启发式方法的全局优化能力，以提升频谱效率、保证公平性并抑制同频干扰。在真实3GPP-3D信道条件下，作者对比了所提方法与Aquila Optimizer（AO）和基于DDPG的Actor-Critic RL（AC-RL）两种主流基线，结果显示融合方案在多目标权衡上表现最优，突显了AI驱动频谱调度对6G新型架构的推动作用。",
+      "interpretation": {
+        "core_contribution": "提出首个将强化学习与元启发式方法深度融合的UC-CFmMIMO频谱资源分配策略，有效提升了用户体验及网络整体性能，解决了频选择性、信道相关性等多约束复杂场景下的多用户频谱调度难题。",
+        "methodology_summary": "核心方法将强化学习用于复杂频谱分配策略的自适应决策，结合元启发式算法（如Aquila Optimizer）实现全局最优搜索，两者相互补强。系统在共享子带内，依用户状态与信道特性动态分配资源，同时引入QoS约束，兼顾公平性和抗干扰能力。",
+        "performance_evaluation": "采用3GPP-3D (QuaDRiGa)信道模型进行仿真，设计了与现有AO和AC-RL基线的对比实验，主要评估指标为频谱效率（SE）、公平性、干扰抑制等，实验场景基于现实无线传播特征与网络负载模式。",
+        "inferred_application": "该研究主要面向未来6G车联网、智能城市、高密度无线接入等对低时延、高可靠、动态资源编排有苛刻需求的场景，适合对QoS和频谱利用极致优化的运营商或新型AI无线网络部署者。"
+      },
+      "paperKeywords": [
+        "6G",
+        "用户中心无小区大规模MIMO",
+        "频谱资源分配",
+        "强化学习",
+        "元启发式优化",
+        "多用户调度",
+        "QuaDRiGa信道建模"
+      ]
+    },
+    {
       "id": "2506.07880",
       "title": "Diffusion-RL for Scalable Resource Allocation for 6G Networks",
       "url": "http://arxiv.org/abs/2506.07880v1",
@@ -651,7 +839,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T05:24:50.116Z",
+  "lastUpdate": "2025-06-23T06:06:43.596Z",
   "keywords": {
     "manual": [
       "通信",
