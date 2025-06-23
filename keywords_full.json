@@ -1,7 +1,7 @@
 [
   {
     "keyword": "语义通信",
-    "count": 3
+    "count": 5
   },
   {
     "keyword": "6G",
@@ -12,7 +12,15 @@
     "count": 2
   },
   {
+    "keyword": "多智能体系统",
+    "count": 2
+  },
+  {
     "keyword": "大语言模型",
+    "count": 2
+  },
+  {
+    "keyword": "深度强化学习",
     "count": 2
   },
   {
@@ -29,10 +37,6 @@
   },
   {
     "keyword": "大模型驱动",
-    "count": 1
-  },
-  {
-    "keyword": "多智能体系统",
     "count": 1
   },
   {
@@ -229,6 +233,70 @@
   },
   {
     "keyword": "自适应优化",
+    "count": 1
+  },
+  {
+    "keyword": "多模态语义通信",
+    "count": 1
+  },
+  {
+    "keyword": "检索增强",
+    "count": 1
+  },
+  {
+    "keyword": "带宽优化",
+    "count": 1
+  },
+  {
+    "keyword": "本地缓存",
+    "count": 1
+  },
+  {
+    "keyword": "自动驾驶",
+    "count": 1
+  },
+  {
+    "keyword": "资源分配优化",
+    "count": 1
+  },
+  {
+    "keyword": "累积前景理论（CPT）",
+    "count": 1
+  },
+  {
+    "keyword": "风险感知",
+    "count": 1
+  },
+  {
+    "keyword": "多智能体决策",
+    "count": 1
+  },
+  {
+    "keyword": "凸近似算法",
+    "count": 1
+  },
+  {
+    "keyword": "非凸优化",
+    "count": 1
+  },
+  {
+    "keyword": "集成感知-计算-通信-控制（ISC3）",
+    "count": 1
+  },
+  {
+    "keyword": "时序信息",
+    "count": 1
+  },
+  {
+    "keyword": "工业物联网（IIoT）",
+    "count": 1
+  },
+  {
+    "keyword": "自适应控制",
+    "count": 1
+  },
+  {
+    "keyword": "信息冗余抑制",
     "count": 1
   }
 ]
