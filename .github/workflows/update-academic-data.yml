@@ -345,7 +345,7 @@ jobs:
             您好，
             您的学术周报已成功更新！新的学术论文已经添加到数据库中。
             您可以通过以下链接访问您的学术周报：
-            https\://shuhanliang\.github\.io/paper\_summary/
+            https://shuhanliang.github.io/paper_summary/
             更新时间：${{ github.event.repository.updated_at }}
             仓库：${{ github.repository }}
             
