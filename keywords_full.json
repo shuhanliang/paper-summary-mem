@@ -1,10 +1,18 @@
 [
   {
+    "keyword": "语义通信",
+    "count": 3
+  },
+  {
     "keyword": "6G",
     "count": 2
   },
   {
     "keyword": "多模态模型",
+    "count": 2
+  },
+  {
+    "keyword": "大语言模型",
     "count": 2
   },
   {
@@ -29,10 +37,6 @@
   },
   {
     "keyword": "System-2认知",
-    "count": 1
-  },
-  {
-    "keyword": "语义通信",
     "count": 1
   },
   {
@@ -157,6 +161,74 @@
   },
   {
     "keyword": "自适应通信",
+    "count": 1
+  },
+  {
+    "keyword": "知识蒸馏",
+    "count": 1
+  },
+  {
+    "keyword": "多智能体",
+    "count": 1
+  },
+  {
+    "keyword": "知识对齐",
+    "count": 1
+  },
+  {
+    "keyword": "低秩矩阵",
+    "count": 1
+  },
+  {
+    "keyword": "整数线性规划",
+    "count": 1
+  },
+  {
+    "keyword": "高效算法",
+    "count": 1
+  },
+  {
+    "keyword": "6G无线接入网",
+    "count": 1
+  },
+  {
+    "keyword": "无线资源控制（RRC）",
+    "count": 1
+  },
+  {
+    "keyword": "AI原生协议",
+    "count": 1
+  },
+  {
+    "keyword": "LoRA",
+    "count": 1
+  },
+  {
+    "keyword": "Transformer",
+    "count": 1
+  },
+  {
+    "keyword": "协议仿真",
+    "count": 1
+  },
+  {
+    "keyword": "上下文感知",
+    "count": 1
+  },
+  {
+    "keyword": "专家混合架构",
+    "count": 1
+  },
+  {
+    "keyword": "多模态编码",
+    "count": 1
+  },
+  {
+    "keyword": "无线网络",
+    "count": 1
+  },
+  {
+    "keyword": "自适应优化",
     "count": 1
   }
 ]
