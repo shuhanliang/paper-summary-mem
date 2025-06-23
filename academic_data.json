@@ -1,6 +1,190 @@
 {
   "papers": [
     {
+      "id": "2506.12368",
+      "title": "Stacked Intelligent Metasurfaces for Multi-Modal Semantic Communications",
+      "url": "http://arxiv.org/abs/2506.12368v1",
+      "authors": [
+        "Guojun Huang",
+        "Jiancheng An",
+        "Lu Gan",
+        "Dusit Niyato",
+        "Mérouane Debbah",
+        "Tie Jun Cui"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-14",
+      "snippet": "本论文提出了一种基于堆叠智能超表面（SIM）的多模态语义通信系统，旨在显著提升复杂场景下的多模态信息高效传输能力。该系统通过融合波域计算和生成式AI，在发送端利用SIM直接成像视觉语义信息，通过天线阵列接收，实现图像的有效复原；文本语义信息则采用幅度-相位调制方式叠加传输。作者设计了自定义梯度下降算法优化SIM单元，实现能量分布与目标模式的最小化误差。数值结果证实，该系统可大幅降低带宽消耗，并提升复杂场景的成像与信息重建质量。",
+      "interpretation": {
+        "core_contribution": "首次将堆叠智能超表面与生成式AI协同用于多模态语义通信系统，实现视觉与文本信息的高效联合传输与场景重建，降低了带宽消耗并提升了成像精度。",
+        "methodology_summary": "系统在发射天线前布置SIM，针对视觉信息通过能量分布优化直接成像，文本信息则通过幅度-相位调制传递；整体优化目标为最小化接收阵列能量分布与目标图案的均方误差，利用定制梯度下降算法调控超表面单元参数；再结合条件生成对抗网络（cGAN）融合重建多模态场景。",
+        "performance_evaluation": "性能通过广泛数值仿真评估，主要包括带宽消耗、场景复原质量等指标，并与传统通信方式进行对比验证方法的有效性。",
+        "inferred_application": "适用于6G及更高代际的智慧通信场景，特别是在智慧城市、数字孪生、智能感知及复杂环境下的多模态信息交互，目标用户为需要高效多模态信息处理的通信与感知系统开发者。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "智能超表面",
+        "多模态融合",
+        "生成式人工智能",
+        "能量分布优化",
+        "条件生成对抗网络",
+        "带宽高效"
+      ]
+    },
+    {
+      "id": "2505.18389",
+      "title": "ALLSTaR: Automated LLM-Driven Scheduler Generation and Testing for Intent-Based RAN",
+      "url": "http://arxiv.org/abs/2505.18389v2",
+      "authors": [
+        "Maxime Elkael",
+        "Michele Polese",
+        "Reshma Prasad",
+        "Stefano Maxenti",
+        "Tommaso Melodia"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "ALLSTaR提出了一种基于大语言模型（LLM）的自动化RAN调度器生成与测试框架，旨在推动意图驱动无线接入网的智能优化。该系统能理解自然语言意图，从文献中自动提取并合成调度算法，实现调度器代码的自动部署和实测评估。在5G商用测试床上，ALLSTaR完成了18种调度算法的自动化对比，并基于性能画像，为运营商提供细粒度、动态、意图驱动的调度策略选择，突破了传统切片优化的局限性。",
+      "interpretation": {
+        "core_contribution": "ALLSTaR首次实现了利用LLM自动解析、生成、部署和OTA测试学术调度算法，为意图驱动的RAN调度提供了自动化、动态化和高精度的解决方案，极大提升了调度器适应性与运营商控制力。",
+        "methodology_summary": "ALLSTaR框架由三大核心环节组成：1) LLM解析运营商NL意图；2) 结合OCR与LLM从文献挖掘调度算法并自动生成可部署代码；3) 自动在O-RAN dApp平台部署并通过OTA实验对多种算法进行性能画像，最后将画像反馈入IBS动态调度框架，实现意图-算法的智能匹配。",
+        "performance_evaluation": "论文基于5G商用级测试床，自动化部署并测试了18种自动合成的调度算法，围绕多样化场景（如队列状态、物理层条件、业务类型）进行OTA实验，形成了全面的调度器性能数据库，并通过实际用例展示了相较传统切片的优势。",
+        "inferred_application": "该研究面向开放、可编程的O-RAN/AI-RAN及未来6G网络运营商，支持其按需动态优化无线接入资源，精准满足细粒度业务差异化与智能运维需求。"
+      },
+      "paperKeywords": [
+        "自动化调度器生成",
+        "大语言模型",
+        "意图驱动网络",
+        "O-RAN",
+        "OTA实验",
+        "无线接入网优化",
+        "算力网络"
+      ]
+    },
+    {
+      "id": "2506.08944",
+      "title": "Semantic Communication for Cooperative Multi-Tasking over Rate-Limited Wireless Channels with Implicit Optimal Prior",
+      "url": "http://arxiv.org/abs/2506.08944v1",
+      "authors": [
+        "Ahmad Halimi Razlighi",
+        "Carsten Bockelmann",
+        "Armin Dekorsy"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-10",
+      "snippet": "本文提出了一种适用于速率受限无线信道的协同多任务语义通信系统（CMT-SemCom）新设计，基于发端语义编码器的通用与任务专用模块，将密度比技巧及隐式最优先验方法（IoPm）引入KL散度约束下的资源分配。所提混合学习框架结合了深度神经网络与核化参数机器学习，实现了理论与实际的衔接。仿真结果显示，新系统在受限速率下能高效支持多任务处理，助力下一代智能无线网络发展。",
+      "interpretation": {
+        "core_contribution": "首次将隐式最优先验方法（IoPm）与密度比技巧结合，创新性解决速率受限无线信道下多任务语义通信的资源分配与性能最优问题，并提出了一种融合深度神经网络与核化机器学习的混合方法。",
+        "methodology_summary": "构建发端语义编码器的通用单元（CU）和多个特定单元（SU）；在信息论约束下，引入KL散度作为信道速率约束，通过密度比技巧与IoPm提升分布拟合与资源效率；采用混合深度神经网络和核化参数学习，实现可扩展的多任务适应。",
+        "performance_evaluation": "采用仿真验证，比较在不同速率约束下的多任务语义通信性能，评估指标包括任务完成率、通信效率、信道利用率等，并与传统语义通信和基线算法对比，突出方法在受限环境下的有效性。",
+        "inferred_application": "主要面向6G及未来智能无线网络中，需要在有限带宽下实现多任务协同、端到端智能感知与决策的通信系统，适用于智能物联网、自动驾驶、协作机器人等高密度智能终端场景。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "多任务学习",
+        "速率受限信道",
+        "隐式最优先验",
+        "混合学习框架",
+        "信息论约束",
+        "6G智能网络"
+      ]
+    },
+    {
+      "id": "2506.07391",
+      "title": "Distributed Image Semantic Communication via Nonlinear Transform Coding",
+      "url": "http://arxiv.org/abs/2506.07391v1",
+      "authors": [
+        "Yufei Bo",
+        "Meixia Tao",
+        "Kai Niu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-09",
+      "snippet": "本论文针对相关图像在无线通道中分布式语义传输问题，提出了一种融合非线性变换编码的通用分布式图像语义通信方法，兼容分别源信道编码（SSCC）和联合源信道编码（JSCC）。该方法显式建模信源相关性，结合概率与几何视角，通过联合熵模型和特征对齐模块优化速率分配与相关性提取。基于Swin Transformer实现的D-NTSC和D-NTSCC在多视图真实数据集上显著优于主流基线，像素和感知质量均达最新水平。",
+      "interpretation": {
+        "core_contribution": "论文创新性地提出了基于非线性变换编码（NTC）的分布式图像语义通信方法，将联合熵建模及特征对齐机制引入到信源相关性建模，有效提升了分布式编码下的语义表达与恢复性能，兼容SSCC与JSCC两种范式。",
+        "methodology_summary": "方法以NTC为核心，通过联合熵模型近似潜变量联合分布，实现自适应速率分配；特征对齐模块在解码端显式优化相关性表征；利用Swin Transformer提取特征，采用变分推断推导损失函数，联合优化编码、解码和熵建模流程。",
+        "performance_evaluation": "通过在真实多视角图像数据集上大量实验，对比多种分布式SSCC和JSCC主流基线，综合采用像素级和感知质量指标评估，实验显示D-NTSC和D-NTSCC在性能上均优于现有方案，实现最新最优效果。",
+        "inferred_application": "成果面向分布式摄像头阵列、智能边缘设备等场景，适用于无线多节点多信源的高效图像语义通信，服务于自动驾驶、安防监控、AR/VR等需要多源信息融合的智能网络应用。"
+      },
+      "paperKeywords": [
+        "分布式语义通信",
+        "非线性变换编码",
+        "联合源信道编码",
+        "联合熵建模",
+        "Swin Transformer",
+        "多源图像恢复",
+        "感知质量优化"
+      ]
+    },
+    {
+      "id": "2505.18637",
+      "title": "Neural Coding Is Not Always Semantic: Towards The Standardized Coding Workflow in Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.18637v1",
+      "authors": [
+        "Hai-Long Qin",
+        "Jincheng Dai",
+        "Sixian Wang",
+        "Xiaoqi Qin",
+        "Shuo Shao",
+        "Kai Niu",
+        "Wenjun Xu",
+        "Ping Zhang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-24",
+      "snippet": "本文针对语义通信领域现有的神经编码方案未能充分解决“神经编码是否等同于语义表达”这一基础问题，提出了语义编码的标准化定义，并基于上下文建模设计了一种用于通用语义表示的神经编码架构。该方法强调通过获得上下文感知的紧凑语义表示，实现以最小模块调整即可兼容人类和机器终端的数据传输，推动语义通信从特征传递走向有语境的语义压缩，拓展了语义通信的理论边界和实际应用能力。",
+      "interpretation": {
+        "core_contribution": "本文最重要的贡献是澄清了神经编码与语义表达之间的差异，首次提出了针对语义通信的标准化语义编码定义，并设计了可实现通用语义表示的神经编码方案，从而为语义通信在理论与实际中明确了上下文驱动的编码核心价值。",
+        "methodology_summary": "以上下文建模为核心，通过先进的深度学习神经网络从原始数据中学习能够表达实际语义含义的紧凑通用语义表示。该编码方案不仅截取特征，还关注所编码信号与语境语义之间的一致性，并可通过微调和正则化等手段快速适配不同终端与场景。",
+        "performance_evaluation": "论文强调了理论标准的建立和编码方案的通用性，但摘要未给出具体实验数据或基线对比。推测可能包括对语义还原能力、人-机双端兼容性、适配性等方面的定性或定量评估，具体评测指标或实验细节有待查阅正文章节。",
+        "inferred_application": "该研究面向下一代无线通信（如6G）下需要高效语义传输的场景，适用于需要人类和机器都能理解的跨主体沟通任务，典型应用包括车联网、无人系统、智能制造、泛在物联网等需要高层语义理解和上下文推理的智能终端通信。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "神经编码",
+        "上下文建模",
+        "深度学习",
+        "语义表示",
+        "标准化流程",
+        "人-机通信"
+      ]
+    },
+    {
+      "id": "2505.22440",
+      "title": "Data-Driven Antenna Miniaturization: A Knowledge-Based System Integrating Quantum PSO and Predictive Machine Learning Models",
+      "url": "http://arxiv.org/abs/2505.22440v1",
+      "authors": [
+        "Khan Masood Parvez",
+        "Sk Md Abidar Rahaman",
+        "Ali Shiri Sichani"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-28",
+      "snippet": "本论文提出了一种基于知识的数据驱动天线小型化系统，将量子行为动态粒子群优化（QDPSO）与预测型机器学习模型紧密集成，实现天线尺寸与性能指标的自动化优化。系统在936组仿真数据集和ANSYS HFSS验证下，显著缩短设计周期至12.42分钟，实现了1.4208 GHz的精确谐振频率，优于传统方法240倍，加速消费电子、6G与物联网紧凑型射频系统的开发进程。",
+      "interpretation": {
+        "core_contribution": "论文创新性地构建了一个集成量子行为动态粒子群优化（QDPSO）和多种机器学习预测模型的智能天线设计系统，实现了天线小型化与性能自动化协同优化，显著提升了设计效率与精度。",
+        "methodology_summary": "核心方法以QDPSO高效搜索天线几何最优解，通过ANSYS HFSS进行仿真反馈，并将所得数据喂入SVM、随机森林、XGBoost及Stacking集成等模型以预测谐振频率，最后对最优解进行自动验证与参数输出，形成全自动闭环设计流程。",
+        "performance_evaluation": "采用936组仿真数据，分离训练与验证集，利用R2分数评估模型精度（训练集Stacking R2=0.9825，验证集SVM R2=0.7197）；以优化速度和谐振频率下限为主要指标，并将总设计周期与传统PSADEA方法进行耗时对比，展示了240倍加速和12.7%的频率优化幅度。",
+        "inferred_application": "该系统面向对天线尺寸和调谐速度有严格要求的RF前端开发，特别适用于智能手机、IoT和6G等消费类智能终端，以及需要快速迭代原型的高度集成无线设备制造企业与工程团队。"
+      },
+      "paperKeywords": [
+        "天线小型化",
+        "粒子群优化（QDPSO）",
+        "机器学习预测",
+        "自动化天线设计",
+        "ANSYS HFSS仿真",
+        "6G与物联网",
+        "智能射频系统"
+      ]
+    },
+    {
       "id": "2506.05710",
       "title": "Latent Diffusion Model Based Denoising Receiver for 6G Semantic Communication: From Stochastic Differential Theory to Application",
       "url": "http://arxiv.org/abs/2506.05710v1",
@@ -1023,7 +1207,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T06:09:42.734Z",
+  "lastUpdate": "2025-06-23T06:12:00.649Z",
   "keywords": {
     "manual": [
       "通信",
@@ -1033,8 +1217,8 @@
       "语义通信"
     ],
     "hot": [
-      "6G",
       "语义通信",
+      "6G",
       "大语言模型"
     ]
   },
