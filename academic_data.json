@@ -1,6 +1,99 @@
 {
   "papers": [
     {
+      "id": "2505.23275",
+      "title": "Wireless Agentic AI with Retrieval-Augmented Multimodal Semantic Perception",
+      "url": "http://arxiv.org/abs/2505.23275v1",
+      "authors": [
+        "Guangyuan Liu",
+        "Yinqiu Liu",
+        "Ruichen Zhang",
+        "Hongyang Du",
+        "Dusit Niyato",
+        "Zehui Xiong",
+        "Sumei Sun",
+        "Abbas Jamalipour"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了一种检索增强型多模态语义通信（RAMSemCom）框架，针对无线多智能体场景下因带宽受限导致的多模态语义信息高效交换难题，结合本地缓存与选择性传输，实现迭代式、检索驱动的语义精炼。框架采用深度强化学习优化检索策略，在多智能体自动驾驶案例中显著提升任务完成效率并降低通信开销，相较传统基线方法表现优越。",
+      "interpretation": {
+        "core_contribution": "首次提出面向无线多智能体场景的检索增强型多模态语义通信（RAMSemCom）框架，通过迭代语义精炼和检索机制，有效解决带宽受限下多模态高语义信息高效交换与冗余问题。",
+        "methodology_summary": "核心方法为将检索增强机制与多模态语义通信结合，采用本地缓存和选择性信息传输，利用深度强化学习（DRL）动态优化检索与传输决策，实现多智能体间高效的语义协同通信。",
+        "performance_evaluation": "基于多智能体自动驾驶场景进行案例研究，将所提DRL驱动的检索策略与传统基线方法在任务完成效率和通信开销等指标上对比评估，实验显示RAMSemCom在上述维度均表现优异。",
+        "inferred_application": "最直接的应用场景为车联网、多智能体机器人协作等无线多智能体系统，目标用户为智能驾驶、边缘智能制造等对低时延和高语义通信效率有迫切需求的行业。"
+      },
+      "paperKeywords": [
+        "多模态语义通信",
+        "检索增强",
+        "多智能体系统",
+        "深度强化学习",
+        "带宽优化",
+        "本地缓存",
+        "自动驾驶"
+      ]
+    },
+    {
+      "id": "2506.04952",
+      "title": "Optimization for Semantic-Aware Resource Allocation under CPT-based Utilities",
+      "url": "http://arxiv.org/abs/2506.04952v1",
+      "authors": [
+        "Symeon Vaidanis",
+        "Photios A. Stavrou",
+        "Marios Kountouris"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-05",
+      "snippet": "该论文研究了目标导向的语义通信场景下，资源分配问题如何结合语义效用与智能体的主观风险感知。通过引入累积前景理论（CPT）对风险敏感的效用和非线性分布变换进行建模，将信息重要性与风险厌恶行为关联，实现了更贴合智能体实际决策过程的资源分配优化。作者提出结合SCA、投影子梯度与拉格朗日松弛的算法框架，高效求解原本非凸、非光滑的优化问题，兼顾理论严谨和实际可行性，在多智能体语义通信中的资源分配场景展现出良好性能。",
+      "interpretation": {
+        "core_contribution": "论文首次将累积前景理论（CPT）引入语义通信中的资源分配问题，通过风险敏感的效用建模反映多智能体的主观决策特性，使优化目标更符合实际应用场景。",
+        "methodology_summary": "作者利用CPT建立智能体的风险感知与信息重要性之间的映射，并将总效用最大化问题表述为非凸、非光滑优化。为应对其求解难点，提出了结合逐步凸近似（SCA）、投影子梯度法与拉格朗日松弛的高效算法，实现了复杂优化问题的可行求解。",
+        "performance_evaluation": "论文通过仿真实验评估所提方法，设置多智能体、主观异质风险偏好的语义通信场景，将其与常规风险中性或期望效用模型下的资源分配策略进行对比，采用总语义效用、资源利用效率等指标衡量性能优劣。",
+        "inferred_application": "研究成果适用于多智能体协作、任务导向的语义通信网络—尤其是在智能制造、联网自动体、6G/物联网等需兼顾效用、风险与资源约束的现实场景。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "资源分配优化",
+        "累积前景理论（CPT）",
+        "风险感知",
+        "多智能体决策",
+        "凸近似算法",
+        "非凸优化"
+      ]
+    },
+    {
+      "id": "2505.03127",
+      "title": "Integrated Sensing, Computing, Communication, and Control for Time-Sequence-Based Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.03127v1",
+      "authors": [
+        "Qingliang Li",
+        "Bo Chang",
+        "Weidong Mei",
+        "Zhi Chen"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-06",
+      "snippet": "本论文针对工业物联网（IIoT）时代面临的实时无线控制系统需求，提出了一种融合感知、计算、通信与控制（ISC3）的时序语义通信新范式。核心创新包括通过语义特征提取和重构模块，利用深度强化学习框架，显著降低冗余信息传输与通信开销，同时实现自适应可靠控制。在现场实验中，该方法较传统方案显著提升了控制性能与通信效率。",
+      "interpretation": {
+        "core_contribution": "提出一种集成感知、计算、通信与控制（ISC3）的时序语义通信框架，引入语义特征提取与重构模块，通过多智能体深度强化学习实现通信与控制协同优化，从根本上提升了实时控制系统中信息传递的效率和可靠性。",
+        "methodology_summary": "论文通过在发端利用语义特征提取（SFE）模块分析控制信息的时序相关性，优先发送全新或重要信息，减少冗余传输。接收端利用语义特征重构（SFR）模块和自适应控制增益机制，基于历史序列补完未实时传输的信息。以上模块和决策策略均通过混合奖励多智能体深度强化学习方法进行端到端训练和参数优化。",
+        "performance_evaluation": "采用现场实验对比多种基线方案，从通信开销、系统时延、控制精度等维度进行系统性评测，结果显示所提方法在通信效率及控制性能上均优于传统方法。",
+        "inferred_application": "研究成果最直接应用于工业物联网（IIoT）场景下的实时无线控制系统，尤其适用于对可靠性和低延时有极高要求的智能制造、自动化机器人控制等领域。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "集成感知-计算-通信-控制（ISC3）",
+        "时序信息",
+        "深度强化学习",
+        "工业物联网（IIoT）",
+        "自适应控制",
+        "信息冗余抑制"
+      ]
+    },
+    {
       "id": "2505.17030",
       "title": "Distillation-Enabled Knowledge Alignment Protocol for Semantic Communication in AI Agent Networks",
       "url": "http://arxiv.org/abs/2505.17030v1",
@@ -279,7 +372,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T02:52:00.641Z",
+  "lastUpdate": "2025-06-23T03:07:40.405Z",
   "keywords": {
     "manual": [
       "通信",
