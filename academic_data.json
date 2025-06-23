@@ -1,6 +1,97 @@
 {
   "papers": [
     {
+      "id": "2506.09512",
+      "title": "A Survey on the Role of Artificial Intelligence and Machine Learning in 6G-V2X Applications",
+      "url": "http://arxiv.org/abs/2506.09512v1",
+      "authors": [
+        "Donglin Wang",
+        "Anjie Qiu",
+        "Qiuheng Zhou",
+        "Hans D. Schotten"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本论文系统回顾了人工智能（AI）与机器学习（ML）在6G车联网（V2X）领域的应用与最新进展。文章重点梳理了深度学习、强化学习、生成式学习和联邦学习在智能交通、资源分配、波束赋形和安全管理等场景中的关键作用，深入分析了AI驱动下6G-V2X系统在性能、智能化与自适应能力方面的显著提升。论文并总结了当前面临的计算复杂度、数据隐私和实时决策等技术挑战，展望了未来研究方向，为构建智能V2X生态提供理论参考。",
+      "interpretation": {
+        "survey_scope": "本文综述聚焦于AI与ML（包括DL、RL、GL、FL）赋能下的6G车联网（V2X）通信，涵盖智能交通、车路协同、资源优化和安全管理等关键应用场景，尤其关注近两年技术与应用的前沿进展。",
+        "taxonomy_or_structure": "作者以AI/ML方法为主线分类，包括深度学习、强化学习、生成式学习及联邦学习，并依托其在6G-V2X系统中的典型任务（如资源分配、智能波束赋形、交通管理和安全保障）逐类梳理现有研究，随后系统分析技术挑战及未来趋势。",
+        "key_trends_and_insights": "论文指出6G与AI/ML的深度融合已成为智能交通系统发展的主流趋势，尤其是生成式AI在复杂环境适应性和泛化能力方面表现突出，为V2X带来更强的智能决策和协同控制。此外，边云协同、数据安全、多模态信息融合和低时延实时决策是未来的发展重点，但同时也面临高算力消耗和隐私保护等核心挑战。",
+        "target_audience": "该综述适合从事6G通信、车联网、人工智能、智能交通系统等领域的科研人员、系统工程师、产业开发者及政策制定者参考。"
+      },
+      "paperKeywords": [
+        "6G",
+        "V2X",
+        "人工智能",
+        "机器学习",
+        "深度学习",
+        "生成式AI",
+        "联邦学习",
+        "智能交通"
+      ]
+    },
+    {
+      "id": "2506.10570",
+      "title": "6G Infrastructures for Edge AI: An Analytical Perspective",
+      "url": "http://arxiv.org/abs/2506.10570v1",
+      "authors": [
+        "Kurt Horvath",
+        "Shpresa Tuda",
+        "Blerta Idrizi",
+        "Stojan Kitanov",
+        "Fisnik Doko",
+        "Dragi Kimovski"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-12",
+      "snippet": "本文系统分析了AI与物联网融合背景下，当前5G网络在支持分布式、网络敏感型边缘AI应用时的性能瓶颈，实测数据显示现有5G网络时延高于AI关键应用需求近3倍，难以支撑实时性要求。为此，论文不仅总结了现有5G在欧洲中心地区的延迟测评数据，还针对6G网络在结构与技术能力上的演进提出具体优化建议，旨在推动面向AI的下一代高性能无线基础设施建设。",
+      "interpretation": {
+        "core_contribution": "本文客观揭示了当前5G网络在实际部署中无法满足AI驱动边缘应用对超低时延和高吞吐的性能要求，并据此提出了针对6G网络架构的改进方向与优化建议，为6G架构设计与AI应用协同提供了数据基础和发展路线。",
+        "methodology_summary": "论文采用实证分析方法，对中欧地区现有5G网络基础设施进行了广域实地时延测量，量化其在不同地理位置下的真实表现，并结合对AI边缘应用需求的分析，提出6G演进的关键技术指标和推荐措施。",
+        "performance_evaluation": "通过实地测量，作者获得了5G多个区域的端到端时延数据（61-110ms），对比AI关键应用所需的低时延要求，发现现有5G时延超标约270%，揭示了其在现实环境下的明显短板。",
+        "inferred_application": "本研究尤其适用于AI驱动的实时工业物联网、自动驾驶、智慧医疗等对端到端时延和网络敏捷性高度敏感的场景，同时为运营商与标准制定机构在6G基础设施规划和优化中提供理论与数据支撑。"
+      },
+      "paperKeywords": [
+        "6G",
+        "边缘AI",
+        "超低时延",
+        "网络架构",
+        "5G性能评估",
+        "分布式应用",
+        "网络演进"
+      ]
+    },
+    {
+      "id": "2506.09418",
+      "title": "Securing Open RAN: A Survey of Cryptographic Challenges and Emerging Solutions for 5G",
+      "url": "http://arxiv.org/abs/2506.09418v1",
+      "authors": [
+        "Ryan Barker",
+        "Fatemeh Afghah"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本综述系统梳理了开放无线接入网（O-RAN）在5G部署中的加密安全挑战与新兴防护策略。论文汇聚了学术与产业的最新进展，深入分析了O-RAN分层接口面临的下投攻击与数据明文暴露等安全漏洞，评估了SNOW-V、AES-256、ZUC-256等核心加密算法在多样化场景下的性能及适应性。文章还聚焦AI驱动测试平台与控制器在动态编排、防御检测及安全配置中的作用，展望了通过硬件卸载、跨层密钥适配与零信任架构实现6G安全演进的未来趋势。",
+      "interpretation": {
+        "survey_scope": "本综述聚焦于5G开放无线接入网（O-RAN）的加密安全威胁、现有与新兴加密机制，覆盖从协议接口到实际运行环境的全链路防护技术演进。",
+        "taxonomy_or_structure": "作者按O-RAN架构（如E2、O1接口）对安全问题进行分层梳理，结合具体攻击类型（如下投攻击、明文暴露）与加密算法特性进行分类，并进一步分辨AI辅助与测试床支持的安全机制。",
+        "key_trends_and_insights": "论文总结了高性能抗侧信道加密算法、AI辅助动态安全编排、硬件加速、跨层密钥自适应与零信任安全体系作为未来演进趋势，呼应了3GPP与O-RAN联盟的新标准要求，强调算力与安全协同优化。",
+        "target_audience": "该综述适合移动通信系统研究者、无线网络安全工程师、运营商技术决策者及关注5G/6G安全演进的标准化从业者。"
+      },
+      "paperKeywords": [
+        "O-RAN安全",
+        "5G加密",
+        "接口下投攻击",
+        "AI驱动安全",
+        "密钥管理",
+        "3GPP安全标准",
+        "零信任架构"
+      ]
+    },
+    {
       "id": "2506.06519",
       "title": "Hierarchical Debate-Based Large Language Model (LLM) for Complex Task Planning of 6G Network Management",
       "url": "http://arxiv.org/abs/2506.06519v1",
@@ -469,7 +560,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T03:34:04.026Z",
+  "lastUpdate": "2025-06-23T04:13:39.281Z",
   "keywords": {
     "manual": [
       "通信",
