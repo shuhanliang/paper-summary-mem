@@ -155,5 +155,31 @@
       "3GPP安全标准",
       "零信任架构"
     ]
+  },
+  {
+    "date": "2025-06-23",
+    "keywords": [
+      "Diffusion-based Reinforcement Learning",
+      "Resource Allocation",
+      "6G Networks",
+      "Open RAN (O-RAN)",
+      "Network Slicing",
+      "Quality of Service (QoS)",
+      "Generative AI",
+      "6G",
+      "NTN",
+      "SCMA",
+      "多任务学习",
+      "AI接收机",
+      "块错误率（BLER）",
+      "边缘计算",
+      "6G",
+      "通感一体化",
+      "大模型（Foundation Model）",
+      "多模态融合",
+      "语义通信",
+      "无线智能",
+      "系统性架构"
+    ]
   }
 ]
