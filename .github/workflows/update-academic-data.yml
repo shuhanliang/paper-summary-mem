@@ -19,6 +19,23 @@ jobs:
         with:
           node-version: '18'
 
+      # 增加模型缓存步骤
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub
+          key: ${{ runner.os }}-transformers-cache-v1
+
+      - name: Install dependencies
+        run: npm install node-fetch@2 dotenv @xenova/transformers hnswlib-node fast-xml-parser
+
+      - name: Create updater script
+        run: |
+          cat > update-data.js << 'EOL'
+          // ... 此处省略 update-data.js 的完整内容，与您上一版本相同 ...
+          // ... 请确保这里是您最新的、无格式错误、且包含所有新逻辑的脚本 ...
+          EOL
+
       - name: Install dependencies
         run: npm install node-fetch@2 dotenv @xenova/transformers hnswlib-node fast-xml-parser
 
@@ -324,7 +341,7 @@ jobs:
           username: 13937372851@163.com
           password: PCf7BnBBtXx9c6wk
           subject: 学术周报已更新 - ${{ github.repository }}
-          body\: \|
+          body: |
             您好，
             您的学术周报已成功更新！新的学术论文已经添加到数据库中。
             您可以通过以下链接访问您的学术周报：
