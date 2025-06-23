@@ -129,7 +129,7 @@ jobs:
           }
 
           // --- 拉取“大库”函数 ---
-          async function fetchStagingPapers(limit = STAGING_AREA_LIMIT, maxRetries = 3) {
+          async function fetchStagingPapers(limit = STAGING_AREA_LIMIT, maxRetries = 6) {
             const { XMLParser } = await import('fast-xml-parser');
             const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
             const crossTopics = ["Agent", "Memory Management"];
@@ -334,13 +334,13 @@ jobs:
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
         run: node update-data.js
 
-      # ---【最终修正】---: 增加一个调试步骤，用于查看缓存目录的真实结构
-      - name: Debug - List Cache Directory Contents
-        # 无论上一步是否成功都运行此步骤，以获取最多的调试信息
-        if: always() 
-        run: |
-          echo "Listing contents of ./.cache/huggingface/hub directory..."
-          ls -R ./.cache/huggingface/hub
+      #增加一个调试步骤，用于查看缓存目录的真实结构
+      # - name: Debug - List Cache Directory Contents
+      #   # 无论上一步是否成功都运行此步骤，以获取最多的调试信息
+      #   if: always() 
+      #   run: |
+      #     echo "Listing contents of ./.cache/huggingface/hub directory..."
+      #     ls -R ./.cache/huggingface/hub
 
       - name: Send email notification
         if: success()
