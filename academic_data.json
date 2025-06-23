@@ -1,6 +1,103 @@
 {
   "papers": [
     {
+      "id": "2506.06519",
+      "title": "Hierarchical Debate-Based Large Language Model (LLM) for Complex Task Planning of 6G Network Management",
+      "url": "http://arxiv.org/abs/2506.06519v1",
+      "authors": [
+        "Yuyan Lin",
+        "Hao Zhou",
+        "Chengming Hu",
+        "Xue Liu",
+        "Hao Chen",
+        "Yan Xin",
+        "Jianzhong",
+        "Zhang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-06",
+      "snippet": "本文提出了一种面向6G网络复杂任务规划的层次化多大语言模型（LLM）辩论框架。该方法突破了以往仅用单模型的局限，创新性地通过多模型层层分解、协作辩论提升管理决策质量，并首次构建6GPlan数据集对方法进行验证。实验表明该方法在覆盖率和召回率方面均取得大幅提升，为6G网络AI内生智能提供了新路径。",
+      "interpretation": {
+        "core_contribution": "首创性地提出了基于多LLM‘层次化辩论’机制，实现复杂6G网络管理任务的高效、协作式规划，并发布了针对该类任务的首个6GPlan评测数据集。这一方案突破了单模型解耦与能力瓶颈，为6G网络AI内生提供了通用智能决策范式。",
+        "methodology_summary": "采用多LLM分阶段合作：首先针对任务进行子任务分解辩论，随后围绕每个子任务再分步协作优化，逐步集成最优子解形成全局解。该层次化、多轮辩论显著降低问题复杂性，增强结果的系统性和合理性，且适配6G网络管理的多层异构属性。",
+        "performance_evaluation": "设计并公开6GPlan数据集（含110个复杂管理任务、5000组关键词解），基于标准覆盖率和全局召回率等指标，与现有单模型和扁平化多模型方法对比，实验数据显示方案在两个核心指标上均有30%以上提升，验证了其有效性和优越性。",
+        "inferred_application": "最直接应用于运营商或智能网络服务商的6G网络复杂管理决策平台，可服务于自动化运维、智能编排、策略优化等高难度运管场景，助力推动AI与6G深度融合、实现智能内生网络。"
+      },
+      "paperKeywords": [
+        "6G网络管理",
+        "大语言模型",
+        "层次化辩论",
+        "复杂任务规划",
+        "协同AI",
+        "6GPlan数据集",
+        "智能内生"
+      ]
+    },
+    {
+      "id": "2505.18846",
+      "title": "LLM-Driven APT Detection for 6G Wireless Networks: A Systematic Review and Taxonomy",
+      "url": "http://arxiv.org/abs/2505.18846v1",
+      "authors": [
+        "Muhammed Golec",
+        "Yaser Khamayseh",
+        "Suhib Bani Melhem",
+        "Abdulmalik Alwarafy"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-24",
+      "snippet": "本文系统性回顾并分类了大语言模型（LLM）赋能下的6G无线网络中高级持续性威胁（APT）检测领域，对语义日志融合、加密流量分析、边缘部署约束、数据与建模技术以及可复现性等五大核心议题进行了梳理。针对粒度、部署模式、攻击链阶段等构建了详细分类体系，总结了可解释性、数据稀缺、边端设备限制和实时适配等关键挑战，为后续研究提供了全面展望。",
+      "interpretation": {
+        "survey_scope": "该综述聚焦于6G无线网络环境下，结合大语言模型（LLM）的高级持续性威胁（APT）检测方法和最新进展。主要涵盖APT检测与防御、LLM在网络安全中的应用、6G网络安全架构等交叉领域。",
+        "taxonomy_or_structure": "作者围绕五大研究问题——语义合并、加密流量分析、边缘约束、数据和建模、可复现性，构建了多层次分类体系，并基于粒度、部署模型和攻击链阶段等维度详细梳理现有工作，系统阐释各类技术路径和实现方案。",
+        "key_trends_and_insights": "作者识别出LLM在APT检测中提升语义理解和智能威胁响应能力的趋势，同时强调可解释性、数据稀缺和边端算力等瓶颈。未来需关注实时性保障、切片自适应与跨域协同创新，以及在6G新型场景下的数据与模型可用性突破。",
+        "target_audience": "该综述适合6G无线网络、人工智能安全、大语言模型、APT检测等领域的科研人员、工程师、安全分析师及研究生查阅参考。"
+      },
+      "paperKeywords": [
+        "6G无线网络",
+        "高级持续威胁（APT）检测",
+        "大语言模型（LLM）",
+        "网络安全",
+        "边缘智能",
+        "语义分析",
+        "系统综述"
+      ]
+    },
+    {
+      "id": "2506.11779",
+      "title": "Semantic Communications in 6G: Coexistence, Multiple Access, and Satellite Networks",
+      "url": "http://arxiv.org/abs/2506.11779v1",
+      "authors": [
+        "Ishtiaque Ahmed",
+        "Yingzhuo Sun",
+        "Jingwen Fu",
+        "Alper Kose",
+        "Leila Musavian",
+        "Ming Xiao",
+        "Berna Ozbek"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-13",
+      "snippet": "本综述聚焦于6G环境下语义通信技术的融合与演进，系统探讨了语义通信（SemCom）与传统比特通信（BitCom）的共存架构、多用户接入机制以及在卫星网络中应对带宽受限和信道恶劣等关键应用场景。论文梳理多模态语义通信的实现框架，分析了NOMA等多址接入策略在异构用户环境下的适配优势，并前瞻性地总结了6G及未来语义感知网络系统的研究方向和部署挑战。",
+      "interpretation": {
+        "survey_scope": "本综述覆盖了6G及未来通信网络中语义通信与传统比特通信共存、多址接入机制（如NOMA）、多模态语义传输及其在卫星等复杂场景下的应用。",
+        "taxonomy_or_structure": "作者依次梳理了：1）SemCom和BitCom共存的网络架构设计；2）各类多址接入方式对异构用户的支撑策略，重点分析NOMA；3）多模态语义通信的系统框架和评价需求；4）语义通信在卫星网络等资源受限场景下的特定应用方案；5）未来部署展望和开放研究问题。",
+        "key_trends_and_insights": "1）6G语义通信正向与传统通信深度融合迈进，以实现更高的频谱利用和智能资源分配；2）多模态语义处理成为提升异构数据传输效率的关键；3）多用户接入策略如NOMA在新型语义网络中的应用潜力突出；4）语义通信在带宽受限、复杂信道环境（如卫星）中可显著优化传输性能和鲁棒性；5）未来需关注跨层协同、语义测度标准化和网络智能化部署问题。",
+        "target_audience": "本综述适用于从事6G、智能通信、语义网络、多模态信息处理和卫星通信的科研工作者、系统工程师及通信行业研发与规划人员。"
+      },
+      "paperKeywords": [
+        "6G",
+        "语义通信",
+        "多模态融合",
+        "多址接入",
+        "NOMA",
+        "卫星网络",
+        "资源分配"
+      ]
+    },
+    {
       "id": "2505.23275",
       "title": "Wireless Agentic AI with Retrieval-Augmented Multimodal Semantic Perception",
       "url": "http://arxiv.org/abs/2505.23275v1",
@@ -372,7 +469,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T03:07:40.405Z",
+  "lastUpdate": "2025-06-23T03:34:04.026Z",
   "keywords": {
     "manual": [
       "通信",
@@ -384,7 +481,7 @@
     "hot": [
       "语义通信",
       "6G",
-      "多模态模型"
+      "大语言模型"
     ]
   },
   "lastAutoUpdateDate": "2025/6/23"
