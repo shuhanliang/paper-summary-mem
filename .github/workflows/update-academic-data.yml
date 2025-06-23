@@ -183,7 +183,7 @@ jobs:
             let similarMemoriesPrompt = "";
             if (paper.snippet && memoryIndex.getCurrentCount() > 0) {
               const queryVector = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
-              const searchResult = memoryIndex.searchKnn(queryVector.data, 2);
+              const searchResult = memoryIndex.searchKnn(Array.from(queryVector.data), 2);
               if (searchResult.neighbors.length > 0) {
                 const similarPapersContent = searchResult.neighbors.map(index => memoryContent[index]).filter(Boolean).map((mem, i) => `历史相关论文 ${i+1}:\n- 标题: ${mem.title}\n- 摘要: ${mem.snippet}`).join("\n\n");
                 similarMemoriesPrompt = `作为一个拥有记忆的专家，请参考以下与当前论文主题相似的历史论文，进行对比和关联分析。\n--- 历史相似论文上下文 ---\n${similarPapersContent}\n--------------------------\n`;
@@ -238,7 +238,7 @@ jobs:
                     const paper = existingData.papers[i];
                     if (paper.snippet) {
                         const embedding = await embedder(paper.snippet, { pooling: 'mean', normalize: true });
-                        memoryIndex.addPoint(embedding.data, i);
+                        memoryIndex.addPoint(Array.from(embedding.data), i);
                         memoryContent[i] = { title: paper.title, snippet: paper.snippet };
                     }
                 }
