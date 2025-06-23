@@ -136,11 +136,12 @@ jobs:
             const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
             const now = new Date();
             const threeMonthsAgo = new Date();
-            threeMonthsAgo.setMonth(now.getMonth() - 3);
+            threeMonthsAgo.setMonth(now.getMonth() - 1);
             const formatDate = (date) =>
               `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
             const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
-            const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
+            // const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
+            const searchQuery = `${coreTopicsQuery} AND ${dateFilter}`;
             const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
             console.log(`向 arXiv API 查询 (请求 ${limit} 篇): ${searchQuery}`);
             for (let i = 0; i < maxRetries; i++) {
@@ -335,10 +336,11 @@ jobs:
 
       # ---【最终修正】---: 增加一个调试步骤，用于查看缓存目录的真实结构
       - name: Debug - List Cache Directory Contents
-        if: always() # 无论上一步是否成功都运行此步骤，以获取最多的调试信息
+        # 无论上一步是否成功都运行此步骤，以获取最多的调试信息
+        if: always() 
         run: |
-          echo "Listing contents of ~/.cache/huggingface directory..."
-          ls -R ~/.cache/huggingface
+          echo "Listing contents of ./.cache/huggingface/hub directory..."
+          ls -R ./.cache/huggingface/hub
 
       - name: Send email notification
         if: success()
