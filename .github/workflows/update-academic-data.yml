@@ -134,30 +134,30 @@ jobs:
             const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
             const crossTopics = ["Agent", "Memory Management"];
             const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
-            const now = new Date();
-            const threeMonthsAgo = new Date();
-            threeMonthsAgo.setMonth(now.getMonth() - 1);
-            const formatDate = (date) => `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-            const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
+            // const now = new Date();
+            // const threeMonthsAgo = new Date();
+            // threeMonthsAgo.setMonth(now.getMonth() - 1);
+            // const formatDate = (date) => `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
+            // const dateFilter = `submittedDate:[${formatDate(threeMonthsAgo)}0000 TO ${formatDate(now)}2359]`;
 
             // ---【修改点】---: 调整日期范围为“过去24小时”
-            // const now = new Date();
-            // const yesterday = new Date();
+            const now = new Date();
+            const yesterday = new Date();
             // 1. 计算出24小时前的精确时间点
-            // yesterday.setHours(now.getHours() - 24);
+            yesterday.setHours(now.getHours() - 24);
 
             // 2. 创建一个能格式化到分钟的帮助函数
-            // const formatDateTime = (date) => {
-                // const YYYY = date.getFullYear();
-                // const MM = (date.getMonth() + 1).toString().padStart(2, '0');
-                // const DD = date.getDate().toString().padStart(2, '0');
-                // const HH = date.getHours().toString().padStart(2, '0');
-                // const MIN = date.getMinutes().toString().padStart(2, '0');
-                // return `${YYYY}${MM}${DD}${HH}${MIN}`;
-            // };
+            const formatDateTime = (date) => {
+                const YYYY = date.getFullYear();
+                const MM = (date.getMonth() + 1).toString().padStart(2, '0');
+                const DD = date.getDate().toString().padStart(2, '0');
+                const HH = date.getHours().toString().padStart(2, '0');
+                const MIN = date.getMinutes().toString().padStart(2, '0');
+                return `${YYYY}${MM}${DD}${HH}${MIN}`;
+            };
 
             // 3. 构建精确到分钟的日期过滤器
-            // const dateFilter = `submittedDate:[${formatDateTime(yesterday)} TO ${formatDateTime(now)}]`;
+            const dateFilter = `submittedDate:[${formatDateTime(yesterday)} TO ${formatDateTime(now)}]`;
             // --- 修改结束 ---
 
             // const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
