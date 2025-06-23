@@ -1,0 +1,121 @@
+/* style.css */
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #e9eef2; 
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.keyword-tag-display { 
+    transition: all 0.2s ease-in-out; 
+    cursor: pointer; 
+}
+.keyword-tag-display:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+#report-content-wrapper { 
+    perspective: 1500px; 
+    width: 100%; 
+    height: calc(100vh - 350px); 
+    min-height: 550px; 
+    margin: 0 auto; 
+}
+#report-content { 
+    display: flex; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding: 20px 0; 
+    height: 100%; 
+}
+.report-card-poster { 
+    scroll-snap-align: center; 
+    flex: 0 0 calc(min(90%, 595px)); 
+    height: calc(100% - 40px); 
+    margin: 0 15px; 
+    border-radius: 16px; 
+    background-color: #ffffff; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    transform-style: preserve-3d; 
+    opacity: 0.7; 
+    transform: scale(0.9); 
+    overflow: hidden; 
+}
+.report-card-poster.is-active { 
+    opacity: 1; 
+    transform: scale(1); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+}
+.poster-grid { 
+    display: grid; 
+    grid-template-columns: 38% 62%; 
+    height: 100%; 
+}
+.poster-left-column { 
+    background-color: #f0f4f8; 
+    padding: 24px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    border-right: 1px solid #dde4eb; 
+    overflow-y: auto; 
+}
+.poster-right-column { 
+    padding: 24px; 
+    display: flex; 
+    flex-direction: column; 
+    overflow-y: auto; 
+}
+.poster-section-title { 
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    color: #1e3a8a; 
+    margin-top: 16px; 
+    margin-bottom: 8px; 
+    border-bottom: 2px solid #60a5fa; 
+    padding-bottom: 4px; 
+    display: inline-block; 
+}
+.poster-interpretation-subsection h5 { 
+    font-weight: 700; 
+    color: #334155; 
+    margin-bottom: 4px; 
+}
+.poster-interpretation-subsection p { 
+    font-size: 0.85rem; 
+    color: #475569; 
+    line-height: 1.6; 
+    text-align: justify; 
+}
+.paper-card-new-badge { 
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    background-color: #ef4444; 
+    color: white; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    padding: 2px 8px; 
+    border-radius: 9999px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+}
+.pagination-dots { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+    gap: 10px; 
+}
+.pagination-dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    background-color: #cbd5e1; 
+    cursor: pointer; 
+    transition: all 0.2s ease; 
+}
+.pagination-dot.active { 
+    background-color: #2563eb; 
+    transform: scale(1.2); 
+}
