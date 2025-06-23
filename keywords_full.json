@@ -1,7 +1,7 @@
 [
   {
     "keyword": "语义通信",
-    "count": 19
+    "count": 20
   },
   {
     "keyword": "6G",
@@ -101,6 +101,10 @@
   },
   {
     "keyword": "扩散模型",
+    "count": 2
+  },
+  {
+    "keyword": "图像重建",
     "count": 2
   },
   {
@@ -948,10 +952,6 @@
     "count": 1
   },
   {
-    "keyword": "图像重建",
-    "count": 1
-  },
-  {
     "keyword": "集成感知与通信",
     "count": 1
   },
@@ -1017,6 +1017,26 @@
   },
   {
     "keyword": "对比学习",
+    "count": 1
+  },
+  {
+    "keyword": "深度联合源信道编码",
+    "count": 1
+  },
+  {
+    "keyword": "端到端学习",
+    "count": 1
+  },
+  {
+    "keyword": "感兴趣区域(ROI)",
+    "count": 1
+  },
+  {
+    "keyword": "自适应资源分配",
+    "count": 1
+  },
+  {
+    "keyword": "无线图像传输",
     "count": 1
   }
 ]
