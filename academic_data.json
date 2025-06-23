@@ -1,6 +1,200 @@
 {
   "papers": [
     {
+      "id": "2505.17604",
+      "title": "Adaptive Semantic Token Communication for Transformer-based Edge Inference",
+      "url": "http://arxiv.org/abs/2505.17604v1",
+      "authors": [
+        "Alessio Devoto",
+        "Jary Pomponi",
+        "Mattia Merluzzi",
+        "Paolo Di Lorenzo",
+        "Simone Scardapane"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "本文提出了一种面向边缘智能推理的自适应Transformer深度联合源信道编码（DJSCC）架构，针对资源受限场景中任务驱动的语义通信需求，设计了基于Transformer的特征语义标记选择与压缩机制，并通过Lyapunov随机优化算法实现动态资源分配，在不同信道与带宽条件下高效传输关键特征数据。实验结果表明，该系统在多种基线下均具备优越的压缩与推理性能，显示出其在AI原生语义通信领域的潜力。",
+      "interpretation": {
+        "core_contribution": "提出了自适应语义标记通信框架，通过Transformer驱动的动态高层特征压缩与联合源信道编码，实现边缘推理场景下灵活且高效的任务感知数据传输。",
+        "methodology_summary": "方法首先将输入数据token化，提取关键高层语义特征，经Transformer细化后再通过语义标记选择机制自适应压缩至用户设定数量的token。随后，这些token通过JSCC模块进一步压缩，并可灵活调整token数及嵌入维度。系统采用基于Lyapunov随机优化的资源分配机制，动态权衡压缩效率与任务性能，适应多变信道和带宽环境。",
+        "performance_evaluation": "论文通过与现有基线方法对比，在多种带宽及信道条件下，评估系统的压缩能力、推理准确率等指标，实验显示其在实际边缘智能场景中性能优于对比系统。",
+        "inferred_application": "其最直接应用为6G及未来无线通信中边缘推理/视觉分析等任务的语义通信场景，特别适合资源受限、需灵活自适应的物联网、车联网和移动感知类智能终端。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "Transformer",
+        "边缘推理",
+        "联合源信道编码（JSCC）",
+        "资源分配",
+        "自适应压缩",
+        "Lyapunov优化"
+      ]
+    },
+    {
+      "id": "2506.17063",
+      "title": "Client Selection Strategies for Federated Semantic Communications in Heterogeneous IoT Networks",
+      "url": "http://arxiv.org/abs/2506.17063v1",
+      "authors": [
+        "Samer Lahoud",
+        "Kinda Khawam"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-20",
+      "snippet": "本文针对异构物联网环境中带宽受限与隐私保护的双重挑战，提出了一种基于联邦语义通信的端到端协同训练框架。该方法通过仅传输语义特征显著降低通信开销，并针对设备数据非均衡性设计三种客户选择策略。实验结果表明，该框架在图像重建质量、资源效率和参与公平性方面取得有效权衡，验证了在边缘智能与隐私保护场景中的应用潜力。",
+      "interpretation": {
+        "core_contribution": "本论文主要创新在于提出了适用于异构物联网的端到端联邦语义通信架构，并首次系统性地研究了面对数据量与分布极端不均的设备集群，如何通过不同的客户选择策略协调性能与公平性。",
+        "methodology_summary": "方法上，框架利用语义通信的思想，仅传输语义特征，极大降低了带宽需求。在联邦学习环节，设计了三种客户选择机制（如最大化系统性能的功利主义、兼顾公平的按比例分配等），并采用基于损失的聚合方法自适应适应设备异质性。",
+        "performance_evaluation": "实验基于图像数据集进行，包括对比不同客户选择策略在重建质量、资源分配公平性和计算效率等多项指标下的表现，给出定量分析，明确指出功利主义方法重建质量最佳，而公平分配方法则更能兼顾效率与公平。",
+        "inferred_application": "该研究最直接的应用场景为多终端异构分布、带宽受限、对隐私保护有较高要求的边缘智能物联网，比如智能制造车间的视觉监控网络、大型城市物联网传感系统等。"
+      },
+      "paperKeywords": [
+        "联邦学习",
+        "语义通信",
+        "客户选择",
+        "物联网",
+        "异构分布",
+        "图像重建",
+        "边缘智能"
+      ]
+    },
+    {
+      "id": "2506.16191",
+      "title": "DCFNet: Doppler Correction Filter Network for Integrated Sensing and Communication in Multi-User MIMO-OFDM Systems",
+      "url": "http://arxiv.org/abs/2506.16191v1",
+      "authors": [
+        "Hyeonho Noh",
+        "Hyeonsu Lyu",
+        "Moe Z. Win",
+        "Hyun Jong Yang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-19",
+      "snippet": "本文提出了DCFNet，一种针对多用户MIMO-OFDM集成感知与通信（ISAC）系统中多普勒干扰抑制的AI原生方法。该网络创新性地结合Doppler-Correction Filter对关键干扰频率进行能量偏移，并利用深度学习网络实现高效干扰抑制，无需更改现有OFDM帧结构。引入的DCFNet-LR模块通过广义似然比检验进一步提升距离和速度分辨率。仿真表明，方法在极低复杂度下，实现了优于传统最大似然方法数百倍的速度和显著更低的定位误差，增强了6G ISAC系统的实用性。",
+      "interpretation": {
+        "core_contribution": "提出了首个无需改变原有OFDM帧结构、专为多用户MIMO-OFDM ISAC设计的Doppler-Correction Filter Network（DCFNet），实现了在高多普勒场景下对感知-通信一体化信号的精准多普勒干扰抑制与高分辨率目标估计。",
+        "methodology_summary": "方法分两步：首先，通过多组专用滤波器（DCF）将主要的多普勒干扰能量从关键频段移开，显著减弱ICI对感知性能的影响；随后，利用紧凑型深度学习网络进一步抑制剩余ICI。为实现超高分辨率，扩展了广义似然比检验（GLRT）模块（即DCFNet-LR），对网络输出进行局部精细化修正，提升目标估计精度。",
+        "performance_evaluation": "通过仿真测试，DCFNet-LR与最大似然搜索及传统检测方法做对比，主要评价指标为距离和速度的均方根误差（RMSE）、推断速度等。结果显示，DCFNet-LR速度提升143倍，且距离RMSE降低至传统方法的2.7×10−4倍，速度RMSE降至6.7×10−4倍。",
+        "inferred_application": "本方法最直接面向未来6G及IMT-2030中要求高精度、低延迟感知与通信一体化的多用户MIMO-OFDM系统，适用于自动驾驶、智慧交通、智能安防等高速动态场景的毫米波/太赫兹通信与环境感知。"
+      },
+      "paperKeywords": [
+        "集成感知与通信",
+        "多普勒干扰抑制",
+        "MIMO-OFDM",
+        "深度学习",
+        "高分辨率目标估计",
+        "6G",
+        "广义似然比检验"
+      ]
+    },
+    {
+      "id": "2506.12308",
+      "title": "From Ground to Sky: Architectures, Applications, and Challenges Shaping Low-Altitude Wireless Networks",
+      "url": "http://arxiv.org/abs/2506.12308v2",
+      "authors": [
+        "Weijie Yuan",
+        "Yuanhao Cui",
+        "Jiacheng Wang",
+        "Fan Liu",
+        "Geng Sun",
+        "Tao Xiang",
+        "Jie Xu",
+        "Shi Jin",
+        "Dusit Niyato",
+        "Sinem Coleri",
+        "Sumei Sun",
+        "Shiwen Mao",
+        "Abbas Jamalipour",
+        "Dong In Kim",
+        "Mohamed-Slim Alouini",
+        "Xuemin Shen"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-14",
+      "snippet": "本文系统阐述了低空无线网络（LAWN）的创新三维分层可重构架构，强调空地节点间的深度融合以实现通信、感知、控制与计算一体化。不同于传统空中通信系统，LAWN通过多功能平面自适应重塑，满足复杂动态与任务关键型场景下的高安全与高效运营需求。文章详述LAWN的核心使能技术（如ISAC、语义通信和全驱动控制），并指明其应用前景与跨层技术挑战，为未来低空空域的智能网络研究提供了清晰路线图。",
+      "interpretation": {
+        "survey_scope": "本综述聚焦于低空无线网络（Low-Altitude Wireless Networks, LAWN）的体系架构、关键使能技术、应用场景及其面临的挑战，尤其关注空地节点在复杂动态环境下的深度融合与自适应能力。",
+        "taxonomy_or_structure": "作者以网络功能层次为基础，结构化梳理了LAWN的三维分层架构，包括连接性、感知、计算与控制等核心功能平面的集成，并针对每一平面详细回顾了相关前沿技术与实现策略；同时，文章还按使能技术（如ISAC、语义通信、控制系统）和应用场景进行细致归类分析。",
+        "key_trends_and_insights": "作者指出，LAWN的发展展现出多功能深度集成、三维动态架构和跨层协同优化等趋势。未来，跨领域整合（如ISAC与语义通信）、自适应智能控制机制、以及面向安全和鲁棒性的资源协同，将成为该领域的重要研究方向。此外，文章强调了低空空域网络在智能交通、应急救援等任务型应用中的巨大潜力，并提出针对跨层挑战的创新性解决思路。",
+        "target_audience": "本综述适合无线通信、物联网、智能系统、网络安全等领域的科研人员、工程技术人员以及关注未来低空智能网络的行业决策者和标准制定者。"
+      },
+      "paperKeywords": [
+        "低空无线网络",
+        "三维分层架构",
+        "空地融合",
+        "集成感知与通信（ISAC）",
+        "语义通信",
+        "自适应控制",
+        "跨层协同"
+      ]
+    },
+    {
+      "id": "2506.03211",
+      "title": "Channel-adaptive Cross-modal Generative Semantic Communication for Point Cloud Transmission",
+      "url": "http://arxiv.org/abs/2506.03211v1",
+      "authors": [
+        "Wanting Yang",
+        "Zehui Xiong",
+        "Qianqian Yang",
+        "Ping Zhang",
+        "Merouane Debbah",
+        "Rahim Tafazolli"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-03",
+      "snippet": "为应对自动驾驶和扩展现实中点云高效传输的挑战，论文提出了一种全新的信道自适应跨模态生成式语义通信框架GenSeC-PC。该方法利用图像与点云联合编码实现高压缩与优质重建，通过非对称信道自适应结构和生成式先验，实现了对信道反馈有限、源点云不完整时的稳健传输和实时解码。实验验证了GenSeC-PC在低信噪比、带宽受限等多样场景下的优越性能。",
+      "interpretation": {
+        "core_contribution": "本论文创新性地提出了GenSeC-PC，一种跨模态生成式语义通信框架，首次实现了点云与图像融合编码、生成式先验解码和信道自适应联合语义-信道编码架构，显著提升了点云通信的压缩效率与重建健壮性。",
+        "methodology_summary": "GenSeC-PC以图像作为非传输端侧信息，与点云在语义层面融合编码，仅对编码器侧进行信道反馈自适应，并基于PointDif骨干解码，结合整流去噪扩散隐式模型实现高效解码以支撑实时通信。生成式先验设计保证了对缺失或强干扰源点云的鲁棒重建。",
+        "performance_evaluation": "论文通过仿真，比较了GenSeC-PC与PointDif等基线在低SNR、带宽受限、多图像数量与未知目标场景下的重建效果，采用多重指标和双指标引导微调，验证了其跨模态语义提取和解码效率的提升。",
+        "inferred_application": "直接应用于自动驾驶、增强现实等需要大规模点云实时、高效、鲁棒无线传输的场景和系统，尤其对移动端和带宽受限边缘设备具有较高实用价值。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "信道自适应",
+        "跨模态生成",
+        "点云传输",
+        "扩散模型",
+        "端侧信息融合",
+        "实时通信"
+      ]
+    },
+    {
+      "id": "2505.19940",
+      "title": "Task-Oriented Low-Label Semantic Communication With Self-Supervised Learning",
+      "url": "http://arxiv.org/abs/2505.19940v1",
+      "authors": [
+        "Run Gu",
+        "Wei Xu",
+        "Zhaohui Yang",
+        "Dusit Niyato",
+        "Aylin Yener"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-26",
+      "snippet": "本文提出了一种自监督学习驱动的面向任务低标注语义通信框架（SLSCom），以应对有限标注样本下的语义通信推理难题。SLSCom利用设备在边缘网络中收集的大量无标注样本，通过自监督反向分类与重构任务、高效联合训练策略，提升端到端信道下的推理准确率。实验证明，方法在多径信道与不同SNR、样本规模条件下，都显著优于传统数字编码和现有深度学习语义通信技术，即便无标注数据与下游任务不相关时亦具鲁棒性。",
+      "interpretation": {
+        "core_contribution": "提出了一种基于自监督学习的新型语义通信系统，利用无标注数据显著提升低标注场景下的任务推理能力，有效缓解高标注样本依赖。",
+        "methodology_summary": "方法通过自监督对比特征学习和信息瓶颈理论，设计了兼顾任务相关性和信息量的语义编码器，并采用自监督分类与重构任务简化IB优化，实现端到端少标注高效训练。",
+        "performance_evaluation": "在多路径无线信道下进行图像分类实验，涵盖不同标注数据规模和SNR情形，比较了传统数字编码、DL语义通信方法的基线，并展示了SLSCom在准确率等指标上的系统性优越性。",
+        "inferred_application": "适用于边缘网络设备、无线感知等标注资源有限、需高效推理的6G智能通信场景，尤其在物联网、车联网等下游任务多样、数据标注昂贵的智能终端环境中表现突出。"
+      },
+      "paperKeywords": [
+        "自监督学习",
+        "语义通信",
+        "信息瓶颈",
+        "少标注学习",
+        "边缘智能",
+        "无线信道",
+        "对比学习"
+      ]
+    },
+    {
       "id": "2506.12368",
       "title": "Stacked Intelligent Metasurfaces for Multi-Modal Semantic Communications",
       "url": "http://arxiv.org/abs/2506.12368v1",
@@ -1207,7 +1401,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T06:12:00.649Z",
+  "lastUpdate": "2025-06-23T06:13:31.787Z",
   "keywords": {
     "manual": [
       "通信",
