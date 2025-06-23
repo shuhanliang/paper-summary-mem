@@ -1,14 +1,26 @@
 [
   {
+    "keyword": "语义通信",
+    "count": 14
+  },
+  {
     "keyword": "6G",
     "count": 12
   },
   {
-    "keyword": "语义通信",
-    "count": 11
+    "keyword": "大语言模型",
+    "count": 4
   },
   {
-    "keyword": "大语言模型",
+    "keyword": "多模态融合",
+    "count": 3
+  },
+  {
+    "keyword": "深度学习",
+    "count": 3
+  },
+  {
+    "keyword": "多任务学习",
     "count": 3
   },
   {
@@ -41,18 +53,6 @@
   },
   {
     "keyword": "深度强化学习",
-    "count": 2
-  },
-  {
-    "keyword": "多模态融合",
-    "count": 2
-  },
-  {
-    "keyword": "深度学习",
-    "count": 2
-  },
-  {
-    "keyword": "多任务学习",
     "count": 2
   },
   {
@@ -777,6 +777,146 @@
   },
   {
     "keyword": "信号重建",
+    "count": 1
+  },
+  {
+    "keyword": "智能超表面",
+    "count": 1
+  },
+  {
+    "keyword": "生成式人工智能",
+    "count": 1
+  },
+  {
+    "keyword": "能量分布优化",
+    "count": 1
+  },
+  {
+    "keyword": "条件生成对抗网络",
+    "count": 1
+  },
+  {
+    "keyword": "带宽高效",
+    "count": 1
+  },
+  {
+    "keyword": "自动化调度器生成",
+    "count": 1
+  },
+  {
+    "keyword": "意图驱动网络",
+    "count": 1
+  },
+  {
+    "keyword": "O-RAN",
+    "count": 1
+  },
+  {
+    "keyword": "OTA实验",
+    "count": 1
+  },
+  {
+    "keyword": "无线接入网优化",
+    "count": 1
+  },
+  {
+    "keyword": "算力网络",
+    "count": 1
+  },
+  {
+    "keyword": "速率受限信道",
+    "count": 1
+  },
+  {
+    "keyword": "隐式最优先验",
+    "count": 1
+  },
+  {
+    "keyword": "混合学习框架",
+    "count": 1
+  },
+  {
+    "keyword": "信息论约束",
+    "count": 1
+  },
+  {
+    "keyword": "6G智能网络",
+    "count": 1
+  },
+  {
+    "keyword": "分布式语义通信",
+    "count": 1
+  },
+  {
+    "keyword": "非线性变换编码",
+    "count": 1
+  },
+  {
+    "keyword": "联合源信道编码",
+    "count": 1
+  },
+  {
+    "keyword": "联合熵建模",
+    "count": 1
+  },
+  {
+    "keyword": "Swin Transformer",
+    "count": 1
+  },
+  {
+    "keyword": "多源图像恢复",
+    "count": 1
+  },
+  {
+    "keyword": "感知质量优化",
+    "count": 1
+  },
+  {
+    "keyword": "神经编码",
+    "count": 1
+  },
+  {
+    "keyword": "上下文建模",
+    "count": 1
+  },
+  {
+    "keyword": "语义表示",
+    "count": 1
+  },
+  {
+    "keyword": "标准化流程",
+    "count": 1
+  },
+  {
+    "keyword": "人-机通信",
+    "count": 1
+  },
+  {
+    "keyword": "天线小型化",
+    "count": 1
+  },
+  {
+    "keyword": "粒子群优化（QDPSO）",
+    "count": 1
+  },
+  {
+    "keyword": "机器学习预测",
+    "count": 1
+  },
+  {
+    "keyword": "自动化天线设计",
+    "count": 1
+  },
+  {
+    "keyword": "ANSYS HFSS仿真",
+    "count": 1
+  },
+  {
+    "keyword": "6G与物联网",
+    "count": 1
+  },
+  {
+    "keyword": "智能射频系统",
     "count": 1
   }
 ]
