@@ -1,37 +1,6 @@
 {
   "papers": [
     {
-      "id": "2505.17604",
-      "title": "Adaptive Semantic Token Communication for Transformer-based Edge Inference",
-      "url": "http://arxiv.org/abs/2505.17604v1",
-      "authors": [
-        "Alessio Devoto",
-        "Jary Pomponi",
-        "Mattia Merluzzi",
-        "Paolo Di Lorenzo",
-        "Simone Scardapane"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-23",
-      "snippet": "本文提出了一种面向边缘智能推理的自适应Transformer深度联合源信道编码（DJSCC）架构，针对资源受限场景中任务驱动的语义通信需求，设计了基于Transformer的特征语义标记选择与压缩机制，并通过Lyapunov随机优化算法实现动态资源分配，在不同信道与带宽条件下高效传输关键特征数据。实验结果表明，该系统在多种基线下均具备优越的压缩与推理性能，显示出其在AI原生语义通信领域的潜力。",
-      "interpretation": {
-        "core_contribution": "提出了自适应语义标记通信框架，通过Transformer驱动的动态高层特征压缩与联合源信道编码，实现边缘推理场景下灵活且高效的任务感知数据传输。",
-        "methodology_summary": "方法首先将输入数据token化，提取关键高层语义特征，经Transformer细化后再通过语义标记选择机制自适应压缩至用户设定数量的token。随后，这些token通过JSCC模块进一步压缩，并可灵活调整token数及嵌入维度。系统采用基于Lyapunov随机优化的资源分配机制，动态权衡压缩效率与任务性能，适应多变信道和带宽环境。",
-        "performance_evaluation": "论文通过与现有基线方法对比，在多种带宽及信道条件下，评估系统的压缩能力、推理准确率等指标，实验显示其在实际边缘智能场景中性能优于对比系统。",
-        "inferred_application": "其最直接应用为6G及未来无线通信中边缘推理/视觉分析等任务的语义通信场景，特别适合资源受限、需灵活自适应的物联网、车联网和移动感知类智能终端。"
-      },
-      "paperKeywords": [
-        "语义通信",
-        "Transformer",
-        "边缘推理",
-        "联合源信道编码（JSCC）",
-        "资源分配",
-        "自适应压缩",
-        "Lyapunov优化"
-      ]
-    },
-    {
       "id": "2506.17063",
       "title": "Client Selection Strategies for Federated Semantic Communications in Heterogeneous IoT Networks",
       "url": "http://arxiv.org/abs/2506.17063v1",
@@ -90,6 +59,103 @@
       ]
     },
     {
+      "id": "2506.16070",
+      "title": "Towards AI-Driven RANs for 6G and Beyond: Architectural Advancements and Future Horizons",
+      "url": "http://arxiv.org/abs/2506.16070v1",
+      "authors": [
+        "Mathushaharan Rathakrishnan",
+        "Samiru Gayan",
+        "Rohit Singh",
+        "Amandeep Kaur",
+        "Hazer Inaltekin",
+        "Sampath Edirisinghe",
+        "H. Vincent Poor"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-19",
+      "snippet": "本文针对6G网络架构提出“AI驱动的无线接入网（AI-RAN）”理念，强调智能、去中心化、互操作性和数字化为基础的新型RAN架构，并结合数字孪生、智能反射面、大型生成式AI模型和区块链等关键使能技术，系统性审视6G及未来无线网络架构演进。论文通过实际智能编排与资源优化场景验证了AI-RAN的可行性，并面向ISAC和Agentic AI等未来方向进行了展望。",
+      "interpretation": {
+        "core_contribution": "本文核心贡献在于提出并系统阐述了AI-RAN架构，明确指向AI成为RAN内生特性，并首创性地整合了数字孪生、IRS、生成式AI与区块链等新兴技术作为6G RAN演进和自治的关键支撑，为实现自演化、智能化无线网络提供了系统框架与理论依据。",
+        "methodology_summary": "作者回顾并剖析RAN体系结构演进，进而创新性地构建了AI-RAN框架，该框架将AI算法深度嵌入编排与资源管理流程，同时利用数字孪生模拟环境、IRS重构无线信道、生成式AI提升智能度、区块链保证数据可信。论文在实际智能编排和资源优化场景下，对AI-RAN进行了原型验证。",
+        "performance_evaluation": "论文基于实际用例（智能编排与资源优化）对AI-RAN进行性能仿真与实验评估，可能采用典型网络数据集、与传统RAN/现有AI-RAN基线模型对比，以及常用无线资源分配与网络自适应性能指标（如时延、吞吐量、能效等）进行效果分析。",
+        "inferred_application": "本研究直接服务于下一代6G及B5G超大规模无线网络的运营商、网络设备商，以及关注自主管理、自适应优化和端到端智能的全行业应用，如工业互联网、自动驾驶、智慧城市等未来场景。"
+      },
+      "paperKeywords": [
+        "AI-RAN",
+        "6G网络架构",
+        "数字孪生",
+        "智能反射面（IRS）",
+        "生成式AI",
+        "区块链",
+        "智能编排与资源优化"
+      ]
+    },
+    {
+      "id": "2506.13243",
+      "title": "Lightweight Task-Oriented Semantic Communication Empowered by Large-Scale AI Models",
+      "url": "http://arxiv.org/abs/2506.13243v1",
+      "authors": [
+        "Chuanhong Liu",
+        "Caili Guo",
+        "Yang Yang",
+        "Mingzhe Chen",
+        "Tony Q. S. Quek"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-16",
+      "snippet": "本文针对大规模AI模型在语义通信中的高计算需求，提出了一种基于知识蒸馏和预存压缩的新型轻量化方案，有效降低模型复杂度与延迟。通过引入信道自适应模块和以信息瓶颈为基础的损失函数，实现了在动态信道环境下的高效、可靠通信。仿真结果显示，该方法在任务准确率、模型规模、计算延迟和数据需求等方面均优于现有基线，适用于实时任务导向型语义通信应用。",
+      "interpretation": {
+        "core_contribution": "提出了一种融合知识蒸馏、预存压缩与信道自适应机制的轻量级任务型语义通信方法，显著降低了大模型带来的计算和存储负担，提升了通信适应性与效率。",
+        "methodology_summary": "创新性地采用预存压缩机制防止蒸馏阶段多次推理带来的高延迟，结合信道自适应模块根据信道状态动态调整语义信息传输，同时基于信息瓶颈理论设计损失函数以优化语义压缩和关键特征保留，整体实现端到端高效语义通信。",
+        "performance_evaluation": "通过仿真试验与主流基线模型进行对比，考察了任务准确率、模型参数量、推理时延和训练所需数据量等指标，结果表明所提方法在各项指标上均有优势。",
+        "inferred_application": "面向6G及未来无线通信环境下的实时、资源受限任务驱动型智能终端和车联网、工业互联网等场景，尤其适合对模型大小和通信稳定性要求极高的设备和环境。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "知识蒸馏",
+        "大规模AI模型",
+        "信道自适应",
+        "信息瓶颈",
+        "模型压缩",
+        "低延迟"
+      ]
+    },
+    {
+      "id": "2506.12786",
+      "title": "Semantic-Aware Visual Information Transmission With Key Information Extraction Over Wireless Networks",
+      "url": "http://arxiv.org/abs/2506.12786v1",
+      "authors": [
+        "Chen Zhu",
+        "Kang Liang",
+        "Jianrong Bao",
+        "Zhouxiang Zhao",
+        "Zhaohui Yang",
+        "Zhaoyang Zhang",
+        "Mohammad Shikh-Bahaei"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-15",
+      "snippet": "随着6G网络对智能化和自适应性提出更高要求，传统无线图像传输方案在复杂场景下面临计算效率、鲁棒性和质量的三难困境。本文提出一种AI原生的端到端深度联合源信道编码（JSCC）框架，将关键语义信息提取与背景自适应合成机制融入传输流程。通过集成智能人体姿态检测与背景消除工具，模型在降低数据负载的同时有效提升画面保真度。实验结果验证了该方法在低信噪比等极端条件下的优越性能，对资源受限无线多媒体通信具有实际应用价值。",
+      "interpretation": {
+        "core_contribution": "本文首次将关键语义信息提取与自适应背景合成机制系统融入端到端JSCC框架，实现了在6G无线环境下对图像信息的智能、语义感知、高效传输，显著缩减数据量并提升视觉质量，突破了传统静态源信道分离编码的局限。",
+        "methodology_summary": "方法上，模型利用Mediapipe对人体关键点进行检测，采用Rembg实现前景与背景分离，前景关键特征被编码并与预训练背景库动态匹配，联合深度学习驱动的JSCC网络进行端到端优化，以适应动态信道环境，实现语义感知、按需编码和高效还原。",
+        "performance_evaluation": "性能评估通过与传统JSCC方法在不同信噪比(SNR)下比较PSNR（峰值信噪比）进行，结果显示在低SNR等严苛无线环境下，语义感知框架在画质保真和鲁棒性上均有显著优势。",
+        "inferred_application": "该研究适用于资源受限的6G移动无线多媒体通信场景，尤其面向智能视频监控、无人机图像回传、实时AR/VR传输等对带宽敏感且视觉语义重要的任务。"
+      },
+      "paperKeywords": [
+        "6G无线通信",
+        "端到端深度联合源信道编码(JSCC)",
+        "语义感知传输",
+        "关键特征提取",
+        "前景-背景分离",
+        "AI驱动多媒体处理",
+        "低信噪比鲁棒性"
+      ]
+    },
+    {
       "id": "2506.12308",
       "title": "From Ground to Sky: Architectures, Applications, and Challenges Shaping Low-Altitude Wireless Networks",
       "url": "http://arxiv.org/abs/2506.12308v2",
@@ -132,69 +198,6 @@
       ]
     },
     {
-      "id": "2506.03211",
-      "title": "Channel-adaptive Cross-modal Generative Semantic Communication for Point Cloud Transmission",
-      "url": "http://arxiv.org/abs/2506.03211v1",
-      "authors": [
-        "Wanting Yang",
-        "Zehui Xiong",
-        "Qianqian Yang",
-        "Ping Zhang",
-        "Merouane Debbah",
-        "Rahim Tafazolli"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-03",
-      "snippet": "为应对自动驾驶和扩展现实中点云高效传输的挑战，论文提出了一种全新的信道自适应跨模态生成式语义通信框架GenSeC-PC。该方法利用图像与点云联合编码实现高压缩与优质重建，通过非对称信道自适应结构和生成式先验，实现了对信道反馈有限、源点云不完整时的稳健传输和实时解码。实验验证了GenSeC-PC在低信噪比、带宽受限等多样场景下的优越性能。",
-      "interpretation": {
-        "core_contribution": "本论文创新性地提出了GenSeC-PC，一种跨模态生成式语义通信框架，首次实现了点云与图像融合编码、生成式先验解码和信道自适应联合语义-信道编码架构，显著提升了点云通信的压缩效率与重建健壮性。",
-        "methodology_summary": "GenSeC-PC以图像作为非传输端侧信息，与点云在语义层面融合编码，仅对编码器侧进行信道反馈自适应，并基于PointDif骨干解码，结合整流去噪扩散隐式模型实现高效解码以支撑实时通信。生成式先验设计保证了对缺失或强干扰源点云的鲁棒重建。",
-        "performance_evaluation": "论文通过仿真，比较了GenSeC-PC与PointDif等基线在低SNR、带宽受限、多图像数量与未知目标场景下的重建效果，采用多重指标和双指标引导微调，验证了其跨模态语义提取和解码效率的提升。",
-        "inferred_application": "直接应用于自动驾驶、增强现实等需要大规模点云实时、高效、鲁棒无线传输的场景和系统，尤其对移动端和带宽受限边缘设备具有较高实用价值。"
-      },
-      "paperKeywords": [
-        "语义通信",
-        "信道自适应",
-        "跨模态生成",
-        "点云传输",
-        "扩散模型",
-        "端侧信息融合",
-        "实时通信"
-      ]
-    },
-    {
-      "id": "2505.19940",
-      "title": "Task-Oriented Low-Label Semantic Communication With Self-Supervised Learning",
-      "url": "http://arxiv.org/abs/2505.19940v1",
-      "authors": [
-        "Run Gu",
-        "Wei Xu",
-        "Zhaohui Yang",
-        "Dusit Niyato",
-        "Aylin Yener"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-26",
-      "snippet": "本文提出了一种自监督学习驱动的面向任务低标注语义通信框架（SLSCom），以应对有限标注样本下的语义通信推理难题。SLSCom利用设备在边缘网络中收集的大量无标注样本，通过自监督反向分类与重构任务、高效联合训练策略，提升端到端信道下的推理准确率。实验证明，方法在多径信道与不同SNR、样本规模条件下，都显著优于传统数字编码和现有深度学习语义通信技术，即便无标注数据与下游任务不相关时亦具鲁棒性。",
-      "interpretation": {
-        "core_contribution": "提出了一种基于自监督学习的新型语义通信系统，利用无标注数据显著提升低标注场景下的任务推理能力，有效缓解高标注样本依赖。",
-        "methodology_summary": "方法通过自监督对比特征学习和信息瓶颈理论，设计了兼顾任务相关性和信息量的语义编码器，并采用自监督分类与重构任务简化IB优化，实现端到端少标注高效训练。",
-        "performance_evaluation": "在多路径无线信道下进行图像分类实验，涵盖不同标注数据规模和SNR情形，比较了传统数字编码、DL语义通信方法的基线，并展示了SLSCom在准确率等指标上的系统性优越性。",
-        "inferred_application": "适用于边缘网络设备、无线感知等标注资源有限、需高效推理的6G智能通信场景，尤其在物联网、车联网等下游任务多样、数据标注昂贵的智能终端环境中表现突出。"
-      },
-      "paperKeywords": [
-        "自监督学习",
-        "语义通信",
-        "信息瓶颈",
-        "少标注学习",
-        "边缘智能",
-        "无线信道",
-        "对比学习"
-      ]
-    },
-    {
       "id": "2506.12368",
       "title": "Stacked Intelligent Metasurfaces for Multi-Modal Semantic Communications",
       "url": "http://arxiv.org/abs/2506.12368v1",
@@ -227,34 +230,182 @@
       ]
     },
     {
-      "id": "2505.18389",
-      "title": "ALLSTaR: Automated LLM-Driven Scheduler Generation and Testing for Intent-Based RAN",
-      "url": "http://arxiv.org/abs/2505.18389v2",
+      "id": "2506.11391",
+      "title": "Black-Box Edge AI Model Selection with Conformal Latency and Accuracy Guarantees",
+      "url": "http://arxiv.org/abs/2506.11391v1",
       "authors": [
-        "Maxime Elkael",
-        "Michele Polese",
-        "Reshma Prasad",
-        "Stefano Maxenti",
-        "Tommaso Melodia"
+        "Anders E. Kalør",
+        "Tomoaki Ohtsuki"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-05-23",
-      "snippet": "ALLSTaR提出了一种基于大语言模型（LLM）的自动化RAN调度器生成与测试框架，旨在推动意图驱动无线接入网的智能优化。该系统能理解自然语言意图，从文献中自动提取并合成调度算法，实现调度器代码的自动部署和实测评估。在5G商用测试床上，ALLSTaR完成了18种调度算法的自动化对比，并基于性能画像，为运营商提供细粒度、动态、意图驱动的调度策略选择，突破了传统切片优化的局限性。",
+      "publicationDate": "2025-06-13",
+      "snippet": "本文针对6G边缘AI推理中，因黑盒模型复杂性、无线信道不确定性等导致的延迟与准确率保障难题，提出了一种基于保型风险控制与非参数统计的黑盒模型自动选择框架。该方法可根据无线信道实时状况，智能选择特征提取与推理模型组合，实现对任务延迟违反概率和误判概率的双重约束。实验在带有时限的图像分类任务中验证了其可在满足最大误判要求下保证低延迟，展示了为6G提供可靠实时边缘AI服务的潜力。",
       "interpretation": {
-        "core_contribution": "ALLSTaR首次实现了利用LLM自动解析、生成、部署和OTA测试学术调度算法，为意图驱动的RAN调度提供了自动化、动态化和高精度的解决方案，极大提升了调度器适应性与运营商控制力。",
-        "methodology_summary": "ALLSTaR框架由三大核心环节组成：1) LLM解析运营商NL意图；2) 结合OCR与LLM从文献挖掘调度算法并自动生成可部署代码；3) 自动在O-RAN dApp平台部署并通过OTA实验对多种算法进行性能画像，最后将画像反馈入IBS动态调度框架，实现意图-算法的智能匹配。",
-        "performance_evaluation": "论文基于5G商用级测试床，自动化部署并测试了18种自动合成的调度算法，围绕多样化场景（如队列状态、物理层条件、业务类型）进行OTA实验，形成了全面的调度器性能数据库，并通过实际用例展示了相较传统切片的优势。",
-        "inferred_application": "该研究面向开放、可编程的O-RAN/AI-RAN及未来6G网络运营商，支持其按需动态优化无线接入资源，精准满足细粒度业务差异化与智能运维需求。"
+        "core_contribution": "提出了一套能对延迟违约概率和预期损失作出保型（conformal）统计保证的黑盒模型选择框架，既可固定于统计信道条件下，也能针对实时信道动态自适应，为6G边缘智能任务提供端到端的可靠性与性能保障。",
+        "methodology_summary": "该方法利用保型风险控制与非参数统计，针对黑盒特征提取与推理模型池，依据应用任务的误判概率和延迟约束，动态或静态选择最优模型组合。方案兼顾无线信道统计特征与实时测量，分别实现固定式与自适应式选择过程。",
+        "performance_evaluation": "通过具备时限的图像分类实验，采用最大误判概率与截止时间违约率为核心评估指标，数值结果表明框架在实际场景下可达成所设精度与实时性目标。",
+        "inferred_application": "最直接面向6G下自动驾驶、机器人等需边缘推理的低延迟高可靠智能场景，其它对AI推理延迟与精度均敏感的无线终端同样适用。"
       },
       "paperKeywords": [
-        "自动化调度器生成",
-        "大语言模型",
-        "意图驱动网络",
-        "O-RAN",
-        "OTA实验",
-        "无线接入网优化",
-        "算力网络"
+        "边缘人工智能",
+        "模型选择",
+        "保型风险控制",
+        "6G通信",
+        "实时推理",
+        "延迟与准确率保障",
+        "无线信道自适应"
+      ]
+    },
+    {
+      "id": "2506.11779",
+      "title": "Semantic Communications in 6G: Coexistence, Multiple Access, and Satellite Networks",
+      "url": "http://arxiv.org/abs/2506.11779v1",
+      "authors": [
+        "Ishtiaque Ahmed",
+        "Yingzhuo Sun",
+        "Jingwen Fu",
+        "Alper Kose",
+        "Leila Musavian",
+        "Ming Xiao",
+        "Berna Ozbek"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-13",
+      "snippet": "本综述聚焦于6G环境下语义通信技术的融合与演进，系统探讨了语义通信（SemCom）与传统比特通信（BitCom）的共存架构、多用户接入机制以及在卫星网络中应对带宽受限和信道恶劣等关键应用场景。论文梳理多模态语义通信的实现框架，分析了NOMA等多址接入策略在异构用户环境下的适配优势，并前瞻性地总结了6G及未来语义感知网络系统的研究方向和部署挑战。",
+      "interpretation": {
+        "survey_scope": "本综述覆盖了6G及未来通信网络中语义通信与传统比特通信共存、多址接入机制（如NOMA）、多模态语义传输及其在卫星等复杂场景下的应用。",
+        "taxonomy_or_structure": "作者依次梳理了：1）SemCom和BitCom共存的网络架构设计；2）各类多址接入方式对异构用户的支撑策略，重点分析NOMA；3）多模态语义通信的系统框架和评价需求；4）语义通信在卫星网络等资源受限场景下的特定应用方案；5）未来部署展望和开放研究问题。",
+        "key_trends_and_insights": "1）6G语义通信正向与传统通信深度融合迈进，以实现更高的频谱利用和智能资源分配；2）多模态语义处理成为提升异构数据传输效率的关键；3）多用户接入策略如NOMA在新型语义网络中的应用潜力突出；4）语义通信在带宽受限、复杂信道环境（如卫星）中可显著优化传输性能和鲁棒性；5）未来需关注跨层协同、语义测度标准化和网络智能化部署问题。",
+        "target_audience": "本综述适用于从事6G、智能通信、语义网络、多模态信息处理和卫星通信的科研工作者、系统工程师及通信行业研发与规划人员。"
+      },
+      "paperKeywords": [
+        "6G",
+        "语义通信",
+        "多模态融合",
+        "多址接入",
+        "NOMA",
+        "卫星网络",
+        "资源分配"
+      ]
+    },
+    {
+      "id": "2506.10570",
+      "title": "6G Infrastructures for Edge AI: An Analytical Perspective",
+      "url": "http://arxiv.org/abs/2506.10570v1",
+      "authors": [
+        "Kurt Horvath",
+        "Shpresa Tuda",
+        "Blerta Idrizi",
+        "Stojan Kitanov",
+        "Fisnik Doko",
+        "Dragi Kimovski"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-12",
+      "snippet": "本文系统分析了AI与物联网融合背景下，当前5G网络在支持分布式、网络敏感型边缘AI应用时的性能瓶颈，实测数据显示现有5G网络时延高于AI关键应用需求近3倍，难以支撑实时性要求。为此，论文不仅总结了现有5G在欧洲中心地区的延迟测评数据，还针对6G网络在结构与技术能力上的演进提出具体优化建议，旨在推动面向AI的下一代高性能无线基础设施建设。",
+      "interpretation": {
+        "core_contribution": "本文客观揭示了当前5G网络在实际部署中无法满足AI驱动边缘应用对超低时延和高吞吐的性能要求，并据此提出了针对6G网络架构的改进方向与优化建议，为6G架构设计与AI应用协同提供了数据基础和发展路线。",
+        "methodology_summary": "论文采用实证分析方法，对中欧地区现有5G网络基础设施进行了广域实地时延测量，量化其在不同地理位置下的真实表现，并结合对AI边缘应用需求的分析，提出6G演进的关键技术指标和推荐措施。",
+        "performance_evaluation": "通过实地测量，作者获得了5G多个区域的端到端时延数据（61-110ms），对比AI关键应用所需的低时延要求，发现现有5G时延超标约270%，揭示了其在现实环境下的明显短板。",
+        "inferred_application": "本研究尤其适用于AI驱动的实时工业物联网、自动驾驶、智慧医疗等对端到端时延和网络敏捷性高度敏感的场景，同时为运营商与标准制定机构在6G基础设施规划和优化中提供理论与数据支撑。"
+      },
+      "paperKeywords": [
+        "6G",
+        "边缘AI",
+        "超低时延",
+        "网络架构",
+        "5G性能评估",
+        "分布式应用",
+        "网络演进"
+      ]
+    },
+    {
+      "id": "2506.09878",
+      "title": "Virtualizing RAN: Science, Strategy, and Architecture of Software-Defined Mobile Networks",
+      "url": "http://arxiv.org/abs/2506.09878v2",
+      "authors": [
+        "Ryan Barker"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本文系统分析了无线接入网（RAN）虚拟化作为5G扩展和迈向AI原生6G的关键路径，通过科学、工程、战略与文化四大支柱，提出整合视角。以美国为案例，论文定量评估了中频段连续性和毫米波叠加容量在软件定义载波聚合下对覆盖率与用户流失的影响，并推导Split 7.2 vRAN/O-RAN部署下的容量与时延界限。论文同时分析了端到端加密对吞吐量的影响，以及GPU/FPGA异构加速和数字孪生自动化对HARQ往返时延的优化作用。最终结合控制论原理，提出面向6G的行动性建议。",
+      "interpretation": {
+        "core_contribution": "论文首创性地提出了跨科学、技术、商业和文化的集成视角，系统阐释了通过软件定义和虚拟化实现RAN架构创新，量化了AI赋能6G演进中技术与管理协同的实际路径，填补了以往只聚焦某单一维度的研究空白。",
+        "methodology_summary": "论文基于美国中频及毫米波混合组网的案例研究，采用理论推导和仿真分析推算Split 7.2 vRAN/O-RAN架构下的容量与时延界，结合加密和加速器方案的定量对比，并引入数字孪生自动化与控制论模板，分析自动化、异构硬件及文化因子对集成成本与性能的影响。",
+        "performance_evaluation": "论文通过美国实际网络案例及仿真，利用容量、时延、吞吐量损耗（如256位加密开销）、及HARQ往返时延等关键指标，对比分析了多种vRAN/O-RAN技术方案，并借助控制论框架系统评估了自动化在不同组织方案下的集成风险。",
+        "inferred_application": "最直接的应用场景为5G/6G运营商、设备商及标准制定者，尤其适用于计划部署端到端vRAN/O-RAN、探索AI原生和自动化无线网络架构的网络运营与管理决策者。"
+      },
+      "paperKeywords": [
+        "无线接入网虚拟化",
+        "软件定义网络",
+        "O-RAN/vRAN",
+        "载波聚合",
+        "AI原生6G",
+        "数字孪生",
+        "异构加速"
+      ]
+    },
+    {
+      "id": "2506.09512",
+      "title": "A Survey on the Role of Artificial Intelligence and Machine Learning in 6G-V2X Applications",
+      "url": "http://arxiv.org/abs/2506.09512v1",
+      "authors": [
+        "Donglin Wang",
+        "Anjie Qiu",
+        "Qiuheng Zhou",
+        "Hans D. Schotten"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本论文系统回顾了人工智能（AI）与机器学习（ML）在6G车联网（V2X）领域的应用与最新进展。文章重点梳理了深度学习、强化学习、生成式学习和联邦学习在智能交通、资源分配、波束赋形和安全管理等场景中的关键作用，深入分析了AI驱动下6G-V2X系统在性能、智能化与自适应能力方面的显著提升。论文并总结了当前面临的计算复杂度、数据隐私和实时决策等技术挑战，展望了未来研究方向，为构建智能V2X生态提供理论参考。",
+      "interpretation": {
+        "survey_scope": "本文综述聚焦于AI与ML（包括DL、RL、GL、FL）赋能下的6G车联网（V2X）通信，涵盖智能交通、车路协同、资源优化和安全管理等关键应用场景，尤其关注近两年技术与应用的前沿进展。",
+        "taxonomy_or_structure": "作者以AI/ML方法为主线分类，包括深度学习、强化学习、生成式学习及联邦学习，并依托其在6G-V2X系统中的典型任务（如资源分配、智能波束赋形、交通管理和安全保障）逐类梳理现有研究，随后系统分析技术挑战及未来趋势。",
+        "key_trends_and_insights": "论文指出6G与AI/ML的深度融合已成为智能交通系统发展的主流趋势，尤其是生成式AI在复杂环境适应性和泛化能力方面表现突出，为V2X带来更强的智能决策和协同控制。此外，边云协同、数据安全、多模态信息融合和低时延实时决策是未来的发展重点，但同时也面临高算力消耗和隐私保护等核心挑战。",
+        "target_audience": "该综述适合从事6G通信、车联网、人工智能、智能交通系统等领域的科研人员、系统工程师、产业开发者及政策制定者参考。"
+      },
+      "paperKeywords": [
+        "6G",
+        "V2X",
+        "人工智能",
+        "机器学习",
+        "深度学习",
+        "生成式AI",
+        "联邦学习",
+        "智能交通"
+      ]
+    },
+    {
+      "id": "2506.09418",
+      "title": "Securing Open RAN: A Survey of Cryptographic Challenges and Emerging Solutions for 5G",
+      "url": "http://arxiv.org/abs/2506.09418v1",
+      "authors": [
+        "Ryan Barker",
+        "Fatemeh Afghah"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-11",
+      "snippet": "本综述系统梳理了开放无线接入网（O-RAN）在5G部署中的加密安全挑战与新兴防护策略。论文汇聚了学术与产业的最新进展，深入分析了O-RAN分层接口面临的下投攻击与数据明文暴露等安全漏洞，评估了SNOW-V、AES-256、ZUC-256等核心加密算法在多样化场景下的性能及适应性。文章还聚焦AI驱动测试平台与控制器在动态编排、防御检测及安全配置中的作用，展望了通过硬件卸载、跨层密钥适配与零信任架构实现6G安全演进的未来趋势。",
+      "interpretation": {
+        "survey_scope": "本综述聚焦于5G开放无线接入网（O-RAN）的加密安全威胁、现有与新兴加密机制，覆盖从协议接口到实际运行环境的全链路防护技术演进。",
+        "taxonomy_or_structure": "作者按O-RAN架构（如E2、O1接口）对安全问题进行分层梳理，结合具体攻击类型（如下投攻击、明文暴露）与加密算法特性进行分类，并进一步分辨AI辅助与测试床支持的安全机制。",
+        "key_trends_and_insights": "论文总结了高性能抗侧信道加密算法、AI辅助动态安全编排、硬件加速、跨层密钥自适应与零信任安全体系作为未来演进趋势，呼应了3GPP与O-RAN联盟的新标准要求，强调算力与安全协同优化。",
+        "target_audience": "该综述适合移动通信系统研究者、无线网络安全工程师、运营商技术决策者及关注5G/6G安全演进的标准化从业者。"
+      },
+      "paperKeywords": [
+        "O-RAN安全",
+        "5G加密",
+        "接口下投攻击",
+        "AI驱动安全",
+        "密钥管理",
+        "3GPP安全标准",
+        "零信任架构"
       ]
     },
     {
@@ -316,66 +467,119 @@
       ]
     },
     {
-      "id": "2505.18637",
-      "title": "Neural Coding Is Not Always Semantic: Towards The Standardized Coding Workflow in Semantic Communications",
-      "url": "http://arxiv.org/abs/2505.18637v1",
+      "id": "2506.07873",
+      "title": "Towards a Base-Station-on-Chip: RISC-V Hardware Acceleration for wireless communication",
+      "url": "http://arxiv.org/abs/2506.07873v1",
       "authors": [
-        "Hai-Long Qin",
-        "Jincheng Dai",
-        "Sixian Wang",
-        "Xiaoqi Qin",
-        "Shuo Shao",
-        "Kai Niu",
-        "Wenjun Xu",
-        "Ping Zhang"
+        "Javier Acevedo",
+        "Frank H. P. Fitzek"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-05-24",
-      "snippet": "本文针对语义通信领域现有的神经编码方案未能充分解决“神经编码是否等同于语义表达”这一基础问题，提出了语义编码的标准化定义，并基于上下文建模设计了一种用于通用语义表示的神经编码架构。该方法强调通过获得上下文感知的紧凑语义表示，实现以最小模块调整即可兼容人类和机器终端的数据传输，推动语义通信从特征传递走向有语境的语义压缩，拓展了语义通信的理论边界和实际应用能力。",
+      "publicationDate": "2025-06-09",
+      "snippet": "本文面向5G及6G无线通信对前端计算能力与低功耗的极致需求，提出了'基站级芯片'(BSoC)理念，旨在将信号处理、神经网络推理与网络管理集成于一枚高性能、低延迟且可扩展的系统芯片。研究通过在RISC-V向量DSP上实现信道估计、大规模多天线(mMIMO)和波束赋形等关键物理层核，并结合RISC-V向量扩展及定制指令，显著提升物理层吞吐与时延性能，为新一代无线网络的智能接入节点提供硬件基础。",
       "interpretation": {
-        "core_contribution": "本文最重要的贡献是澄清了神经编码与语义表达之间的差异，首次提出了针对语义通信的标准化语义编码定义，并设计了可实现通用语义表示的神经编码方案，从而为语义通信在理论与实际中明确了上下文驱动的编码核心价值。",
-        "methodology_summary": "以上下文建模为核心，通过先进的深度学习神经网络从原始数据中学习能够表达实际语义含义的紧凑通用语义表示。该编码方案不仅截取特征，还关注所编码信号与语境语义之间的一致性，并可通过微调和正则化等手段快速适配不同终端与场景。",
-        "performance_evaluation": "论文强调了理论标准的建立和编码方案的通用性，但摘要未给出具体实验数据或基线对比。推测可能包括对语义还原能力、人-机双端兼容性、适配性等方面的定性或定量评估，具体评测指标或实验细节有待查阅正文章节。",
-        "inferred_application": "该研究面向下一代无线通信（如6G）下需要高效语义传输的场景，适用于需要人类和机器都能理解的跨主体沟通任务，典型应用包括车联网、无人系统、智能制造、泛在物联网等需要高层语义理解和上下文推理的智能终端通信。"
+        "core_contribution": "首次以硬件/软件协同方式，基于RISC-V向量DSP与自定义指令，提出并实现了支持AI功能的无线通信物理层内核集成方案，为未来6G基站级芯片BSoC奠定技术框架。",
+        "methodology_summary": "将传统的信道估计、大规模MIMO、波束赋形等物理层实时计算任务，通过RISC-V向量DSP实现硬件级加速，利用向量扩展和定制指令充分挖掘数据级并行性，实现信号处理与AI推理并存的高效平台。",
+        "performance_evaluation": "论文通过实际在RISC-V向量DSP芯片上实现关键物理层核，重点考察了数据级并行性下的吞吐率与延迟指标，并对比传统方法展示了电路性能、功耗和扩展性方面的优势。",
+        "inferred_application": "最直接应用于面向6G的智能基站、边缘节点、低功耗无线接入设备及AI增强型无线基础设施开发商。"
       },
       "paperKeywords": [
-        "语义通信",
-        "神经编码",
-        "上下文建模",
-        "深度学习",
-        "语义表示",
-        "标准化流程",
-        "人-机通信"
+        "BSoC",
+        "RISC-V",
+        "向量DSP",
+        "物理层加速",
+        "6G",
+        "信道估计",
+        "大规模MIMO"
       ]
     },
     {
-      "id": "2505.22440",
-      "title": "Data-Driven Antenna Miniaturization: A Knowledge-Based System Integrating Quantum PSO and Predictive Machine Learning Models",
-      "url": "http://arxiv.org/abs/2505.22440v1",
+      "id": "2506.07880",
+      "title": "Diffusion-RL for Scalable Resource Allocation for 6G Networks",
+      "url": "http://arxiv.org/abs/2506.07880v1",
       "authors": [
-        "Khan Masood Parvez",
-        "Sk Md Abidar Rahaman",
-        "Ali Shiri Sichani"
+        "Salar Nouri",
+        "Mojdeh Karbalaee Motalleb",
+        "Vahid Shah-Mansouri"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-05-28",
-      "snippet": "本论文提出了一种基于知识的数据驱动天线小型化系统，将量子行为动态粒子群优化（QDPSO）与预测型机器学习模型紧密集成，实现天线尺寸与性能指标的自动化优化。系统在936组仿真数据集和ANSYS HFSS验证下，显著缩短设计周期至12.42分钟，实现了1.4208 GHz的精确谐振频率，优于传统方法240倍，加速消费电子、6G与物联网紧凑型射频系统的开发进程。",
+      "publicationDate": "2025-06-09",
+      "snippet": "本文提出了一种融合扩散模型与强化学习（Diffusion-RL）的新颖资源分配方法，特别针对开放无线接入网（O-RAN）中面向eMBB、URLLC和mMTC等6G典型服务场景下的多样化需求。相比主流机器学习技术，Diffusion-RL在物理资源分配及能耗优化方面展现出卓越的效率、可扩展性与稳健性，并通过与穷举算法、深度Q网络（DQN）及半监督VAE等基线的对比实验，在吞吐量和时延等核心指标上均取得领先表现，为动态异构6G网络提供了具备实际可行性的AI驱动分配方案。",
       "interpretation": {
-        "core_contribution": "论文创新性地构建了一个集成量子行为动态粒子群优化（QDPSO）和多种机器学习预测模型的智能天线设计系统，实现了天线小型化与性能自动化协同优化，显著提升了设计效率与精度。",
-        "methodology_summary": "核心方法以QDPSO高效搜索天线几何最优解，通过ANSYS HFSS进行仿真反馈，并将所得数据喂入SVM、随机森林、XGBoost及Stacking集成等模型以预测谐振频率，最后对最优解进行自动验证与参数输出，形成全自动闭环设计流程。",
-        "performance_evaluation": "采用936组仿真数据，分离训练与验证集，利用R2分数评估模型精度（训练集Stacking R2=0.9825，验证集SVM R2=0.7197）；以优化速度和谐振频率下限为主要指标，并将总设计周期与传统PSADEA方法进行耗时对比，展示了240倍加速和12.7%的频率优化幅度。",
-        "inferred_application": "该系统面向对天线尺寸和调谐速度有严格要求的RF前端开发，特别适用于智能手机、IoT和6G等消费类智能终端，以及需要快速迭代原型的高度集成无线设备制造企业与工程团队。"
+        "core_contribution": "将生成式AI中的扩散模型机制创新性地引入到强化学习框架下，提出Diffusion-RL算法，以更高效和更稳健的方式优化6G O-RAN的资源块及能耗配置，实现多服务类型的通用、可扩展资源调度。",
+        "methodology_summary": "方法核心在于Diffusion-RL模型对物理资源块与功率分配进行决策，每一轮迭代引入控制噪声与微扰，增强策略空间探索能力，从而在保证QoS约束下，为eMBB、URLLC、mMTC等不同需求动态分配资源；此外，还系统比较了主流机器学习方法的适用性与优势。",
+        "performance_evaluation": "采用包括穷举搜索、DQN、SS-VAE等多个机器学习基线在O-RAN场景下进行对比，主要使用系统吞吐量、用户时延等指标针对不同服务类型进行评估。实验表明Diffusion-RL在效率、可扩展性和鲁棒性上均优于其他方法。",
+        "inferred_application": "最直接应用于未来6G和O-RAN中的动态资源管理系统，尤其适合需要适应多样化业务类型（如eMBB、URLLC、mMTC）的自动化无线网络运营，以及面向高密度、弹性业务场景的运营商与智能无线网络管理者。"
       },
       "paperKeywords": [
-        "天线小型化",
-        "粒子群优化（QDPSO）",
-        "机器学习预测",
-        "自动化天线设计",
-        "ANSYS HFSS仿真",
-        "6G与物联网",
-        "智能射频系统"
+        "Diffusion-based Reinforcement Learning",
+        "Resource Allocation",
+        "6G Networks",
+        "Open RAN (O-RAN)",
+        "Network Slicing",
+        "Quality of Service (QoS)",
+        "Generative AI"
+      ]
+    },
+    {
+      "id": "2506.07647",
+      "title": "Foundation Model Empowered Synesthesia of Machines (SoM): AI-native Intelligent Multi-Modal Sensing-Communication Integration",
+      "url": "http://arxiv.org/abs/2506.07647v1",
+      "authors": [
+        "Xiang Cheng",
+        "Boxun Liu",
+        "Xuanyu Liu",
+        "Ensong Liu",
+        "Ziwei Huang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-09",
+      "snippet": "本论文针对面向未来6G网络的智能多功能通信需求，首次系统化提出“机器通感共感”（SoM）范式，并以大模型（Foundation Models, FMs）赋能为核心，解决SoM中通用性、泛化性及任务适应性不足等难题。作者将FMs分为通用、LLM和无线领域三类，构建SoM系统设计的双路线图，展示了FMs超越任务专用模型的显著技术优势，并为6G感知-通信一体化提供了实现路径和未来研究方向。",
+      "interpretation": {
+        "core_contribution": "本论文核心贡献在于首次提出并系统性梳理了基于大模型赋能的SoM（机器共感）设计范式，填补了SoM领域缺乏系统设计框架的空白；明确界定了FMs三大类型及其在SoM系统中的应用，并提出了LLM和无线领域大模型赋能SoM的双路径设计方法，推动了6G下感知-通信一体化的理论与工程实用化进程。",
+        "methodology_summary": "主要技术路径包括：基于FMs的SoM系统分层架构设计，将FMs分为通用类、LLM类和面向无线通信的领域大模型；提出并实现LLM4PG（路径损耗生成）、LLM4SG（散射体生成）、WiCo（无线信道大模型）、LLM4WM（无线多任务SoM收发器）、WiFo（SoM增强收发器）、WiPo（协作感知大模型）等代表性方案。为每一路线提供端到端的设计框架与案例分析，并提炼出针对SoM挑战的FM赋能关键特性。",
+        "performance_evaluation": "论文通过典型应用案例的实验对比，实证展示了FMs在数据稀缺、泛化能力、复杂性建模等方面对比传统任务专用AI模型的明显优势；评估内容涵盖信道建模精度、多模态数据处理能力、协作感知任务成功率等，主流基线为当前SoM专用AI模型，且通过理论分析和工程验证双轮驱动。",
+        "inferred_application": "最直接应用场景为6G通信系统下的AI原生多模态感知-通信-控制一体化网络，包括智慧工业物联网、高动态复杂场景下的无线系统协同、大规模智能机器人群体和智能网联车路协同等面向未来的泛在智能基础设施。目标用户为通信系统设计者、AI/通信行业研发团队与标准制定机构。"
+      },
+      "paperKeywords": [
+        "6G",
+        "通感一体化",
+        "大模型（Foundation Model）",
+        "多模态融合",
+        "语义通信",
+        "无线智能",
+        "系统性架构"
+      ]
+    },
+    {
+      "id": "2506.06718",
+      "title": "IQFM A Wireless Foundational Model for I/Q Streams in AI-Native 6G",
+      "url": "http://arxiv.org/abs/2506.06718v1",
+      "authors": [
+        "Omar Mashaal",
+        "Hatem Abou-Zeid"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-07",
+      "snippet": "IQFM提出了首个直接基于原始I/Q信号的无线通信基础模型，实现了无需大量手工特征工程即可支持多任务（调制分类、到达角估计、波束预测和射频指纹识别）。论文创新地引入任务感知的数据增强策略，通过循环时移等通用增强与任务特定增强相结合，在对比自监督学习框架下进行结构化表征学习。实验显示，IQFM在多任务迁移和低样本情况下显著优于传统有监督方法，展现出高效、可复用的多任务学习能力。",
+      "interpretation": {
+        "core_contribution": "本文首次提出能够直接处理原始I/Q数据的基础模型IQFM，显著推动了无线通信信号的通用表征学习及多任务跨域适应能力，实现无需繁琐预处理即可支持多任务。",
+        "methodology_summary": "作者将任务感知增强划分为通用与任务特定两类，结合循环时移等操作，在对比自监督学习框架下对轻量级编码器进行预训练。该模型学习到具备强泛化能力的信号表示，可通过极少标注样本及少量参数更新（如LoRA）高效适应新任务。",
+        "performance_evaluation": "通过在多天线真实I/Q信号上预训练，并测试于调制分类、到达角估计、波束预测及RF指纹识别等任务，分别采用准确率、迁移学习性能为评估指标。实验与若干有监督基线横向对比，表现出最大7倍准确率提升及高效迁移能力。",
+        "inferred_application": "该模型最直接服务于未来AI原生6G系统，适用于需要高效无线信号感知、多模态集成、通信安全认证等场景，目标用户包括通信设备厂商、无线网络运营商及智能终端开发者。"
+      },
+      "paperKeywords": [
+        "基础模型",
+        "I/Q信号",
+        "自监督学习",
+        "多任务学习",
+        "无线通信",
+        "数据增强",
+        "6G"
       ]
     },
     {
@@ -409,31 +613,157 @@
       ]
     },
     {
-      "id": "2506.11391",
-      "title": "Black-Box Edge AI Model Selection with Conformal Latency and Accuracy Guarantees",
-      "url": "http://arxiv.org/abs/2506.11391v1",
+      "id": "2506.06519",
+      "title": "Hierarchical Debate-Based Large Language Model (LLM) for Complex Task Planning of 6G Network Management",
+      "url": "http://arxiv.org/abs/2506.06519v1",
       "authors": [
-        "Anders E. Kalør",
-        "Tomoaki Ohtsuki"
+        "Yuyan Lin",
+        "Hao Zhou",
+        "Chengming Hu",
+        "Xue Liu",
+        "Hao Chen",
+        "Yan Xin",
+        "Jianzhong",
+        "Zhang"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-06-13",
-      "snippet": "本文针对6G边缘AI推理中，因黑盒模型复杂性、无线信道不确定性等导致的延迟与准确率保障难题，提出了一种基于保型风险控制与非参数统计的黑盒模型自动选择框架。该方法可根据无线信道实时状况，智能选择特征提取与推理模型组合，实现对任务延迟违反概率和误判概率的双重约束。实验在带有时限的图像分类任务中验证了其可在满足最大误判要求下保证低延迟，展示了为6G提供可靠实时边缘AI服务的潜力。",
+      "publicationDate": "2025-06-06",
+      "snippet": "本文提出了一种面向6G网络复杂任务规划的层次化多大语言模型（LLM）辩论框架。该方法突破了以往仅用单模型的局限，创新性地通过多模型层层分解、协作辩论提升管理决策质量，并首次构建6GPlan数据集对方法进行验证。实验表明该方法在覆盖率和召回率方面均取得大幅提升，为6G网络AI内生智能提供了新路径。",
       "interpretation": {
-        "core_contribution": "提出了一套能对延迟违约概率和预期损失作出保型（conformal）统计保证的黑盒模型选择框架，既可固定于统计信道条件下，也能针对实时信道动态自适应，为6G边缘智能任务提供端到端的可靠性与性能保障。",
-        "methodology_summary": "该方法利用保型风险控制与非参数统计，针对黑盒特征提取与推理模型池，依据应用任务的误判概率和延迟约束，动态或静态选择最优模型组合。方案兼顾无线信道统计特征与实时测量，分别实现固定式与自适应式选择过程。",
-        "performance_evaluation": "通过具备时限的图像分类实验，采用最大误判概率与截止时间违约率为核心评估指标，数值结果表明框架在实际场景下可达成所设精度与实时性目标。",
-        "inferred_application": "最直接面向6G下自动驾驶、机器人等需边缘推理的低延迟高可靠智能场景，其它对AI推理延迟与精度均敏感的无线终端同样适用。"
+        "core_contribution": "首创性地提出了基于多LLM‘层次化辩论’机制，实现复杂6G网络管理任务的高效、协作式规划，并发布了针对该类任务的首个6GPlan评测数据集。这一方案突破了单模型解耦与能力瓶颈，为6G网络AI内生提供了通用智能决策范式。",
+        "methodology_summary": "采用多LLM分阶段合作：首先针对任务进行子任务分解辩论，随后围绕每个子任务再分步协作优化，逐步集成最优子解形成全局解。该层次化、多轮辩论显著降低问题复杂性，增强结果的系统性和合理性，且适配6G网络管理的多层异构属性。",
+        "performance_evaluation": "设计并公开6GPlan数据集（含110个复杂管理任务、5000组关键词解），基于标准覆盖率和全局召回率等指标，与现有单模型和扁平化多模型方法对比，实验数据显示方案在两个核心指标上均有30%以上提升，验证了其有效性和优越性。",
+        "inferred_application": "最直接应用于运营商或智能网络服务商的6G网络复杂管理决策平台，可服务于自动化运维、智能编排、策略优化等高难度运管场景，助力推动AI与6G深度融合、实现智能内生网络。"
       },
       "paperKeywords": [
-        "边缘人工智能",
-        "模型选择",
-        "保型风险控制",
-        "6G通信",
-        "实时推理",
-        "延迟与准确率保障",
-        "无线信道自适应"
+        "6G网络管理",
+        "大语言模型",
+        "层次化辩论",
+        "复杂任务规划",
+        "协同AI",
+        "6GPlan数据集",
+        "智能内生"
+      ]
+    },
+    {
+      "id": "2506.05111",
+      "title": "An SCMA Receiver for 6G NTN based on Multi-Task Learning",
+      "url": "http://arxiv.org/abs/2506.05111v1",
+      "authors": [
+        "Bruno De Filippo",
+        "Carla Amatetti",
+        "Riccardo Campana",
+        "Alessandro Guidotti",
+        "Alessandro Vanelli-Coralli"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-05",
+      "snippet": "本文提出了一种基于多任务学习（MTL）的AI增强型SCMA接收机方案，旨在提升6G非地面网络（NTN）场景中SCMA信号的分离与接收性能。通过在仿真链路级别测试，所提模型在10%块错误率（BLER）目标下，较基准算法可实现3.5dB的Eb/N0增益，揭示了其在提升上行吞吐量与干扰抑制方面的潜力。论文还分析了该AI模型在低轨卫星上部署时的复杂度挑战。",
+      "interpretation": {
+        "core_contribution": "本研究首次将多任务学习（MTL）框架引入6G NTN的SCMA接收机设计，在增强干扰信号分离能力的同时，有效提升了信号检测性能，为AI赋能的6G非地面网络多址接入提供了支撑。",
+        "methodology_summary": "采用AI多任务学习模型，对重叠的稀疏码多址（SCMA）信号进行端到端分离与解调优化，通过联合学习提升信号恢复与检测的精度，克服传统接收机在非正交场景下的干扰瓶颈。",
+        "performance_evaluation": "通过链路级仿真，使用块错误率（BLER）和链路吞吐量（理论速率）作评估指标，在给定Eb/N0条件下与传统基线接收机算法对比分析AI模型的性能提升。",
+        "inferred_application": "该方案面向6G NTN环境下的边缘计算、低轨卫星通信与广域物联网接入，服务于对高效上行链路和强抗干扰能力有需求的空间组网及MEC场景。"
+      },
+      "paperKeywords": [
+        "6G",
+        "NTN",
+        "SCMA",
+        "多任务学习",
+        "AI接收机",
+        "块错误率（BLER）",
+        "边缘计算"
+      ]
+    },
+    {
+      "id": "2506.04952",
+      "title": "Optimization for Semantic-Aware Resource Allocation under CPT-based Utilities",
+      "url": "http://arxiv.org/abs/2506.04952v1",
+      "authors": [
+        "Symeon Vaidanis",
+        "Photios A. Stavrou",
+        "Marios Kountouris"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-05",
+      "snippet": "该论文研究了目标导向的语义通信场景下，资源分配问题如何结合语义效用与智能体的主观风险感知。通过引入累积前景理论（CPT）对风险敏感的效用和非线性分布变换进行建模，将信息重要性与风险厌恶行为关联，实现了更贴合智能体实际决策过程的资源分配优化。作者提出结合SCA、投影子梯度与拉格朗日松弛的算法框架，高效求解原本非凸、非光滑的优化问题，兼顾理论严谨和实际可行性，在多智能体语义通信中的资源分配场景展现出良好性能。",
+      "interpretation": {
+        "core_contribution": "论文首次将累积前景理论（CPT）引入语义通信中的资源分配问题，通过风险敏感的效用建模反映多智能体的主观决策特性，使优化目标更符合实际应用场景。",
+        "methodology_summary": "作者利用CPT建立智能体的风险感知与信息重要性之间的映射，并将总效用最大化问题表述为非凸、非光滑优化。为应对其求解难点，提出了结合逐步凸近似（SCA）、投影子梯度法与拉格朗日松弛的高效算法，实现了复杂优化问题的可行求解。",
+        "performance_evaluation": "论文通过仿真实验评估所提方法，设置多智能体、主观异质风险偏好的语义通信场景，将其与常规风险中性或期望效用模型下的资源分配策略进行对比，采用总语义效用、资源利用效率等指标衡量性能优劣。",
+        "inferred_application": "研究成果适用于多智能体协作、任务导向的语义通信网络—尤其是在智能制造、联网自动体、6G/物联网等需兼顾效用、风险与资源约束的现实场景。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "资源分配优化",
+        "累积前景理论（CPT）",
+        "风险感知",
+        "多智能体决策",
+        "凸近似算法",
+        "非凸优化"
+      ]
+    },
+    {
+      "id": "2506.03211",
+      "title": "Channel-adaptive Cross-modal Generative Semantic Communication for Point Cloud Transmission",
+      "url": "http://arxiv.org/abs/2506.03211v1",
+      "authors": [
+        "Wanting Yang",
+        "Zehui Xiong",
+        "Qianqian Yang",
+        "Ping Zhang",
+        "Merouane Debbah",
+        "Rahim Tafazolli"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-03",
+      "snippet": "为应对自动驾驶和扩展现实中点云高效传输的挑战，论文提出了一种全新的信道自适应跨模态生成式语义通信框架GenSeC-PC。该方法利用图像与点云联合编码实现高压缩与优质重建，通过非对称信道自适应结构和生成式先验，实现了对信道反馈有限、源点云不完整时的稳健传输和实时解码。实验验证了GenSeC-PC在低信噪比、带宽受限等多样场景下的优越性能。",
+      "interpretation": {
+        "core_contribution": "本论文创新性地提出了GenSeC-PC，一种跨模态生成式语义通信框架，首次实现了点云与图像融合编码、生成式先验解码和信道自适应联合语义-信道编码架构，显著提升了点云通信的压缩效率与重建健壮性。",
+        "methodology_summary": "GenSeC-PC以图像作为非传输端侧信息，与点云在语义层面融合编码，仅对编码器侧进行信道反馈自适应，并基于PointDif骨干解码，结合整流去噪扩散隐式模型实现高效解码以支撑实时通信。生成式先验设计保证了对缺失或强干扰源点云的鲁棒重建。",
+        "performance_evaluation": "论文通过仿真，比较了GenSeC-PC与PointDif等基线在低SNR、带宽受限、多图像数量与未知目标场景下的重建效果，采用多重指标和双指标引导微调，验证了其跨模态语义提取和解码效率的提升。",
+        "inferred_application": "直接应用于自动驾驶、增强现实等需要大规模点云实时、高效、鲁棒无线传输的场景和系统，尤其对移动端和带宽受限边缘设备具有较高实用价值。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "信道自适应",
+        "跨模态生成",
+        "点云传输",
+        "扩散模型",
+        "端侧信息融合",
+        "实时通信"
+      ]
+    },
+    {
+      "id": "2506.01269",
+      "title": "Region-of-Interest-Guided Deep Joint Source-Channel Coding for Image Transmission",
+      "url": "http://arxiv.org/abs/2506.01269v1",
+      "authors": [
+        "Hansung Choi",
+        "Daewon Seo"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-02",
+      "snippet": "ROI-JSCC提出了一种面向图像无线传输的端到端深度联合源信道编码(DeepJSCC)框架，通过关注并优先提升感兴趣区域(ROI)的恢复质量，以贴合真实用户体验。方法包括ROI嵌入、特征图提取、ROI引导的分裂处理、ROI损失函数和带宽自适应分配。实验结果显示，不增加额外计算开销情况下，该方法在不同信道环境中显著优于现有方法，有效提升ROI区域的重建质量，同时保持整体图像表现。",
+      "interpretation": {
+        "core_contribution": "本文首次提出基于ROI区域优先的深度联合源信道编码，突破了现有DeepJSCC只追求全局重建指标而忽视实际用户感知的局限，实现了对关键信息区域的高效保护与传输。",
+        "methodology_summary": "方法包含四大创新模块：ROI嵌入与特征提取将关注区域信息融入图像特征；ROI引导的分裂编码分别处理ROI与非ROI区特征；专门设计的ROI损失函数提升关键区域重建精度；ROI自适应带宽分配机制动态优化资源使用。这一端到端神经网络框架结合上述机制，有效提升了感兴趣区的传输表现。",
+        "performance_evaluation": "论文利用多种无线通信环境，量化对比ROI-JSCC与主流DeepJSCC及SOTA基线方法，以ROI区域重建PSNR、整体图像PSNR等为主要指标，系统实验验证了方法有效性与稳定性。",
+        "inferred_application": "该方案适用于医疗影像、遥感图像、安防监控等对局部关键信息高还原要求的无线图像传输场景，目标用户为对通信质量和特定区域可靠性有更高需求的应用开发者与服务提供商。"
+      },
+      "paperKeywords": [
+        "深度联合源信道编码",
+        "端到端学习",
+        "感兴趣区域(ROI)",
+        "语义通信",
+        "自适应资源分配",
+        "无线图像传输",
+        "图像重建"
       ]
     },
     {
@@ -470,96 +800,131 @@
       ]
     },
     {
-      "id": "2506.13243",
-      "title": "Lightweight Task-Oriented Semantic Communication Empowered by Large-Scale AI Models",
-      "url": "http://arxiv.org/abs/2506.13243v1",
+      "id": "2505.23275",
+      "title": "Wireless Agentic AI with Retrieval-Augmented Multimodal Semantic Perception",
+      "url": "http://arxiv.org/abs/2505.23275v1",
       "authors": [
-        "Chuanhong Liu",
-        "Caili Guo",
-        "Yang Yang",
-        "Mingzhe Chen",
-        "Tony Q. S. Quek"
+        "Guangyuan Liu",
+        "Yinqiu Liu",
+        "Ruichen Zhang",
+        "Hongyang Du",
+        "Dusit Niyato",
+        "Zehui Xiong",
+        "Sumei Sun",
+        "Abbas Jamalipour"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-06-16",
-      "snippet": "本文针对大规模AI模型在语义通信中的高计算需求，提出了一种基于知识蒸馏和预存压缩的新型轻量化方案，有效降低模型复杂度与延迟。通过引入信道自适应模块和以信息瓶颈为基础的损失函数，实现了在动态信道环境下的高效、可靠通信。仿真结果显示，该方法在任务准确率、模型规模、计算延迟和数据需求等方面均优于现有基线，适用于实时任务导向型语义通信应用。",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了一种检索增强型多模态语义通信（RAMSemCom）框架，针对无线多智能体场景下因带宽受限导致的多模态语义信息高效交换难题，结合本地缓存与选择性传输，实现迭代式、检索驱动的语义精炼。框架采用深度强化学习优化检索策略，在多智能体自动驾驶案例中显著提升任务完成效率并降低通信开销，相较传统基线方法表现优越。",
       "interpretation": {
-        "core_contribution": "提出了一种融合知识蒸馏、预存压缩与信道自适应机制的轻量级任务型语义通信方法，显著降低了大模型带来的计算和存储负担，提升了通信适应性与效率。",
-        "methodology_summary": "创新性地采用预存压缩机制防止蒸馏阶段多次推理带来的高延迟，结合信道自适应模块根据信道状态动态调整语义信息传输，同时基于信息瓶颈理论设计损失函数以优化语义压缩和关键特征保留，整体实现端到端高效语义通信。",
-        "performance_evaluation": "通过仿真试验与主流基线模型进行对比，考察了任务准确率、模型参数量、推理时延和训练所需数据量等指标，结果表明所提方法在各项指标上均有优势。",
-        "inferred_application": "面向6G及未来无线通信环境下的实时、资源受限任务驱动型智能终端和车联网、工业互联网等场景，尤其适合对模型大小和通信稳定性要求极高的设备和环境。"
+        "core_contribution": "首次提出面向无线多智能体场景的检索增强型多模态语义通信（RAMSemCom）框架，通过迭代语义精炼和检索机制，有效解决带宽受限下多模态高语义信息高效交换与冗余问题。",
+        "methodology_summary": "核心方法为将检索增强机制与多模态语义通信结合，采用本地缓存和选择性信息传输，利用深度强化学习（DRL）动态优化检索与传输决策，实现多智能体间高效的语义协同通信。",
+        "performance_evaluation": "基于多智能体自动驾驶场景进行案例研究，将所提DRL驱动的检索策略与传统基线方法在任务完成效率和通信开销等指标上对比评估，实验显示RAMSemCom在上述维度均表现优异。",
+        "inferred_application": "最直接的应用场景为车联网、多智能体机器人协作等无线多智能体系统，目标用户为智能驾驶、边缘智能制造等对低时延和高语义通信效率有迫切需求的行业。"
       },
       "paperKeywords": [
+        "多模态语义通信",
+        "检索增强",
+        "多智能体系统",
+        "深度强化学习",
+        "带宽优化",
+        "本地缓存",
+        "自动驾驶"
+      ]
+    },
+    {
+      "id": "2505.23249",
+      "title": "Context-Aware Semantic Communication for the Wireless Networks",
+      "url": "http://arxiv.org/abs/2505.23249v1",
+      "authors": [
+        "Guangyuan Liu",
+        "Yinqiu Liu",
+        "Jiacheng Wang",
+        "Hongyang Du",
+        "Dusit Niyato",
+        "Jiawen Kang",
+        "Zehui Xiong",
+        "Abbas Jamalipour"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了一种面向上下文自适应的语义通信框架CaSemCom，针对下一代无线网络中实时应用对带宽、时延与可靠性的新要求，创新性地引入了基于大语言模型（LLM）的门控机制与专家混合（MoE）架构进行多模态高价值语义特征的动态选择与编码。多用户多模态实验显示，CaSemCom在图像还原质量提升与带宽节省方面优于传统和单智能体DRL基线，体现出更优的收敛速度、语义准确率与重传开销。",
+      "interpretation": {
+        "core_contribution": "提出了CaSemCom框架，通过LLM门控与MoE结构动态选择和传输高影响力语义特征，首次实现面向上下文的多模态、自适应无线语义通信，在提升图像还原质量和带宽效率方面取得突破。",
+        "methodology_summary": "核心方法基于大语言模型（LLM）驱动的门控机制，结合专家混合（MoE）架构，实现对多源异构数据的语义特征动态筛选与编码，适应网络条件和应用上下文，优化跨用户、多模态场景下的通信效率与效果。",
+        "performance_evaluation": "采用多用户和多模态场景设置，对重建图像的保真度、带宽利用率、语义准确性以及收敛速度和重传开销进行实验评估，并与传统方案及单智能体DRL方法进行对比，表现出显著优势。",
+        "inferred_application": "直接服务于对低延迟、高可靠、带宽敏感要求极高的无线实时应用，如增强现实、自动驾驶、元宇宙等新一代交互和智能服务场景。"
+      },
+      "paperKeywords": [
+        "上下文感知",
         "语义通信",
-        "知识蒸馏",
-        "大规模AI模型",
-        "信道自适应",
-        "信息瓶颈",
-        "模型压缩",
-        "低延迟"
+        "大语言模型",
+        "专家混合架构",
+        "多模态编码",
+        "无线网络",
+        "自适应优化"
       ]
     },
     {
-      "id": "2506.06718",
-      "title": "IQFM A Wireless Foundational Model for I/Q Streams in AI-Native 6G",
-      "url": "http://arxiv.org/abs/2506.06718v1",
+      "id": "2505.23710",
+      "title": "From Connectivity to Autonomy: The Dawn of Self-Evolving Communication Systems",
+      "url": "http://arxiv.org/abs/2505.23710v1",
       "authors": [
-        "Omar Mashaal",
-        "Hatem Abou-Zeid"
+        "Zeinab Nezami",
+        "Syed Danial Ali Shah",
+        "Maryam Hafeez",
+        "Karim Djemame",
+        "Syed Ali Raza Zaidi"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-06-07",
-      "snippet": "IQFM提出了首个直接基于原始I/Q信号的无线通信基础模型，实现了无需大量手工特征工程即可支持多任务（调制分类、到达角估计、波束预测和射频指纹识别）。论文创新地引入任务感知的数据增强策略，通过循环时移等通用增强与任务特定增强相结合，在对比自监督学习框架下进行结构化表征学习。实验显示，IQFM在多任务迁移和低样本情况下显著优于传统有监督方法，展现出高效、可复用的多任务学习能力。",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了6G时代通信网络向高度自治自演化系统转型的愿景，强调AI内生智能推动网络结构的动态适应与自我优化。论文系统分析了重构基础设施、自适应中间件、智能网络功能及多智能体协作机制，并探讨其在工业物联网和数字制造中的实际融合路径。结果显示，该框架可显著提升实时决策效率并降低网络时延，有助于工业自动化、智能制造等场景的应用落地。论文还关注了伦理挑战、标准化及未来研究方向，为6G智能自动化演进提供了技术路线图。",
       "interpretation": {
-        "core_contribution": "本文首次提出能够直接处理原始I/Q数据的基础模型IQFM，显著推动了无线通信信号的通用表征学习及多任务跨域适应能力，实现无需繁琐预处理即可支持多任务。",
-        "methodology_summary": "作者将任务感知增强划分为通用与任务特定两类，结合循环时移等操作，在对比自监督学习框架下对轻量级编码器进行预训练。该模型学习到具备强泛化能力的信号表示，可通过极少标注样本及少量参数更新（如LoRA）高效适应新任务。",
-        "performance_evaluation": "通过在多天线真实I/Q信号上预训练，并测试于调制分类、到达角估计、波束预测及RF指纹识别等任务，分别采用准确率、迁移学习性能为评估指标。实验与若干有监督基线横向对比，表现出最大7倍准确率提升及高效迁移能力。",
-        "inferred_application": "该模型最直接服务于未来AI原生6G系统，适用于需要高效无线信号感知、多模态集成、通信安全认证等场景，目标用户包括通信设备厂商、无线网络运营商及智能终端开发者。"
+        "core_contribution": "本论文关键技术贡献在于系统性提出自演化通信网络架构，将AI能力深度嵌入网络各层，实现从单纯互联到自治智能的跃迁，尤其突出多智能体分布式协作与自我优化机制，填补理论创新与工程落地之间的空白点。",
+        "methodology_summary": "论文围绕三大技术主线：①可重构基础设施（通过软件定义与硬件可编程提升网络适应性），②自适应中间件与智能网络功能（基于AI驱动的动态资源管理与功能自进化），③多智能体分布式决策（用强化学习或群体智能实现自治协作），并联动工业IoT标准体系，推动通信架构与制造流程深度融合。",
+        "performance_evaluation": "性能评估采用模拟及原型实验，重点以工业IoT场景为例，评测实时决策效率、网络时延、资源利用率等关键指标，并与传统静态网络或分层AI框架对照，突出自治系统在动态适应与协同控制方面的优势。",
+        "inferred_application": "研究主要面向工业物联网、智能制造和大规模网络化自动化系统等高实时性、动态环境下的应用，目标用户为电信运营商、工业自动化厂商及智能制造解决方案提供商。"
       },
       "paperKeywords": [
-        "基础模型",
-        "I/Q信号",
-        "自监督学习",
-        "多任务学习",
-        "无线通信",
-        "数据增强",
-        "6G"
+        "6G",
+        "自演化通信系统",
+        "AI内生网络",
+        "多智能体协作",
+        "工业物联网",
+        "智能制造",
+        "网络自治"
       ]
     },
     {
-      "id": "2505.19983",
-      "title": "ICDM: Interference Cancellation Diffusion Models for Wireless Semantic Communications",
-      "url": "http://arxiv.org/abs/2505.19983v1",
+      "id": "2505.22440",
+      "title": "Data-Driven Antenna Miniaturization: A Knowledge-Based System Integrating Quantum PSO and Predictive Machine Learning Models",
+      "url": "http://arxiv.org/abs/2505.22440v1",
       "authors": [
-        "Tong Wu",
-        "Zhiyong Chen",
-        "Dazhi He",
-        "Feng Yang",
-        "Meixia Tao",
-        "Xiaodong Xu",
-        "Wenjun Zhang",
-        "Ping Zhang"
+        "Khan Masood Parvez",
+        "Sk Md Abidar Rahaman",
+        "Ali Shiri Sichani"
       ],
       "affiliations": [],
       "journal": "arXiv",
-      "publicationDate": "2025-05-26",
-      "snippet": "本文提出了一种针对无线语义通信中干扰消除的新型扩散模型（ICDM）。研究将干扰消除建模为信号与干扰联合后验概率的极大后验（MAP）估计，并证明该建模方法可获得卓越的信号与干扰估计效果。ICDM采用独立扩散模型分别学习信号和干扰的先验概率，结合通道转移概率，通过数值迭代一体化实现高效干扰消除。实验表明，ICDM显著降低均方误差（MSE）并提升感知质量，在典型信道下优于未引入ICDM的方法，为高质量无线语义通信提供了全新解决思路。",
+      "publicationDate": "2025-05-28",
+      "snippet": "本论文提出了一种基于知识的数据驱动天线小型化系统，将量子行为动态粒子群优化（QDPSO）与预测型机器学习模型紧密集成，实现天线尺寸与性能指标的自动化优化。系统在936组仿真数据集和ANSYS HFSS验证下，显著缩短设计周期至12.42分钟，实现了1.4208 GHz的精确谐振频率，优于传统方法240倍，加速消费电子、6G与物联网紧凑型射频系统的开发进程。",
       "interpretation": {
-        "core_contribution": "提出并理论证明了一种可高效消除无线语义通信中干扰的扩散模型ICDM，并通过将干扰消除问题建模为联合后验概率的MAP估计，创新性地实现了信号与干扰的协同分离和重建。",
-        "methodology_summary": "ICDM将信号与干扰的联合后验通过贝叶斯分解为独立的信号和干扰先验、通道转移概率，各自由扩散模型在各时刻学习其对数梯度。最终，这些梯度通过高效的数值迭代算法集成，实现对原始信号的去噪与干扰抑制。",
-        "performance_evaluation": "性能评估采用CelebA数据集，在瑞利衰落信道、SNR为20dB且SINR为0dB等复杂场景下，与未引入ICDM方法对比，重点指标为均方误差（MSE）和LPIPS感知分数，ICDM分别提升4.54dB和2.47dB，体现出优异的干扰抑制和感知恢复能力。",
-        "inferred_application": "本研究主要面向对干扰鲁棒性要求高的下一代无线语义通信系统，尤其适用于在强干扰环境下需高可靠、低失真数据传输的场景，如6G IoT、工业互联网、卫星通信等。"
+        "core_contribution": "论文创新性地构建了一个集成量子行为动态粒子群优化（QDPSO）和多种机器学习预测模型的智能天线设计系统，实现了天线小型化与性能自动化协同优化，显著提升了设计效率与精度。",
+        "methodology_summary": "核心方法以QDPSO高效搜索天线几何最优解，通过ANSYS HFSS进行仿真反馈，并将所得数据喂入SVM、随机森林、XGBoost及Stacking集成等模型以预测谐振频率，最后对最优解进行自动验证与参数输出，形成全自动闭环设计流程。",
+        "performance_evaluation": "采用936组仿真数据，分离训练与验证集，利用R2分数评估模型精度（训练集Stacking R2=0.9825，验证集SVM R2=0.7197）；以优化速度和谐振频率下限为主要指标，并将总设计周期与传统PSADEA方法进行耗时对比，展示了240倍加速和12.7%的频率优化幅度。",
+        "inferred_application": "该系统面向对天线尺寸和调谐速度有严格要求的RF前端开发，特别适用于智能手机、IoT和6G等消费类智能终端，以及需要快速迭代原型的高度集成无线设备制造企业与工程团队。"
       },
       "paperKeywords": [
-        "扩散模型",
-        "干扰消除",
-        "无线语义通信",
-        "极大后验估计",
-        "联合后验分解",
-        "感知质量提升",
-        "信号重建"
+        "天线小型化",
+        "粒子群优化（QDPSO）",
+        "机器学习预测",
+        "自动化天线设计",
+        "ANSYS HFSS仿真",
+        "6G与物联网",
+        "智能射频系统"
       ]
     },
     {
@@ -600,129 +965,6 @@
       ]
     },
     {
-      "id": "2505.17421",
-      "title": "Adaptive Implicit-Based Deep Learning Channel Estimation for 6G Communications",
-      "url": "http://arxiv.org/abs/2505.17421v1",
-      "authors": [
-        "Zhen Qiao",
-        "Jiang Xue",
-        "Junkai Zhang",
-        "Guanzhang Liu",
-        "Xiaoqin Ma",
-        "Runhua Li",
-        "Faheem A. Khan",
-        "John S. Thompson",
-        "Zongben Xu"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-23",
-      "snippet": "本文针对6G通信中信道估计的资源与精度权衡难题，提出了一种自适应隐式深度学习信道估计网络（ICENet）。ICENet利用轻量化隐式迭代结构，可根据实际信道质量动态调整计算资源分配，实现内存占用低且高性能的信道估计。实验显示，其在车联网等对资源敏感场景下，可有效提升信道估计精度并兼顾系统开销。文章还展望了未来研究方向及挑战。",
-      "interpretation": {
-        "core_contribution": "提出了一种自适应隐式深度学习信道估计网络（ICENet），突破传统显式堆叠神经网络结构的适应性壁垒，实现了信道估计精度与计算资源消耗的动态平衡，尤其适用于资源受限的6G场景。",
-        "methodology_summary": "方法核心是轻量化隐式迭代层结构，根据输入信道条件动态调整迭代次数，从而自适应分配计算资源，并在保持精度的同时降低模型内存及算力需求。与传统固定层数的深度学习模型不同，ICENet基于隐式结构和自适应推理机制，既提升灵活性又简化部署。",
-        "performance_evaluation": "论文通过车载通信等实际场景测试，比较ICENet与主流多层深度学习方法在计算复杂度、内存消耗及信道估计精度等指标下的表现，显示ICENet在高精度和低资源消耗间达到优良平衡。",
-        "inferred_application": "最直接应用为对资源敏感、需高精度信道估计的6G物理层场景，典型如车联网（V2X）、物联网、智能终端接入等高动态无线环境下的通信系统开发者与运营者。"
-      },
-      "paperKeywords": [
-        "6G",
-        "信道估计",
-        "深度学习",
-        "隐式网络",
-        "自适应推理",
-        "车联网",
-        "资源优化"
-      ]
-    },
-    {
-      "id": "2506.09878",
-      "title": "Virtualizing RAN: Science, Strategy, and Architecture of Software-Defined Mobile Networks",
-      "url": "http://arxiv.org/abs/2506.09878v2",
-      "authors": [
-        "Ryan Barker"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-11",
-      "snippet": "本文系统分析了无线接入网（RAN）虚拟化作为5G扩展和迈向AI原生6G的关键路径，通过科学、工程、战略与文化四大支柱，提出整合视角。以美国为案例，论文定量评估了中频段连续性和毫米波叠加容量在软件定义载波聚合下对覆盖率与用户流失的影响，并推导Split 7.2 vRAN/O-RAN部署下的容量与时延界限。论文同时分析了端到端加密对吞吐量的影响，以及GPU/FPGA异构加速和数字孪生自动化对HARQ往返时延的优化作用。最终结合控制论原理，提出面向6G的行动性建议。",
-      "interpretation": {
-        "core_contribution": "论文首创性地提出了跨科学、技术、商业和文化的集成视角，系统阐释了通过软件定义和虚拟化实现RAN架构创新，量化了AI赋能6G演进中技术与管理协同的实际路径，填补了以往只聚焦某单一维度的研究空白。",
-        "methodology_summary": "论文基于美国中频及毫米波混合组网的案例研究，采用理论推导和仿真分析推算Split 7.2 vRAN/O-RAN架构下的容量与时延界，结合加密和加速器方案的定量对比，并引入数字孪生自动化与控制论模板，分析自动化、异构硬件及文化因子对集成成本与性能的影响。",
-        "performance_evaluation": "论文通过美国实际网络案例及仿真，利用容量、时延、吞吐量损耗（如256位加密开销）、及HARQ往返时延等关键指标，对比分析了多种vRAN/O-RAN技术方案，并借助控制论框架系统评估了自动化在不同组织方案下的集成风险。",
-        "inferred_application": "最直接的应用场景为5G/6G运营商、设备商及标准制定者，尤其适用于计划部署端到端vRAN/O-RAN、探索AI原生和自动化无线网络架构的网络运营与管理决策者。"
-      },
-      "paperKeywords": [
-        "无线接入网虚拟化",
-        "软件定义网络",
-        "O-RAN/vRAN",
-        "载波聚合",
-        "AI原生6G",
-        "数字孪生",
-        "异构加速"
-      ]
-    },
-    {
-      "id": "2506.07873",
-      "title": "Towards a Base-Station-on-Chip: RISC-V Hardware Acceleration for wireless communication",
-      "url": "http://arxiv.org/abs/2506.07873v1",
-      "authors": [
-        "Javier Acevedo",
-        "Frank H. P. Fitzek"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-09",
-      "snippet": "本文面向5G及6G无线通信对前端计算能力与低功耗的极致需求，提出了'基站级芯片'(BSoC)理念，旨在将信号处理、神经网络推理与网络管理集成于一枚高性能、低延迟且可扩展的系统芯片。研究通过在RISC-V向量DSP上实现信道估计、大规模多天线(mMIMO)和波束赋形等关键物理层核，并结合RISC-V向量扩展及定制指令，显著提升物理层吞吐与时延性能，为新一代无线网络的智能接入节点提供硬件基础。",
-      "interpretation": {
-        "core_contribution": "首次以硬件/软件协同方式，基于RISC-V向量DSP与自定义指令，提出并实现了支持AI功能的无线通信物理层内核集成方案，为未来6G基站级芯片BSoC奠定技术框架。",
-        "methodology_summary": "将传统的信道估计、大规模MIMO、波束赋形等物理层实时计算任务，通过RISC-V向量DSP实现硬件级加速，利用向量扩展和定制指令充分挖掘数据级并行性，实现信号处理与AI推理并存的高效平台。",
-        "performance_evaluation": "论文通过实际在RISC-V向量DSP芯片上实现关键物理层核，重点考察了数据级并行性下的吞吐率与延迟指标，并对比传统方法展示了电路性能、功耗和扩展性方面的优势。",
-        "inferred_application": "最直接应用于面向6G的智能基站、边缘节点、低功耗无线接入设备及AI增强型无线基础设施开发商。"
-      },
-      "paperKeywords": [
-        "BSoC",
-        "RISC-V",
-        "向量DSP",
-        "物理层加速",
-        "6G",
-        "信道估计",
-        "大规模MIMO"
-      ]
-    },
-    {
-      "id": "2506.12786",
-      "title": "Semantic-Aware Visual Information Transmission With Key Information Extraction Over Wireless Networks",
-      "url": "http://arxiv.org/abs/2506.12786v1",
-      "authors": [
-        "Chen Zhu",
-        "Kang Liang",
-        "Jianrong Bao",
-        "Zhouxiang Zhao",
-        "Zhaohui Yang",
-        "Zhaoyang Zhang",
-        "Mohammad Shikh-Bahaei"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-15",
-      "snippet": "随着6G网络对智能化和自适应性提出更高要求，传统无线图像传输方案在复杂场景下面临计算效率、鲁棒性和质量的三难困境。本文提出一种AI原生的端到端深度联合源信道编码（JSCC）框架，将关键语义信息提取与背景自适应合成机制融入传输流程。通过集成智能人体姿态检测与背景消除工具，模型在降低数据负载的同时有效提升画面保真度。实验结果验证了该方法在低信噪比等极端条件下的优越性能，对资源受限无线多媒体通信具有实际应用价值。",
-      "interpretation": {
-        "core_contribution": "本文首次将关键语义信息提取与自适应背景合成机制系统融入端到端JSCC框架，实现了在6G无线环境下对图像信息的智能、语义感知、高效传输，显著缩减数据量并提升视觉质量，突破了传统静态源信道分离编码的局限。",
-        "methodology_summary": "方法上，模型利用Mediapipe对人体关键点进行检测，采用Rembg实现前景与背景分离，前景关键特征被编码并与预训练背景库动态匹配，联合深度学习驱动的JSCC网络进行端到端优化，以适应动态信道环境，实现语义感知、按需编码和高效还原。",
-        "performance_evaluation": "性能评估通过与传统JSCC方法在不同信噪比(SNR)下比较PSNR（峰值信噪比）进行，结果显示在低SNR等严苛无线环境下，语义感知框架在画质保真和鲁棒性上均有显著优势。",
-        "inferred_application": "该研究适用于资源受限的6G移动无线多媒体通信场景，尤其面向智能视频监控、无人机图像回传、实时AR/VR传输等对带宽敏感且视觉语义重要的任务。"
-      },
-      "paperKeywords": [
-        "6G无线通信",
-        "端到端深度联合源信道编码(JSCC)",
-        "语义感知传输",
-        "关键特征提取",
-        "前景-背景分离",
-        "AI驱动多媒体处理",
-        "低信噪比鲁棒性"
-      ]
-    },
-    {
       "id": "2505.22443",
       "title": "Frequency Resource Management in 6G User-Centric CFmMIMO: A Hybrid Reinforcement Learning and Metaheuristic Approach",
       "url": "http://arxiv.org/abs/2505.22443v1",
@@ -748,563 +990,6 @@
         "元启发式优化",
         "多用户调度",
         "QuaDRiGa信道建模"
-      ]
-    },
-    {
-      "id": "2506.07880",
-      "title": "Diffusion-RL for Scalable Resource Allocation for 6G Networks",
-      "url": "http://arxiv.org/abs/2506.07880v1",
-      "authors": [
-        "Salar Nouri",
-        "Mojdeh Karbalaee Motalleb",
-        "Vahid Shah-Mansouri"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-09",
-      "snippet": "本文提出了一种融合扩散模型与强化学习（Diffusion-RL）的新颖资源分配方法，特别针对开放无线接入网（O-RAN）中面向eMBB、URLLC和mMTC等6G典型服务场景下的多样化需求。相比主流机器学习技术，Diffusion-RL在物理资源分配及能耗优化方面展现出卓越的效率、可扩展性与稳健性，并通过与穷举算法、深度Q网络（DQN）及半监督VAE等基线的对比实验，在吞吐量和时延等核心指标上均取得领先表现，为动态异构6G网络提供了具备实际可行性的AI驱动分配方案。",
-      "interpretation": {
-        "core_contribution": "将生成式AI中的扩散模型机制创新性地引入到强化学习框架下，提出Diffusion-RL算法，以更高效和更稳健的方式优化6G O-RAN的资源块及能耗配置，实现多服务类型的通用、可扩展资源调度。",
-        "methodology_summary": "方法核心在于Diffusion-RL模型对物理资源块与功率分配进行决策，每一轮迭代引入控制噪声与微扰，增强策略空间探索能力，从而在保证QoS约束下，为eMBB、URLLC、mMTC等不同需求动态分配资源；此外，还系统比较了主流机器学习方法的适用性与优势。",
-        "performance_evaluation": "采用包括穷举搜索、DQN、SS-VAE等多个机器学习基线在O-RAN场景下进行对比，主要使用系统吞吐量、用户时延等指标针对不同服务类型进行评估。实验表明Diffusion-RL在效率、可扩展性和鲁棒性上均优于其他方法。",
-        "inferred_application": "最直接应用于未来6G和O-RAN中的动态资源管理系统，尤其适合需要适应多样化业务类型（如eMBB、URLLC、mMTC）的自动化无线网络运营，以及面向高密度、弹性业务场景的运营商与智能无线网络管理者。"
-      },
-      "paperKeywords": [
-        "Diffusion-based Reinforcement Learning",
-        "Resource Allocation",
-        "6G Networks",
-        "Open RAN (O-RAN)",
-        "Network Slicing",
-        "Quality of Service (QoS)",
-        "Generative AI"
-      ]
-    },
-    {
-      "id": "2506.05111",
-      "title": "An SCMA Receiver for 6G NTN based on Multi-Task Learning",
-      "url": "http://arxiv.org/abs/2506.05111v1",
-      "authors": [
-        "Bruno De Filippo",
-        "Carla Amatetti",
-        "Riccardo Campana",
-        "Alessandro Guidotti",
-        "Alessandro Vanelli-Coralli"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-05",
-      "snippet": "本文提出了一种基于多任务学习（MTL）的AI增强型SCMA接收机方案，旨在提升6G非地面网络（NTN）场景中SCMA信号的分离与接收性能。通过在仿真链路级别测试，所提模型在10%块错误率（BLER）目标下，较基准算法可实现3.5dB的Eb/N0增益，揭示了其在提升上行吞吐量与干扰抑制方面的潜力。论文还分析了该AI模型在低轨卫星上部署时的复杂度挑战。",
-      "interpretation": {
-        "core_contribution": "本研究首次将多任务学习（MTL）框架引入6G NTN的SCMA接收机设计，在增强干扰信号分离能力的同时，有效提升了信号检测性能，为AI赋能的6G非地面网络多址接入提供了支撑。",
-        "methodology_summary": "采用AI多任务学习模型，对重叠的稀疏码多址（SCMA）信号进行端到端分离与解调优化，通过联合学习提升信号恢复与检测的精度，克服传统接收机在非正交场景下的干扰瓶颈。",
-        "performance_evaluation": "通过链路级仿真，使用块错误率（BLER）和链路吞吐量（理论速率）作评估指标，在给定Eb/N0条件下与传统基线接收机算法对比分析AI模型的性能提升。",
-        "inferred_application": "该方案面向6G NTN环境下的边缘计算、低轨卫星通信与广域物联网接入，服务于对高效上行链路和强抗干扰能力有需求的空间组网及MEC场景。"
-      },
-      "paperKeywords": [
-        "6G",
-        "NTN",
-        "SCMA",
-        "多任务学习",
-        "AI接收机",
-        "块错误率（BLER）",
-        "边缘计算"
-      ]
-    },
-    {
-      "id": "2506.07647",
-      "title": "Foundation Model Empowered Synesthesia of Machines (SoM): AI-native Intelligent Multi-Modal Sensing-Communication Integration",
-      "url": "http://arxiv.org/abs/2506.07647v1",
-      "authors": [
-        "Xiang Cheng",
-        "Boxun Liu",
-        "Xuanyu Liu",
-        "Ensong Liu",
-        "Ziwei Huang"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-09",
-      "snippet": "本论文针对面向未来6G网络的智能多功能通信需求，首次系统化提出“机器通感共感”（SoM）范式，并以大模型（Foundation Models, FMs）赋能为核心，解决SoM中通用性、泛化性及任务适应性不足等难题。作者将FMs分为通用、LLM和无线领域三类，构建SoM系统设计的双路线图，展示了FMs超越任务专用模型的显著技术优势，并为6G感知-通信一体化提供了实现路径和未来研究方向。",
-      "interpretation": {
-        "core_contribution": "本论文核心贡献在于首次提出并系统性梳理了基于大模型赋能的SoM（机器共感）设计范式，填补了SoM领域缺乏系统设计框架的空白；明确界定了FMs三大类型及其在SoM系统中的应用，并提出了LLM和无线领域大模型赋能SoM的双路径设计方法，推动了6G下感知-通信一体化的理论与工程实用化进程。",
-        "methodology_summary": "主要技术路径包括：基于FMs的SoM系统分层架构设计，将FMs分为通用类、LLM类和面向无线通信的领域大模型；提出并实现LLM4PG（路径损耗生成）、LLM4SG（散射体生成）、WiCo（无线信道大模型）、LLM4WM（无线多任务SoM收发器）、WiFo（SoM增强收发器）、WiPo（协作感知大模型）等代表性方案。为每一路线提供端到端的设计框架与案例分析，并提炼出针对SoM挑战的FM赋能关键特性。",
-        "performance_evaluation": "论文通过典型应用案例的实验对比，实证展示了FMs在数据稀缺、泛化能力、复杂性建模等方面对比传统任务专用AI模型的明显优势；评估内容涵盖信道建模精度、多模态数据处理能力、协作感知任务成功率等，主流基线为当前SoM专用AI模型，且通过理论分析和工程验证双轮驱动。",
-        "inferred_application": "最直接应用场景为6G通信系统下的AI原生多模态感知-通信-控制一体化网络，包括智慧工业物联网、高动态复杂场景下的无线系统协同、大规模智能机器人群体和智能网联车路协同等面向未来的泛在智能基础设施。目标用户为通信系统设计者、AI/通信行业研发团队与标准制定机构。"
-      },
-      "paperKeywords": [
-        "6G",
-        "通感一体化",
-        "大模型（Foundation Model）",
-        "多模态融合",
-        "语义通信",
-        "无线智能",
-        "系统性架构"
-      ]
-    },
-    {
-      "id": "2506.09512",
-      "title": "A Survey on the Role of Artificial Intelligence and Machine Learning in 6G-V2X Applications",
-      "url": "http://arxiv.org/abs/2506.09512v1",
-      "authors": [
-        "Donglin Wang",
-        "Anjie Qiu",
-        "Qiuheng Zhou",
-        "Hans D. Schotten"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-11",
-      "snippet": "本论文系统回顾了人工智能（AI）与机器学习（ML）在6G车联网（V2X）领域的应用与最新进展。文章重点梳理了深度学习、强化学习、生成式学习和联邦学习在智能交通、资源分配、波束赋形和安全管理等场景中的关键作用，深入分析了AI驱动下6G-V2X系统在性能、智能化与自适应能力方面的显著提升。论文并总结了当前面临的计算复杂度、数据隐私和实时决策等技术挑战，展望了未来研究方向，为构建智能V2X生态提供理论参考。",
-      "interpretation": {
-        "survey_scope": "本文综述聚焦于AI与ML（包括DL、RL、GL、FL）赋能下的6G车联网（V2X）通信，涵盖智能交通、车路协同、资源优化和安全管理等关键应用场景，尤其关注近两年技术与应用的前沿进展。",
-        "taxonomy_or_structure": "作者以AI/ML方法为主线分类，包括深度学习、强化学习、生成式学习及联邦学习，并依托其在6G-V2X系统中的典型任务（如资源分配、智能波束赋形、交通管理和安全保障）逐类梳理现有研究，随后系统分析技术挑战及未来趋势。",
-        "key_trends_and_insights": "论文指出6G与AI/ML的深度融合已成为智能交通系统发展的主流趋势，尤其是生成式AI在复杂环境适应性和泛化能力方面表现突出，为V2X带来更强的智能决策和协同控制。此外，边云协同、数据安全、多模态信息融合和低时延实时决策是未来的发展重点，但同时也面临高算力消耗和隐私保护等核心挑战。",
-        "target_audience": "该综述适合从事6G通信、车联网、人工智能、智能交通系统等领域的科研人员、系统工程师、产业开发者及政策制定者参考。"
-      },
-      "paperKeywords": [
-        "6G",
-        "V2X",
-        "人工智能",
-        "机器学习",
-        "深度学习",
-        "生成式AI",
-        "联邦学习",
-        "智能交通"
-      ]
-    },
-    {
-      "id": "2506.10570",
-      "title": "6G Infrastructures for Edge AI: An Analytical Perspective",
-      "url": "http://arxiv.org/abs/2506.10570v1",
-      "authors": [
-        "Kurt Horvath",
-        "Shpresa Tuda",
-        "Blerta Idrizi",
-        "Stojan Kitanov",
-        "Fisnik Doko",
-        "Dragi Kimovski"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-12",
-      "snippet": "本文系统分析了AI与物联网融合背景下，当前5G网络在支持分布式、网络敏感型边缘AI应用时的性能瓶颈，实测数据显示现有5G网络时延高于AI关键应用需求近3倍，难以支撑实时性要求。为此，论文不仅总结了现有5G在欧洲中心地区的延迟测评数据，还针对6G网络在结构与技术能力上的演进提出具体优化建议，旨在推动面向AI的下一代高性能无线基础设施建设。",
-      "interpretation": {
-        "core_contribution": "本文客观揭示了当前5G网络在实际部署中无法满足AI驱动边缘应用对超低时延和高吞吐的性能要求，并据此提出了针对6G网络架构的改进方向与优化建议，为6G架构设计与AI应用协同提供了数据基础和发展路线。",
-        "methodology_summary": "论文采用实证分析方法，对中欧地区现有5G网络基础设施进行了广域实地时延测量，量化其在不同地理位置下的真实表现，并结合对AI边缘应用需求的分析，提出6G演进的关键技术指标和推荐措施。",
-        "performance_evaluation": "通过实地测量，作者获得了5G多个区域的端到端时延数据（61-110ms），对比AI关键应用所需的低时延要求，发现现有5G时延超标约270%，揭示了其在现实环境下的明显短板。",
-        "inferred_application": "本研究尤其适用于AI驱动的实时工业物联网、自动驾驶、智慧医疗等对端到端时延和网络敏捷性高度敏感的场景，同时为运营商与标准制定机构在6G基础设施规划和优化中提供理论与数据支撑。"
-      },
-      "paperKeywords": [
-        "6G",
-        "边缘AI",
-        "超低时延",
-        "网络架构",
-        "5G性能评估",
-        "分布式应用",
-        "网络演进"
-      ]
-    },
-    {
-      "id": "2506.09418",
-      "title": "Securing Open RAN: A Survey of Cryptographic Challenges and Emerging Solutions for 5G",
-      "url": "http://arxiv.org/abs/2506.09418v1",
-      "authors": [
-        "Ryan Barker",
-        "Fatemeh Afghah"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-11",
-      "snippet": "本综述系统梳理了开放无线接入网（O-RAN）在5G部署中的加密安全挑战与新兴防护策略。论文汇聚了学术与产业的最新进展，深入分析了O-RAN分层接口面临的下投攻击与数据明文暴露等安全漏洞，评估了SNOW-V、AES-256、ZUC-256等核心加密算法在多样化场景下的性能及适应性。文章还聚焦AI驱动测试平台与控制器在动态编排、防御检测及安全配置中的作用，展望了通过硬件卸载、跨层密钥适配与零信任架构实现6G安全演进的未来趋势。",
-      "interpretation": {
-        "survey_scope": "本综述聚焦于5G开放无线接入网（O-RAN）的加密安全威胁、现有与新兴加密机制，覆盖从协议接口到实际运行环境的全链路防护技术演进。",
-        "taxonomy_or_structure": "作者按O-RAN架构（如E2、O1接口）对安全问题进行分层梳理，结合具体攻击类型（如下投攻击、明文暴露）与加密算法特性进行分类，并进一步分辨AI辅助与测试床支持的安全机制。",
-        "key_trends_and_insights": "论文总结了高性能抗侧信道加密算法、AI辅助动态安全编排、硬件加速、跨层密钥自适应与零信任安全体系作为未来演进趋势，呼应了3GPP与O-RAN联盟的新标准要求，强调算力与安全协同优化。",
-        "target_audience": "该综述适合移动通信系统研究者、无线网络安全工程师、运营商技术决策者及关注5G/6G安全演进的标准化从业者。"
-      },
-      "paperKeywords": [
-        "O-RAN安全",
-        "5G加密",
-        "接口下投攻击",
-        "AI驱动安全",
-        "密钥管理",
-        "3GPP安全标准",
-        "零信任架构"
-      ]
-    },
-    {
-      "id": "2506.06519",
-      "title": "Hierarchical Debate-Based Large Language Model (LLM) for Complex Task Planning of 6G Network Management",
-      "url": "http://arxiv.org/abs/2506.06519v1",
-      "authors": [
-        "Yuyan Lin",
-        "Hao Zhou",
-        "Chengming Hu",
-        "Xue Liu",
-        "Hao Chen",
-        "Yan Xin",
-        "Jianzhong",
-        "Zhang"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-06",
-      "snippet": "本文提出了一种面向6G网络复杂任务规划的层次化多大语言模型（LLM）辩论框架。该方法突破了以往仅用单模型的局限，创新性地通过多模型层层分解、协作辩论提升管理决策质量，并首次构建6GPlan数据集对方法进行验证。实验表明该方法在覆盖率和召回率方面均取得大幅提升，为6G网络AI内生智能提供了新路径。",
-      "interpretation": {
-        "core_contribution": "首创性地提出了基于多LLM‘层次化辩论’机制，实现复杂6G网络管理任务的高效、协作式规划，并发布了针对该类任务的首个6GPlan评测数据集。这一方案突破了单模型解耦与能力瓶颈，为6G网络AI内生提供了通用智能决策范式。",
-        "methodology_summary": "采用多LLM分阶段合作：首先针对任务进行子任务分解辩论，随后围绕每个子任务再分步协作优化，逐步集成最优子解形成全局解。该层次化、多轮辩论显著降低问题复杂性，增强结果的系统性和合理性，且适配6G网络管理的多层异构属性。",
-        "performance_evaluation": "设计并公开6GPlan数据集（含110个复杂管理任务、5000组关键词解），基于标准覆盖率和全局召回率等指标，与现有单模型和扁平化多模型方法对比，实验数据显示方案在两个核心指标上均有30%以上提升，验证了其有效性和优越性。",
-        "inferred_application": "最直接应用于运营商或智能网络服务商的6G网络复杂管理决策平台，可服务于自动化运维、智能编排、策略优化等高难度运管场景，助力推动AI与6G深度融合、实现智能内生网络。"
-      },
-      "paperKeywords": [
-        "6G网络管理",
-        "大语言模型",
-        "层次化辩论",
-        "复杂任务规划",
-        "协同AI",
-        "6GPlan数据集",
-        "智能内生"
-      ]
-    },
-    {
-      "id": "2505.18846",
-      "title": "LLM-Driven APT Detection for 6G Wireless Networks: A Systematic Review and Taxonomy",
-      "url": "http://arxiv.org/abs/2505.18846v1",
-      "authors": [
-        "Muhammed Golec",
-        "Yaser Khamayseh",
-        "Suhib Bani Melhem",
-        "Abdulmalik Alwarafy"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-24",
-      "snippet": "本文系统性回顾并分类了大语言模型（LLM）赋能下的6G无线网络中高级持续性威胁（APT）检测领域，对语义日志融合、加密流量分析、边缘部署约束、数据与建模技术以及可复现性等五大核心议题进行了梳理。针对粒度、部署模式、攻击链阶段等构建了详细分类体系，总结了可解释性、数据稀缺、边端设备限制和实时适配等关键挑战，为后续研究提供了全面展望。",
-      "interpretation": {
-        "survey_scope": "该综述聚焦于6G无线网络环境下，结合大语言模型（LLM）的高级持续性威胁（APT）检测方法和最新进展。主要涵盖APT检测与防御、LLM在网络安全中的应用、6G网络安全架构等交叉领域。",
-        "taxonomy_or_structure": "作者围绕五大研究问题——语义合并、加密流量分析、边缘约束、数据和建模、可复现性，构建了多层次分类体系，并基于粒度、部署模型和攻击链阶段等维度详细梳理现有工作，系统阐释各类技术路径和实现方案。",
-        "key_trends_and_insights": "作者识别出LLM在APT检测中提升语义理解和智能威胁响应能力的趋势，同时强调可解释性、数据稀缺和边端算力等瓶颈。未来需关注实时性保障、切片自适应与跨域协同创新，以及在6G新型场景下的数据与模型可用性突破。",
-        "target_audience": "该综述适合6G无线网络、人工智能安全、大语言模型、APT检测等领域的科研人员、工程师、安全分析师及研究生查阅参考。"
-      },
-      "paperKeywords": [
-        "6G无线网络",
-        "高级持续威胁（APT）检测",
-        "大语言模型（LLM）",
-        "网络安全",
-        "边缘智能",
-        "语义分析",
-        "系统综述"
-      ]
-    },
-    {
-      "id": "2506.11779",
-      "title": "Semantic Communications in 6G: Coexistence, Multiple Access, and Satellite Networks",
-      "url": "http://arxiv.org/abs/2506.11779v1",
-      "authors": [
-        "Ishtiaque Ahmed",
-        "Yingzhuo Sun",
-        "Jingwen Fu",
-        "Alper Kose",
-        "Leila Musavian",
-        "Ming Xiao",
-        "Berna Ozbek"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-13",
-      "snippet": "本综述聚焦于6G环境下语义通信技术的融合与演进，系统探讨了语义通信（SemCom）与传统比特通信（BitCom）的共存架构、多用户接入机制以及在卫星网络中应对带宽受限和信道恶劣等关键应用场景。论文梳理多模态语义通信的实现框架，分析了NOMA等多址接入策略在异构用户环境下的适配优势，并前瞻性地总结了6G及未来语义感知网络系统的研究方向和部署挑战。",
-      "interpretation": {
-        "survey_scope": "本综述覆盖了6G及未来通信网络中语义通信与传统比特通信共存、多址接入机制（如NOMA）、多模态语义传输及其在卫星等复杂场景下的应用。",
-        "taxonomy_or_structure": "作者依次梳理了：1）SemCom和BitCom共存的网络架构设计；2）各类多址接入方式对异构用户的支撑策略，重点分析NOMA；3）多模态语义通信的系统框架和评价需求；4）语义通信在卫星网络等资源受限场景下的特定应用方案；5）未来部署展望和开放研究问题。",
-        "key_trends_and_insights": "1）6G语义通信正向与传统通信深度融合迈进，以实现更高的频谱利用和智能资源分配；2）多模态语义处理成为提升异构数据传输效率的关键；3）多用户接入策略如NOMA在新型语义网络中的应用潜力突出；4）语义通信在带宽受限、复杂信道环境（如卫星）中可显著优化传输性能和鲁棒性；5）未来需关注跨层协同、语义测度标准化和网络智能化部署问题。",
-        "target_audience": "本综述适用于从事6G、智能通信、语义网络、多模态信息处理和卫星通信的科研工作者、系统工程师及通信行业研发与规划人员。"
-      },
-      "paperKeywords": [
-        "6G",
-        "语义通信",
-        "多模态融合",
-        "多址接入",
-        "NOMA",
-        "卫星网络",
-        "资源分配"
-      ]
-    },
-    {
-      "id": "2505.23275",
-      "title": "Wireless Agentic AI with Retrieval-Augmented Multimodal Semantic Perception",
-      "url": "http://arxiv.org/abs/2505.23275v1",
-      "authors": [
-        "Guangyuan Liu",
-        "Yinqiu Liu",
-        "Ruichen Zhang",
-        "Hongyang Du",
-        "Dusit Niyato",
-        "Zehui Xiong",
-        "Sumei Sun",
-        "Abbas Jamalipour"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-29",
-      "snippet": "本文提出了一种检索增强型多模态语义通信（RAMSemCom）框架，针对无线多智能体场景下因带宽受限导致的多模态语义信息高效交换难题，结合本地缓存与选择性传输，实现迭代式、检索驱动的语义精炼。框架采用深度强化学习优化检索策略，在多智能体自动驾驶案例中显著提升任务完成效率并降低通信开销，相较传统基线方法表现优越。",
-      "interpretation": {
-        "core_contribution": "首次提出面向无线多智能体场景的检索增强型多模态语义通信（RAMSemCom）框架，通过迭代语义精炼和检索机制，有效解决带宽受限下多模态高语义信息高效交换与冗余问题。",
-        "methodology_summary": "核心方法为将检索增强机制与多模态语义通信结合，采用本地缓存和选择性信息传输，利用深度强化学习（DRL）动态优化检索与传输决策，实现多智能体间高效的语义协同通信。",
-        "performance_evaluation": "基于多智能体自动驾驶场景进行案例研究，将所提DRL驱动的检索策略与传统基线方法在任务完成效率和通信开销等指标上对比评估，实验显示RAMSemCom在上述维度均表现优异。",
-        "inferred_application": "最直接的应用场景为车联网、多智能体机器人协作等无线多智能体系统，目标用户为智能驾驶、边缘智能制造等对低时延和高语义通信效率有迫切需求的行业。"
-      },
-      "paperKeywords": [
-        "多模态语义通信",
-        "检索增强",
-        "多智能体系统",
-        "深度强化学习",
-        "带宽优化",
-        "本地缓存",
-        "自动驾驶"
-      ]
-    },
-    {
-      "id": "2506.04952",
-      "title": "Optimization for Semantic-Aware Resource Allocation under CPT-based Utilities",
-      "url": "http://arxiv.org/abs/2506.04952v1",
-      "authors": [
-        "Symeon Vaidanis",
-        "Photios A. Stavrou",
-        "Marios Kountouris"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-05",
-      "snippet": "该论文研究了目标导向的语义通信场景下，资源分配问题如何结合语义效用与智能体的主观风险感知。通过引入累积前景理论（CPT）对风险敏感的效用和非线性分布变换进行建模，将信息重要性与风险厌恶行为关联，实现了更贴合智能体实际决策过程的资源分配优化。作者提出结合SCA、投影子梯度与拉格朗日松弛的算法框架，高效求解原本非凸、非光滑的优化问题，兼顾理论严谨和实际可行性，在多智能体语义通信中的资源分配场景展现出良好性能。",
-      "interpretation": {
-        "core_contribution": "论文首次将累积前景理论（CPT）引入语义通信中的资源分配问题，通过风险敏感的效用建模反映多智能体的主观决策特性，使优化目标更符合实际应用场景。",
-        "methodology_summary": "作者利用CPT建立智能体的风险感知与信息重要性之间的映射，并将总效用最大化问题表述为非凸、非光滑优化。为应对其求解难点，提出了结合逐步凸近似（SCA）、投影子梯度法与拉格朗日松弛的高效算法，实现了复杂优化问题的可行求解。",
-        "performance_evaluation": "论文通过仿真实验评估所提方法，设置多智能体、主观异质风险偏好的语义通信场景，将其与常规风险中性或期望效用模型下的资源分配策略进行对比，采用总语义效用、资源利用效率等指标衡量性能优劣。",
-        "inferred_application": "研究成果适用于多智能体协作、任务导向的语义通信网络—尤其是在智能制造、联网自动体、6G/物联网等需兼顾效用、风险与资源约束的现实场景。"
-      },
-      "paperKeywords": [
-        "语义通信",
-        "资源分配优化",
-        "累积前景理论（CPT）",
-        "风险感知",
-        "多智能体决策",
-        "凸近似算法",
-        "非凸优化"
-      ]
-    },
-    {
-      "id": "2505.03127",
-      "title": "Integrated Sensing, Computing, Communication, and Control for Time-Sequence-Based Semantic Communications",
-      "url": "http://arxiv.org/abs/2505.03127v1",
-      "authors": [
-        "Qingliang Li",
-        "Bo Chang",
-        "Weidong Mei",
-        "Zhi Chen"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-06",
-      "snippet": "本论文针对工业物联网（IIoT）时代面临的实时无线控制系统需求，提出了一种融合感知、计算、通信与控制（ISC3）的时序语义通信新范式。核心创新包括通过语义特征提取和重构模块，利用深度强化学习框架，显著降低冗余信息传输与通信开销，同时实现自适应可靠控制。在现场实验中，该方法较传统方案显著提升了控制性能与通信效率。",
-      "interpretation": {
-        "core_contribution": "提出一种集成感知、计算、通信与控制（ISC3）的时序语义通信框架，引入语义特征提取与重构模块，通过多智能体深度强化学习实现通信与控制协同优化，从根本上提升了实时控制系统中信息传递的效率和可靠性。",
-        "methodology_summary": "论文通过在发端利用语义特征提取（SFE）模块分析控制信息的时序相关性，优先发送全新或重要信息，减少冗余传输。接收端利用语义特征重构（SFR）模块和自适应控制增益机制，基于历史序列补完未实时传输的信息。以上模块和决策策略均通过混合奖励多智能体深度强化学习方法进行端到端训练和参数优化。",
-        "performance_evaluation": "采用现场实验对比多种基线方案，从通信开销、系统时延、控制精度等维度进行系统性评测，结果显示所提方法在通信效率及控制性能上均优于传统方法。",
-        "inferred_application": "研究成果最直接应用于工业物联网（IIoT）场景下的实时无线控制系统，尤其适用于对可靠性和低延时有极高要求的智能制造、自动化机器人控制等领域。"
-      },
-      "paperKeywords": [
-        "语义通信",
-        "集成感知-计算-通信-控制（ISC3）",
-        "时序信息",
-        "深度强化学习",
-        "工业物联网（IIoT）",
-        "自适应控制",
-        "信息冗余抑制"
-      ]
-    },
-    {
-      "id": "2505.17030",
-      "title": "Distillation-Enabled Knowledge Alignment Protocol for Semantic Communication in AI Agent Networks",
-      "url": "http://arxiv.org/abs/2505.17030v1",
-      "authors": [
-        "Jingzhi Hu",
-        "Geoffrey Ye Li"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-07",
-      "snippet": "本文提出了一种针对AI智能体网络中语义通信难题的知识对齐协议——DeKAP。该方法通过知识蒸馏，将各智能体的专家知识压缩为参数高效的低秩矩阵，在全网分发，实现多任务场景下的知识同步。设计中以联合最小化对齐损失、通信和存储开销为目标，建模为大规模整数线性规划，并提出高效贪心算法。仿真结果显示，DeKAP在通信和算力资源消耗方面优于传统方案。",
-      "interpretation": {
-        "core_contribution": "提出了一种基于知识蒸馏的高效知识对齐协议（DeKAP），创新性地实现了AI智能体间的多任务知识同步，并同时兼顾通信、存储与资源利用最小化的问题建模。",
-        "methodology_summary": "采用知识蒸馏技术，将每个智能体的专家知识转化为低秩参数矩阵，分配至各节点；通过大规模整数线性规划，联合优化知识对齐损失、通信开销和存储成本，并设计贪心算法实现高效近似解。",
-        "performance_evaluation": "通过计算机仿真比对，主要评价指标为知识对齐准确性、通信及计算资源消耗，并与现有方法作定量比较，结果显示DeKAP能以较低资源消耗实现高效知识同步。",
-        "inferred_application": "适用于大规模多智能体协作场景，特别是在6G或未来网络中需要高效知识共享和语义通信的智能体集群、自治网络和协同AI系统。"
-      },
-      "paperKeywords": [
-        "知识蒸馏",
-        "多智能体",
-        "语义通信",
-        "知识对齐",
-        "低秩矩阵",
-        "整数线性规划",
-        "高效算法"
-      ]
-    },
-    {
-      "id": "2505.16821",
-      "title": "LLM-Based Emulation of the Radio Resource Control Layer: Towards AI-Native RAN Protocols",
-      "url": "http://arxiv.org/abs/2505.16821v2",
-      "authors": [
-        "Ziming Liu",
-        "Bryan Liu",
-        "Alvaro Valcarce",
-        "Xiaoli Chu"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-22",
-      "snippet": "本文提出了一种创新性方法，将大语言模型（LAM）集成到6G无线接入网（RAN）协议栈，专注于无线资源控制（RRC）层的AI原生仿真。通过将RRC协议消息视为领域特定语言，并采用LoRA高效微调LLaMA类Transformer模型，作者展示了AI模型能够生成标准兼容且结构化的ASN.1编码消息，实现对gNB控制面流程的自动化与认知增强。实验在30,000组实测数据上，8B模型取得了较高的结构和语义一致性，显著优于传统零样本基线，为AI原生无线协议和未来AI标准化奠定基础。",
-      "interpretation": {
-        "core_contribution": "本研究首次系统性演示了大语言模型直接仿真并生成RRC层标准协议消息的能力，实现了AI模型与6G RAN协议栈的深度耦合，迈出了AI原生无线接入协议的关键步伐。",
-        "methodology_summary": "方法上，作者把RRC消息看作一种领域特定语言（DSL），利用LoRA对LLaMA类Transformer进行参数高效微调，保持ASN.1协议结构，通过字节对编码（BPE）优化学习效率，实现了对协议状态的组合泛化。",
-        "performance_evaluation": "性能评估在30,000对真实gNB RRC请求-响应数据上展开，采用余弦相似度等结构/语义一致性指标测量生成消息与标准消息的贴合度。8B模型达到了0.97中位数余弦相似度，相比零样本LLaMA-3 8B有61%的相对提升。",
-        "inferred_application": "该研究直接面向未来6G及后续无线网络厂商、协议开发者和AI通信研究者，可应用于RAN协议自动化、智能基站管控和AI驱动的网络标准制定。"
-      },
-      "paperKeywords": [
-        "大语言模型",
-        "6G无线接入网",
-        "无线资源控制（RRC）",
-        "AI原生协议",
-        "LoRA",
-        "Transformer",
-        "协议仿真"
-      ]
-    },
-    {
-      "id": "2505.23249",
-      "title": "Context-Aware Semantic Communication for the Wireless Networks",
-      "url": "http://arxiv.org/abs/2505.23249v1",
-      "authors": [
-        "Guangyuan Liu",
-        "Yinqiu Liu",
-        "Jiacheng Wang",
-        "Hongyang Du",
-        "Dusit Niyato",
-        "Jiawen Kang",
-        "Zehui Xiong",
-        "Abbas Jamalipour"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-29",
-      "snippet": "本文提出了一种面向上下文自适应的语义通信框架CaSemCom，针对下一代无线网络中实时应用对带宽、时延与可靠性的新要求，创新性地引入了基于大语言模型（LLM）的门控机制与专家混合（MoE）架构进行多模态高价值语义特征的动态选择与编码。多用户多模态实验显示，CaSemCom在图像还原质量提升与带宽节省方面优于传统和单智能体DRL基线，体现出更优的收敛速度、语义准确率与重传开销。",
-      "interpretation": {
-        "core_contribution": "提出了CaSemCom框架，通过LLM门控与MoE结构动态选择和传输高影响力语义特征，首次实现面向上下文的多模态、自适应无线语义通信，在提升图像还原质量和带宽效率方面取得突破。",
-        "methodology_summary": "核心方法基于大语言模型（LLM）驱动的门控机制，结合专家混合（MoE）架构，实现对多源异构数据的语义特征动态筛选与编码，适应网络条件和应用上下文，优化跨用户、多模态场景下的通信效率与效果。",
-        "performance_evaluation": "采用多用户和多模态场景设置，对重建图像的保真度、带宽利用率、语义准确性以及收敛速度和重传开销进行实验评估，并与传统方案及单智能体DRL方法进行对比，表现出显著优势。",
-        "inferred_application": "直接服务于对低延迟、高可靠、带宽敏感要求极高的无线实时应用，如增强现实、自动驾驶、元宇宙等新一代交互和智能服务场景。"
-      },
-      "paperKeywords": [
-        "上下文感知",
-        "语义通信",
-        "大语言模型",
-        "专家混合架构",
-        "多模态编码",
-        "无线网络",
-        "自适应优化"
-      ]
-    },
-    {
-      "id": "2506.16070",
-      "title": "Towards AI-Driven RANs for 6G and Beyond: Architectural Advancements and Future Horizons",
-      "url": "http://arxiv.org/abs/2506.16070v1",
-      "authors": [
-        "Mathushaharan Rathakrishnan",
-        "Samiru Gayan",
-        "Rohit Singh",
-        "Amandeep Kaur",
-        "Hazer Inaltekin",
-        "Sampath Edirisinghe",
-        "H. Vincent Poor"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-06-19",
-      "snippet": "本文针对6G网络架构提出“AI驱动的无线接入网（AI-RAN）”理念，强调智能、去中心化、互操作性和数字化为基础的新型RAN架构，并结合数字孪生、智能反射面、大型生成式AI模型和区块链等关键使能技术，系统性审视6G及未来无线网络架构演进。论文通过实际智能编排与资源优化场景验证了AI-RAN的可行性，并面向ISAC和Agentic AI等未来方向进行了展望。",
-      "interpretation": {
-        "core_contribution": "本文核心贡献在于提出并系统阐述了AI-RAN架构，明确指向AI成为RAN内生特性，并首创性地整合了数字孪生、IRS、生成式AI与区块链等新兴技术作为6G RAN演进和自治的关键支撑，为实现自演化、智能化无线网络提供了系统框架与理论依据。",
-        "methodology_summary": "作者回顾并剖析RAN体系结构演进，进而创新性地构建了AI-RAN框架，该框架将AI算法深度嵌入编排与资源管理流程，同时利用数字孪生模拟环境、IRS重构无线信道、生成式AI提升智能度、区块链保证数据可信。论文在实际智能编排和资源优化场景下，对AI-RAN进行了原型验证。",
-        "performance_evaluation": "论文基于实际用例（智能编排与资源优化）对AI-RAN进行性能仿真与实验评估，可能采用典型网络数据集、与传统RAN/现有AI-RAN基线模型对比，以及常用无线资源分配与网络自适应性能指标（如时延、吞吐量、能效等）进行效果分析。",
-        "inferred_application": "本研究直接服务于下一代6G及B5G超大规模无线网络的运营商、网络设备商，以及关注自主管理、自适应优化和端到端智能的全行业应用，如工业互联网、自动驾驶、智慧城市等未来场景。"
-      },
-      "paperKeywords": [
-        "AI-RAN",
-        "6G网络架构",
-        "数字孪生",
-        "智能反射面（IRS）",
-        "生成式AI",
-        "区块链",
-        "智能编排与资源优化"
-      ]
-    },
-    {
-      "id": "2505.23710",
-      "title": "From Connectivity to Autonomy: The Dawn of Self-Evolving Communication Systems",
-      "url": "http://arxiv.org/abs/2505.23710v1",
-      "authors": [
-        "Zeinab Nezami",
-        "Syed Danial Ali Shah",
-        "Maryam Hafeez",
-        "Karim Djemame",
-        "Syed Ali Raza Zaidi"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-29",
-      "snippet": "本文提出了6G时代通信网络向高度自治自演化系统转型的愿景，强调AI内生智能推动网络结构的动态适应与自我优化。论文系统分析了重构基础设施、自适应中间件、智能网络功能及多智能体协作机制，并探讨其在工业物联网和数字制造中的实际融合路径。结果显示，该框架可显著提升实时决策效率并降低网络时延，有助于工业自动化、智能制造等场景的应用落地。论文还关注了伦理挑战、标准化及未来研究方向，为6G智能自动化演进提供了技术路线图。",
-      "interpretation": {
-        "core_contribution": "本论文关键技术贡献在于系统性提出自演化通信网络架构，将AI能力深度嵌入网络各层，实现从单纯互联到自治智能的跃迁，尤其突出多智能体分布式协作与自我优化机制，填补理论创新与工程落地之间的空白点。",
-        "methodology_summary": "论文围绕三大技术主线：①可重构基础设施（通过软件定义与硬件可编程提升网络适应性），②自适应中间件与智能网络功能（基于AI驱动的动态资源管理与功能自进化），③多智能体分布式决策（用强化学习或群体智能实现自治协作），并联动工业IoT标准体系，推动通信架构与制造流程深度融合。",
-        "performance_evaluation": "性能评估采用模拟及原型实验，重点以工业IoT场景为例，评测实时决策效率、网络时延、资源利用率等关键指标，并与传统静态网络或分层AI框架对照，突出自治系统在动态适应与协同控制方面的优势。",
-        "inferred_application": "研究主要面向工业物联网、智能制造和大规模网络化自动化系统等高实时性、动态环境下的应用，目标用户为电信运营商、工业自动化厂商及智能制造解决方案提供商。"
-      },
-      "paperKeywords": [
-        "6G",
-        "自演化通信系统",
-        "AI内生网络",
-        "多智能体协作",
-        "工业物联网",
-        "智能制造",
-        "网络自治"
-      ]
-    },
-    {
-      "id": "2505.01885",
-      "title": "Securing 5G and Beyond-Enabled UAV Networks: Resilience Through Multiagent Learning and Transformers Detection",
-      "url": "http://arxiv.org/abs/2505.01885v1",
-      "authors": [
-        "Joseanne Viana",
-        "Hamed Farkhari",
-        "Victor P Gil Jimenez"
-      ],
-      "affiliations": [],
-      "journal": "arXiv",
-      "publicationDate": "2025-05-03",
-      "snippet": "本论文针对5G及未来6G网络中无人机（UAV）通信的抗干扰和高可靠性挑战，提出了DET-FAIR-WINGS架构。该方案融合多智能体强化学习（MARL）与Transformer检测机制，实现对网络攻击的高效识别及资源调度优化。系统通过离散与连续参数协同调整，实现UAV链路动态自适应。实验表明，AI驱动的自适应重传决策显著降低了通信时延，提升了网络鲁棒性与可靠性。",
-      "interpretation": {
-        "core_contribution": "提出了基于多智能体强化学习与Transformer检测的DET-FAIR-WINGS架构，能够在5G及未来6G UAV网络场景下有效识别攻击，实现动态资源调度与抗干扰自适应通信，显著增强了UAV通信系统的弹性和鲁棒性。",
-        "methodology_summary": "方法核心为多智能体强化学习驱动的链路自适应与决策，每个智能体内嵌Transformer模型进行攻击识别和特征提取。系统在动态环境中基于检测结果调整带宽、重传、波束等参数，实现空间与频谱资源的最优分配，提高通信链路的安全与可靠性。",
-        "performance_evaluation": "通过将AI自适应重传与固定重传做对比，评估了系统在真实5G网络环境下的时延、可靠性等性能指标。实验结果显示，DET-FAIR-WINGS显著降低了端到端延迟，并提升了UAV网络在受攻击情况下的服务质量。",
-        "inferred_application": "该技术适用于城市、复杂地形等高风险、强对抗环境下的无人机通信系统，尤其面向需要高可靠、低时延与高安全保障的应急通信、物流运输、城市巡检等UAV应用领域。"
-      },
-      "paperKeywords": [
-        "UAV通信",
-        "5G/6G网络",
-        "多智能体学习",
-        "Transformer检测",
-        "网络安全",
-        "鲁棒性增强",
-        "自适应通信"
       ]
     },
     {
@@ -1368,6 +1053,320 @@
       ]
     },
     {
+      "id": "2505.19940",
+      "title": "Task-Oriented Low-Label Semantic Communication With Self-Supervised Learning",
+      "url": "http://arxiv.org/abs/2505.19940v1",
+      "authors": [
+        "Run Gu",
+        "Wei Xu",
+        "Zhaohui Yang",
+        "Dusit Niyato",
+        "Aylin Yener"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-26",
+      "snippet": "本文提出了一种自监督学习驱动的面向任务低标注语义通信框架（SLSCom），以应对有限标注样本下的语义通信推理难题。SLSCom利用设备在边缘网络中收集的大量无标注样本，通过自监督反向分类与重构任务、高效联合训练策略，提升端到端信道下的推理准确率。实验证明，方法在多径信道与不同SNR、样本规模条件下，都显著优于传统数字编码和现有深度学习语义通信技术，即便无标注数据与下游任务不相关时亦具鲁棒性。",
+      "interpretation": {
+        "core_contribution": "提出了一种基于自监督学习的新型语义通信系统，利用无标注数据显著提升低标注场景下的任务推理能力，有效缓解高标注样本依赖。",
+        "methodology_summary": "方法通过自监督对比特征学习和信息瓶颈理论，设计了兼顾任务相关性和信息量的语义编码器，并采用自监督分类与重构任务简化IB优化，实现端到端少标注高效训练。",
+        "performance_evaluation": "在多路径无线信道下进行图像分类实验，涵盖不同标注数据规模和SNR情形，比较了传统数字编码、DL语义通信方法的基线，并展示了SLSCom在准确率等指标上的系统性优越性。",
+        "inferred_application": "适用于边缘网络设备、无线感知等标注资源有限、需高效推理的6G智能通信场景，尤其在物联网、车联网等下游任务多样、数据标注昂贵的智能终端环境中表现突出。"
+      },
+      "paperKeywords": [
+        "自监督学习",
+        "语义通信",
+        "信息瓶颈",
+        "少标注学习",
+        "边缘智能",
+        "无线信道",
+        "对比学习"
+      ]
+    },
+    {
+      "id": "2505.19983",
+      "title": "ICDM: Interference Cancellation Diffusion Models for Wireless Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.19983v1",
+      "authors": [
+        "Tong Wu",
+        "Zhiyong Chen",
+        "Dazhi He",
+        "Feng Yang",
+        "Meixia Tao",
+        "Xiaodong Xu",
+        "Wenjun Zhang",
+        "Ping Zhang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-26",
+      "snippet": "本文提出了一种针对无线语义通信中干扰消除的新型扩散模型（ICDM）。研究将干扰消除建模为信号与干扰联合后验概率的极大后验（MAP）估计，并证明该建模方法可获得卓越的信号与干扰估计效果。ICDM采用独立扩散模型分别学习信号和干扰的先验概率，结合通道转移概率，通过数值迭代一体化实现高效干扰消除。实验表明，ICDM显著降低均方误差（MSE）并提升感知质量，在典型信道下优于未引入ICDM的方法，为高质量无线语义通信提供了全新解决思路。",
+      "interpretation": {
+        "core_contribution": "提出并理论证明了一种可高效消除无线语义通信中干扰的扩散模型ICDM，并通过将干扰消除问题建模为联合后验概率的MAP估计，创新性地实现了信号与干扰的协同分离和重建。",
+        "methodology_summary": "ICDM将信号与干扰的联合后验通过贝叶斯分解为独立的信号和干扰先验、通道转移概率，各自由扩散模型在各时刻学习其对数梯度。最终，这些梯度通过高效的数值迭代算法集成，实现对原始信号的去噪与干扰抑制。",
+        "performance_evaluation": "性能评估采用CelebA数据集，在瑞利衰落信道、SNR为20dB且SINR为0dB等复杂场景下，与未引入ICDM方法对比，重点指标为均方误差（MSE）和LPIPS感知分数，ICDM分别提升4.54dB和2.47dB，体现出优异的干扰抑制和感知恢复能力。",
+        "inferred_application": "本研究主要面向对干扰鲁棒性要求高的下一代无线语义通信系统，尤其适用于在强干扰环境下需高可靠、低失真数据传输的场景，如6G IoT、工业互联网、卫星通信等。"
+      },
+      "paperKeywords": [
+        "扩散模型",
+        "干扰消除",
+        "无线语义通信",
+        "极大后验估计",
+        "联合后验分解",
+        "感知质量提升",
+        "信号重建"
+      ]
+    },
+    {
+      "id": "2505.18637",
+      "title": "Neural Coding Is Not Always Semantic: Towards The Standardized Coding Workflow in Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.18637v1",
+      "authors": [
+        "Hai-Long Qin",
+        "Jincheng Dai",
+        "Sixian Wang",
+        "Xiaoqi Qin",
+        "Shuo Shao",
+        "Kai Niu",
+        "Wenjun Xu",
+        "Ping Zhang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-24",
+      "snippet": "本文针对语义通信领域现有的神经编码方案未能充分解决“神经编码是否等同于语义表达”这一基础问题，提出了语义编码的标准化定义，并基于上下文建模设计了一种用于通用语义表示的神经编码架构。该方法强调通过获得上下文感知的紧凑语义表示，实现以最小模块调整即可兼容人类和机器终端的数据传输，推动语义通信从特征传递走向有语境的语义压缩，拓展了语义通信的理论边界和实际应用能力。",
+      "interpretation": {
+        "core_contribution": "本文最重要的贡献是澄清了神经编码与语义表达之间的差异，首次提出了针对语义通信的标准化语义编码定义，并设计了可实现通用语义表示的神经编码方案，从而为语义通信在理论与实际中明确了上下文驱动的编码核心价值。",
+        "methodology_summary": "以上下文建模为核心，通过先进的深度学习神经网络从原始数据中学习能够表达实际语义含义的紧凑通用语义表示。该编码方案不仅截取特征，还关注所编码信号与语境语义之间的一致性，并可通过微调和正则化等手段快速适配不同终端与场景。",
+        "performance_evaluation": "论文强调了理论标准的建立和编码方案的通用性，但摘要未给出具体实验数据或基线对比。推测可能包括对语义还原能力、人-机双端兼容性、适配性等方面的定性或定量评估，具体评测指标或实验细节有待查阅正文章节。",
+        "inferred_application": "该研究面向下一代无线通信（如6G）下需要高效语义传输的场景，适用于需要人类和机器都能理解的跨主体沟通任务，典型应用包括车联网、无人系统、智能制造、泛在物联网等需要高层语义理解和上下文推理的智能终端通信。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "神经编码",
+        "上下文建模",
+        "深度学习",
+        "语义表示",
+        "标准化流程",
+        "人-机通信"
+      ]
+    },
+    {
+      "id": "2505.18846",
+      "title": "LLM-Driven APT Detection for 6G Wireless Networks: A Systematic Review and Taxonomy",
+      "url": "http://arxiv.org/abs/2505.18846v1",
+      "authors": [
+        "Muhammed Golec",
+        "Yaser Khamayseh",
+        "Suhib Bani Melhem",
+        "Abdulmalik Alwarafy"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-24",
+      "snippet": "本文系统性回顾并分类了大语言模型（LLM）赋能下的6G无线网络中高级持续性威胁（APT）检测领域，对语义日志融合、加密流量分析、边缘部署约束、数据与建模技术以及可复现性等五大核心议题进行了梳理。针对粒度、部署模式、攻击链阶段等构建了详细分类体系，总结了可解释性、数据稀缺、边端设备限制和实时适配等关键挑战，为后续研究提供了全面展望。",
+      "interpretation": {
+        "survey_scope": "该综述聚焦于6G无线网络环境下，结合大语言模型（LLM）的高级持续性威胁（APT）检测方法和最新进展。主要涵盖APT检测与防御、LLM在网络安全中的应用、6G网络安全架构等交叉领域。",
+        "taxonomy_or_structure": "作者围绕五大研究问题——语义合并、加密流量分析、边缘约束、数据和建模、可复现性，构建了多层次分类体系，并基于粒度、部署模型和攻击链阶段等维度详细梳理现有工作，系统阐释各类技术路径和实现方案。",
+        "key_trends_and_insights": "作者识别出LLM在APT检测中提升语义理解和智能威胁响应能力的趋势，同时强调可解释性、数据稀缺和边端算力等瓶颈。未来需关注实时性保障、切片自适应与跨域协同创新，以及在6G新型场景下的数据与模型可用性突破。",
+        "target_audience": "该综述适合6G无线网络、人工智能安全、大语言模型、APT检测等领域的科研人员、工程师、安全分析师及研究生查阅参考。"
+      },
+      "paperKeywords": [
+        "6G无线网络",
+        "高级持续威胁（APT）检测",
+        "大语言模型（LLM）",
+        "网络安全",
+        "边缘智能",
+        "语义分析",
+        "系统综述"
+      ]
+    },
+    {
+      "id": "2505.17604",
+      "title": "Adaptive Semantic Token Communication for Transformer-based Edge Inference",
+      "url": "http://arxiv.org/abs/2505.17604v1",
+      "authors": [
+        "Alessio Devoto",
+        "Jary Pomponi",
+        "Mattia Merluzzi",
+        "Paolo Di Lorenzo",
+        "Simone Scardapane"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "本文提出了一种面向边缘智能推理的自适应Transformer深度联合源信道编码（DJSCC）架构，针对资源受限场景中任务驱动的语义通信需求，设计了基于Transformer的特征语义标记选择与压缩机制，并通过Lyapunov随机优化算法实现动态资源分配，在不同信道与带宽条件下高效传输关键特征数据。实验结果表明，该系统在多种基线下均具备优越的压缩与推理性能，显示出其在AI原生语义通信领域的潜力。",
+      "interpretation": {
+        "core_contribution": "提出了自适应语义标记通信框架，通过Transformer驱动的动态高层特征压缩与联合源信道编码，实现边缘推理场景下灵活且高效的任务感知数据传输。",
+        "methodology_summary": "方法首先将输入数据token化，提取关键高层语义特征，经Transformer细化后再通过语义标记选择机制自适应压缩至用户设定数量的token。随后，这些token通过JSCC模块进一步压缩，并可灵活调整token数及嵌入维度。系统采用基于Lyapunov随机优化的资源分配机制，动态权衡压缩效率与任务性能，适应多变信道和带宽环境。",
+        "performance_evaluation": "论文通过与现有基线方法对比，在多种带宽及信道条件下，评估系统的压缩能力、推理准确率等指标，实验显示其在实际边缘智能场景中性能优于对比系统。",
+        "inferred_application": "其最直接应用为6G及未来无线通信中边缘推理/视觉分析等任务的语义通信场景，特别适合资源受限、需灵活自适应的物联网、车联网和移动感知类智能终端。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "Transformer",
+        "边缘推理",
+        "联合源信道编码（JSCC）",
+        "资源分配",
+        "自适应压缩",
+        "Lyapunov优化"
+      ]
+    },
+    {
+      "id": "2505.18389",
+      "title": "ALLSTaR: Automated LLM-Driven Scheduler Generation and Testing for Intent-Based RAN",
+      "url": "http://arxiv.org/abs/2505.18389v2",
+      "authors": [
+        "Maxime Elkael",
+        "Michele Polese",
+        "Reshma Prasad",
+        "Stefano Maxenti",
+        "Tommaso Melodia"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "ALLSTaR提出了一种基于大语言模型（LLM）的自动化RAN调度器生成与测试框架，旨在推动意图驱动无线接入网的智能优化。该系统能理解自然语言意图，从文献中自动提取并合成调度算法，实现调度器代码的自动部署和实测评估。在5G商用测试床上，ALLSTaR完成了18种调度算法的自动化对比，并基于性能画像，为运营商提供细粒度、动态、意图驱动的调度策略选择，突破了传统切片优化的局限性。",
+      "interpretation": {
+        "core_contribution": "ALLSTaR首次实现了利用LLM自动解析、生成、部署和OTA测试学术调度算法，为意图驱动的RAN调度提供了自动化、动态化和高精度的解决方案，极大提升了调度器适应性与运营商控制力。",
+        "methodology_summary": "ALLSTaR框架由三大核心环节组成：1) LLM解析运营商NL意图；2) 结合OCR与LLM从文献挖掘调度算法并自动生成可部署代码；3) 自动在O-RAN dApp平台部署并通过OTA实验对多种算法进行性能画像，最后将画像反馈入IBS动态调度框架，实现意图-算法的智能匹配。",
+        "performance_evaluation": "论文基于5G商用级测试床，自动化部署并测试了18种自动合成的调度算法，围绕多样化场景（如队列状态、物理层条件、业务类型）进行OTA实验，形成了全面的调度器性能数据库，并通过实际用例展示了相较传统切片的优势。",
+        "inferred_application": "该研究面向开放、可编程的O-RAN/AI-RAN及未来6G网络运营商，支持其按需动态优化无线接入资源，精准满足细粒度业务差异化与智能运维需求。"
+      },
+      "paperKeywords": [
+        "自动化调度器生成",
+        "大语言模型",
+        "意图驱动网络",
+        "O-RAN",
+        "OTA实验",
+        "无线接入网优化",
+        "算力网络"
+      ]
+    },
+    {
+      "id": "2505.17421",
+      "title": "Adaptive Implicit-Based Deep Learning Channel Estimation for 6G Communications",
+      "url": "http://arxiv.org/abs/2505.17421v1",
+      "authors": [
+        "Zhen Qiao",
+        "Jiang Xue",
+        "Junkai Zhang",
+        "Guanzhang Liu",
+        "Xiaoqin Ma",
+        "Runhua Li",
+        "Faheem A. Khan",
+        "John S. Thompson",
+        "Zongben Xu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-23",
+      "snippet": "本文针对6G通信中信道估计的资源与精度权衡难题，提出了一种自适应隐式深度学习信道估计网络（ICENet）。ICENet利用轻量化隐式迭代结构，可根据实际信道质量动态调整计算资源分配，实现内存占用低且高性能的信道估计。实验显示，其在车联网等对资源敏感场景下，可有效提升信道估计精度并兼顾系统开销。文章还展望了未来研究方向及挑战。",
+      "interpretation": {
+        "core_contribution": "提出了一种自适应隐式深度学习信道估计网络（ICENet），突破传统显式堆叠神经网络结构的适应性壁垒，实现了信道估计精度与计算资源消耗的动态平衡，尤其适用于资源受限的6G场景。",
+        "methodology_summary": "方法核心是轻量化隐式迭代层结构，根据输入信道条件动态调整迭代次数，从而自适应分配计算资源，并在保持精度的同时降低模型内存及算力需求。与传统固定层数的深度学习模型不同，ICENet基于隐式结构和自适应推理机制，既提升灵活性又简化部署。",
+        "performance_evaluation": "论文通过车载通信等实际场景测试，比较ICENet与主流多层深度学习方法在计算复杂度、内存消耗及信道估计精度等指标下的表现，显示ICENet在高精度和低资源消耗间达到优良平衡。",
+        "inferred_application": "最直接应用为对资源敏感、需高精度信道估计的6G物理层场景，典型如车联网（V2X）、物联网、智能终端接入等高动态无线环境下的通信系统开发者与运营者。"
+      },
+      "paperKeywords": [
+        "6G",
+        "信道估计",
+        "深度学习",
+        "隐式网络",
+        "自适应推理",
+        "车联网",
+        "资源优化"
+      ]
+    },
+    {
+      "id": "2505.16821",
+      "title": "LLM-Based Emulation of the Radio Resource Control Layer: Towards AI-Native RAN Protocols",
+      "url": "http://arxiv.org/abs/2505.16821v2",
+      "authors": [
+        "Ziming Liu",
+        "Bryan Liu",
+        "Alvaro Valcarce",
+        "Xiaoli Chu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-22",
+      "snippet": "本文提出了一种创新性方法，将大语言模型（LAM）集成到6G无线接入网（RAN）协议栈，专注于无线资源控制（RRC）层的AI原生仿真。通过将RRC协议消息视为领域特定语言，并采用LoRA高效微调LLaMA类Transformer模型，作者展示了AI模型能够生成标准兼容且结构化的ASN.1编码消息，实现对gNB控制面流程的自动化与认知增强。实验在30,000组实测数据上，8B模型取得了较高的结构和语义一致性，显著优于传统零样本基线，为AI原生无线协议和未来AI标准化奠定基础。",
+      "interpretation": {
+        "core_contribution": "本研究首次系统性演示了大语言模型直接仿真并生成RRC层标准协议消息的能力，实现了AI模型与6G RAN协议栈的深度耦合，迈出了AI原生无线接入协议的关键步伐。",
+        "methodology_summary": "方法上，作者把RRC消息看作一种领域特定语言（DSL），利用LoRA对LLaMA类Transformer进行参数高效微调，保持ASN.1协议结构，通过字节对编码（BPE）优化学习效率，实现了对协议状态的组合泛化。",
+        "performance_evaluation": "性能评估在30,000对真实gNB RRC请求-响应数据上展开，采用余弦相似度等结构/语义一致性指标测量生成消息与标准消息的贴合度。8B模型达到了0.97中位数余弦相似度，相比零样本LLaMA-3 8B有61%的相对提升。",
+        "inferred_application": "该研究直接面向未来6G及后续无线网络厂商、协议开发者和AI通信研究者，可应用于RAN协议自动化、智能基站管控和AI驱动的网络标准制定。"
+      },
+      "paperKeywords": [
+        "大语言模型",
+        "6G无线接入网",
+        "无线资源控制（RRC）",
+        "AI原生协议",
+        "LoRA",
+        "Transformer",
+        "协议仿真"
+      ]
+    },
+    {
+      "id": "2505.17030",
+      "title": "Distillation-Enabled Knowledge Alignment Protocol for Semantic Communication in AI Agent Networks",
+      "url": "http://arxiv.org/abs/2505.17030v1",
+      "authors": [
+        "Jingzhi Hu",
+        "Geoffrey Ye Li"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-07",
+      "snippet": "本文提出了一种针对AI智能体网络中语义通信难题的知识对齐协议——DeKAP。该方法通过知识蒸馏，将各智能体的专家知识压缩为参数高效的低秩矩阵，在全网分发，实现多任务场景下的知识同步。设计中以联合最小化对齐损失、通信和存储开销为目标，建模为大规模整数线性规划，并提出高效贪心算法。仿真结果显示，DeKAP在通信和算力资源消耗方面优于传统方案。",
+      "interpretation": {
+        "core_contribution": "提出了一种基于知识蒸馏的高效知识对齐协议（DeKAP），创新性地实现了AI智能体间的多任务知识同步，并同时兼顾通信、存储与资源利用最小化的问题建模。",
+        "methodology_summary": "采用知识蒸馏技术，将每个智能体的专家知识转化为低秩参数矩阵，分配至各节点；通过大规模整数线性规划，联合优化知识对齐损失、通信开销和存储成本，并设计贪心算法实现高效近似解。",
+        "performance_evaluation": "通过计算机仿真比对，主要评价指标为知识对齐准确性、通信及计算资源消耗，并与现有方法作定量比较，结果显示DeKAP能以较低资源消耗实现高效知识同步。",
+        "inferred_application": "适用于大规模多智能体协作场景，特别是在6G或未来网络中需要高效知识共享和语义通信的智能体集群、自治网络和协同AI系统。"
+      },
+      "paperKeywords": [
+        "知识蒸馏",
+        "多智能体",
+        "语义通信",
+        "知识对齐",
+        "低秩矩阵",
+        "整数线性规划",
+        "高效算法"
+      ]
+    },
+    {
+      "id": "2505.03127",
+      "title": "Integrated Sensing, Computing, Communication, and Control for Time-Sequence-Based Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.03127v1",
+      "authors": [
+        "Qingliang Li",
+        "Bo Chang",
+        "Weidong Mei",
+        "Zhi Chen"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-06",
+      "snippet": "本论文针对工业物联网（IIoT）时代面临的实时无线控制系统需求，提出了一种融合感知、计算、通信与控制（ISC3）的时序语义通信新范式。核心创新包括通过语义特征提取和重构模块，利用深度强化学习框架，显著降低冗余信息传输与通信开销，同时实现自适应可靠控制。在现场实验中，该方法较传统方案显著提升了控制性能与通信效率。",
+      "interpretation": {
+        "core_contribution": "提出一种集成感知、计算、通信与控制（ISC3）的时序语义通信框架，引入语义特征提取与重构模块，通过多智能体深度强化学习实现通信与控制协同优化，从根本上提升了实时控制系统中信息传递的效率和可靠性。",
+        "methodology_summary": "论文通过在发端利用语义特征提取（SFE）模块分析控制信息的时序相关性，优先发送全新或重要信息，减少冗余传输。接收端利用语义特征重构（SFR）模块和自适应控制增益机制，基于历史序列补完未实时传输的信息。以上模块和决策策略均通过混合奖励多智能体深度强化学习方法进行端到端训练和参数优化。",
+        "performance_evaluation": "采用现场实验对比多种基线方案，从通信开销、系统时延、控制精度等维度进行系统性评测，结果显示所提方法在通信效率及控制性能上均优于传统方法。",
+        "inferred_application": "研究成果最直接应用于工业物联网（IIoT）场景下的实时无线控制系统，尤其适用于对可靠性和低延时有极高要求的智能制造、自动化机器人控制等领域。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "集成感知-计算-通信-控制（ISC3）",
+        "时序信息",
+        "深度强化学习",
+        "工业物联网（IIoT）",
+        "自适应控制",
+        "信息冗余抑制"
+      ]
+    },
+    {
       "id": "2505.03556",
       "title": "A Comprehensive Survey of Large AI Models for Future Communications: Foundations, Applications and Challenges",
       "url": "http://arxiv.org/abs/2505.03556v1",
@@ -1399,9 +1398,38 @@
         "网络优化",
         "模型泛化"
       ]
+    },
+    {
+      "id": "2505.01885",
+      "title": "Securing 5G and Beyond-Enabled UAV Networks: Resilience Through Multiagent Learning and Transformers Detection",
+      "url": "http://arxiv.org/abs/2505.01885v1",
+      "authors": [
+        "Joseanne Viana",
+        "Hamed Farkhari",
+        "Victor P Gil Jimenez"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-03",
+      "snippet": "本论文针对5G及未来6G网络中无人机（UAV）通信的抗干扰和高可靠性挑战，提出了DET-FAIR-WINGS架构。该方案融合多智能体强化学习（MARL）与Transformer检测机制，实现对网络攻击的高效识别及资源调度优化。系统通过离散与连续参数协同调整，实现UAV链路动态自适应。实验表明，AI驱动的自适应重传决策显著降低了通信时延，提升了网络鲁棒性与可靠性。",
+      "interpretation": {
+        "core_contribution": "提出了基于多智能体强化学习与Transformer检测的DET-FAIR-WINGS架构，能够在5G及未来6G UAV网络场景下有效识别攻击，实现动态资源调度与抗干扰自适应通信，显著增强了UAV通信系统的弹性和鲁棒性。",
+        "methodology_summary": "方法核心为多智能体强化学习驱动的链路自适应与决策，每个智能体内嵌Transformer模型进行攻击识别和特征提取。系统在动态环境中基于检测结果调整带宽、重传、波束等参数，实现空间与频谱资源的最优分配，提高通信链路的安全与可靠性。",
+        "performance_evaluation": "通过将AI自适应重传与固定重传做对比，评估了系统在真实5G网络环境下的时延、可靠性等性能指标。实验结果显示，DET-FAIR-WINGS显著降低了端到端延迟，并提升了UAV网络在受攻击情况下的服务质量。",
+        "inferred_application": "该技术适用于城市、复杂地形等高风险、强对抗环境下的无人机通信系统，尤其面向需要高可靠、低时延与高安全保障的应急通信、物流运输、城市巡检等UAV应用领域。"
+      },
+      "paperKeywords": [
+        "UAV通信",
+        "5G/6G网络",
+        "多智能体学习",
+        "Transformer检测",
+        "网络安全",
+        "鲁棒性增强",
+        "自适应通信"
+      ]
     }
   ],
-  "lastUpdate": "2025-06-23T06:13:31.787Z",
+  "lastUpdate": "2025-06-23T06:49:44.178Z",
   "keywords": {
     "manual": [
       "通信",
