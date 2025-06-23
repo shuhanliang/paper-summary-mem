@@ -1,6 +1,98 @@
 {
   "papers": [
     {
+      "id": "2505.17030",
+      "title": "Distillation-Enabled Knowledge Alignment Protocol for Semantic Communication in AI Agent Networks",
+      "url": "http://arxiv.org/abs/2505.17030v1",
+      "authors": [
+        "Jingzhi Hu",
+        "Geoffrey Ye Li"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-07",
+      "snippet": "本文提出了一种针对AI智能体网络中语义通信难题的知识对齐协议——DeKAP。该方法通过知识蒸馏，将各智能体的专家知识压缩为参数高效的低秩矩阵，在全网分发，实现多任务场景下的知识同步。设计中以联合最小化对齐损失、通信和存储开销为目标，建模为大规模整数线性规划，并提出高效贪心算法。仿真结果显示，DeKAP在通信和算力资源消耗方面优于传统方案。",
+      "interpretation": {
+        "core_contribution": "提出了一种基于知识蒸馏的高效知识对齐协议（DeKAP），创新性地实现了AI智能体间的多任务知识同步，并同时兼顾通信、存储与资源利用最小化的问题建模。",
+        "methodology_summary": "采用知识蒸馏技术，将每个智能体的专家知识转化为低秩参数矩阵，分配至各节点；通过大规模整数线性规划，联合优化知识对齐损失、通信开销和存储成本，并设计贪心算法实现高效近似解。",
+        "performance_evaluation": "通过计算机仿真比对，主要评价指标为知识对齐准确性、通信及计算资源消耗，并与现有方法作定量比较，结果显示DeKAP能以较低资源消耗实现高效知识同步。",
+        "inferred_application": "适用于大规模多智能体协作场景，特别是在6G或未来网络中需要高效知识共享和语义通信的智能体集群、自治网络和协同AI系统。"
+      },
+      "paperKeywords": [
+        "知识蒸馏",
+        "多智能体",
+        "语义通信",
+        "知识对齐",
+        "低秩矩阵",
+        "整数线性规划",
+        "高效算法"
+      ]
+    },
+    {
+      "id": "2505.16821",
+      "title": "LLM-Based Emulation of the Radio Resource Control Layer: Towards AI-Native RAN Protocols",
+      "url": "http://arxiv.org/abs/2505.16821v2",
+      "authors": [
+        "Ziming Liu",
+        "Bryan Liu",
+        "Alvaro Valcarce",
+        "Xiaoli Chu"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-22",
+      "snippet": "本文提出了一种创新性方法，将大语言模型（LAM）集成到6G无线接入网（RAN）协议栈，专注于无线资源控制（RRC）层的AI原生仿真。通过将RRC协议消息视为领域特定语言，并采用LoRA高效微调LLaMA类Transformer模型，作者展示了AI模型能够生成标准兼容且结构化的ASN.1编码消息，实现对gNB控制面流程的自动化与认知增强。实验在30,000组实测数据上，8B模型取得了较高的结构和语义一致性，显著优于传统零样本基线，为AI原生无线协议和未来AI标准化奠定基础。",
+      "interpretation": {
+        "core_contribution": "本研究首次系统性演示了大语言模型直接仿真并生成RRC层标准协议消息的能力，实现了AI模型与6G RAN协议栈的深度耦合，迈出了AI原生无线接入协议的关键步伐。",
+        "methodology_summary": "方法上，作者把RRC消息看作一种领域特定语言（DSL），利用LoRA对LLaMA类Transformer进行参数高效微调，保持ASN.1协议结构，通过字节对编码（BPE）优化学习效率，实现了对协议状态的组合泛化。",
+        "performance_evaluation": "性能评估在30,000对真实gNB RRC请求-响应数据上展开，采用余弦相似度等结构/语义一致性指标测量生成消息与标准消息的贴合度。8B模型达到了0.97中位数余弦相似度，相比零样本LLaMA-3 8B有61%的相对提升。",
+        "inferred_application": "该研究直接面向未来6G及后续无线网络厂商、协议开发者和AI通信研究者，可应用于RAN协议自动化、智能基站管控和AI驱动的网络标准制定。"
+      },
+      "paperKeywords": [
+        "大语言模型",
+        "6G无线接入网",
+        "无线资源控制（RRC）",
+        "AI原生协议",
+        "LoRA",
+        "Transformer",
+        "协议仿真"
+      ]
+    },
+    {
+      "id": "2505.23249",
+      "title": "Context-Aware Semantic Communication for the Wireless Networks",
+      "url": "http://arxiv.org/abs/2505.23249v1",
+      "authors": [
+        "Guangyuan Liu",
+        "Yinqiu Liu",
+        "Jiacheng Wang",
+        "Hongyang Du",
+        "Dusit Niyato",
+        "Jiawen Kang",
+        "Zehui Xiong",
+        "Abbas Jamalipour"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了一种面向上下文自适应的语义通信框架CaSemCom，针对下一代无线网络中实时应用对带宽、时延与可靠性的新要求，创新性地引入了基于大语言模型（LLM）的门控机制与专家混合（MoE）架构进行多模态高价值语义特征的动态选择与编码。多用户多模态实验显示，CaSemCom在图像还原质量提升与带宽节省方面优于传统和单智能体DRL基线，体现出更优的收敛速度、语义准确率与重传开销。",
+      "interpretation": {
+        "core_contribution": "提出了CaSemCom框架，通过LLM门控与MoE结构动态选择和传输高影响力语义特征，首次实现面向上下文的多模态、自适应无线语义通信，在提升图像还原质量和带宽效率方面取得突破。",
+        "methodology_summary": "核心方法基于大语言模型（LLM）驱动的门控机制，结合专家混合（MoE）架构，实现对多源异构数据的语义特征动态筛选与编码，适应网络条件和应用上下文，优化跨用户、多模态场景下的通信效率与效果。",
+        "performance_evaluation": "采用多用户和多模态场景设置，对重建图像的保真度、带宽利用率、语义准确性以及收敛速度和重传开销进行实验评估，并与传统方案及单智能体DRL方法进行对比，表现出显著优势。",
+        "inferred_application": "直接服务于对低延迟、高可靠、带宽敏感要求极高的无线实时应用，如增强现实、自动驾驶、元宇宙等新一代交互和智能服务场景。"
+      },
+      "paperKeywords": [
+        "上下文感知",
+        "语义通信",
+        "大语言模型",
+        "专家混合架构",
+        "多模态编码",
+        "无线网络",
+        "自适应优化"
+      ]
+    },
+    {
       "id": "2506.16070",
       "title": "Towards AI-Driven RANs for 6G and Beyond: Architectural Advancements and Future Horizons",
       "url": "http://arxiv.org/abs/2506.16070v1",
@@ -187,7 +279,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T02:34:06.804Z",
+  "lastUpdate": "2025-06-23T02:52:00.641Z",
   "keywords": {
     "manual": [
       "通信",
@@ -197,9 +289,9 @@
       "语义通信"
     ],
     "hot": [
+      "语义通信",
       "6G",
-      "多模态模型",
-      "智能通信"
+      "多模态模型"
     ]
   },
   "lastAutoUpdateDate": "2025/6/23"
