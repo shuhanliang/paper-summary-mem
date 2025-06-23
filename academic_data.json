@@ -1,6 +1,99 @@
 {
   "papers": [
     {
+      "id": "2506.16070",
+      "title": "Towards AI-Driven RANs for 6G and Beyond: Architectural Advancements and Future Horizons",
+      "url": "http://arxiv.org/abs/2506.16070v1",
+      "authors": [
+        "Mathushaharan Rathakrishnan",
+        "Samiru Gayan",
+        "Rohit Singh",
+        "Amandeep Kaur",
+        "Hazer Inaltekin",
+        "Sampath Edirisinghe",
+        "H. Vincent Poor"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-19",
+      "snippet": "本文针对6G网络架构提出“AI驱动的无线接入网（AI-RAN）”理念，强调智能、去中心化、互操作性和数字化为基础的新型RAN架构，并结合数字孪生、智能反射面、大型生成式AI模型和区块链等关键使能技术，系统性审视6G及未来无线网络架构演进。论文通过实际智能编排与资源优化场景验证了AI-RAN的可行性，并面向ISAC和Agentic AI等未来方向进行了展望。",
+      "interpretation": {
+        "core_contribution": "本文核心贡献在于提出并系统阐述了AI-RAN架构，明确指向AI成为RAN内生特性，并首创性地整合了数字孪生、IRS、生成式AI与区块链等新兴技术作为6G RAN演进和自治的关键支撑，为实现自演化、智能化无线网络提供了系统框架与理论依据。",
+        "methodology_summary": "作者回顾并剖析RAN体系结构演进，进而创新性地构建了AI-RAN框架，该框架将AI算法深度嵌入编排与资源管理流程，同时利用数字孪生模拟环境、IRS重构无线信道、生成式AI提升智能度、区块链保证数据可信。论文在实际智能编排和资源优化场景下，对AI-RAN进行了原型验证。",
+        "performance_evaluation": "论文基于实际用例（智能编排与资源优化）对AI-RAN进行性能仿真与实验评估，可能采用典型网络数据集、与传统RAN/现有AI-RAN基线模型对比，以及常用无线资源分配与网络自适应性能指标（如时延、吞吐量、能效等）进行效果分析。",
+        "inferred_application": "本研究直接服务于下一代6G及B5G超大规模无线网络的运营商、网络设备商，以及关注自主管理、自适应优化和端到端智能的全行业应用，如工业互联网、自动驾驶、智慧城市等未来场景。"
+      },
+      "paperKeywords": [
+        "AI-RAN",
+        "6G网络架构",
+        "数字孪生",
+        "智能反射面（IRS）",
+        "生成式AI",
+        "区块链",
+        "智能编排与资源优化"
+      ]
+    },
+    {
+      "id": "2505.23710",
+      "title": "From Connectivity to Autonomy: The Dawn of Self-Evolving Communication Systems",
+      "url": "http://arxiv.org/abs/2505.23710v1",
+      "authors": [
+        "Zeinab Nezami",
+        "Syed Danial Ali Shah",
+        "Maryam Hafeez",
+        "Karim Djemame",
+        "Syed Ali Raza Zaidi"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-29",
+      "snippet": "本文提出了6G时代通信网络向高度自治自演化系统转型的愿景，强调AI内生智能推动网络结构的动态适应与自我优化。论文系统分析了重构基础设施、自适应中间件、智能网络功能及多智能体协作机制，并探讨其在工业物联网和数字制造中的实际融合路径。结果显示，该框架可显著提升实时决策效率并降低网络时延，有助于工业自动化、智能制造等场景的应用落地。论文还关注了伦理挑战、标准化及未来研究方向，为6G智能自动化演进提供了技术路线图。",
+      "interpretation": {
+        "core_contribution": "本论文关键技术贡献在于系统性提出自演化通信网络架构，将AI能力深度嵌入网络各层，实现从单纯互联到自治智能的跃迁，尤其突出多智能体分布式协作与自我优化机制，填补理论创新与工程落地之间的空白点。",
+        "methodology_summary": "论文围绕三大技术主线：①可重构基础设施（通过软件定义与硬件可编程提升网络适应性），②自适应中间件与智能网络功能（基于AI驱动的动态资源管理与功能自进化），③多智能体分布式决策（用强化学习或群体智能实现自治协作），并联动工业IoT标准体系，推动通信架构与制造流程深度融合。",
+        "performance_evaluation": "性能评估采用模拟及原型实验，重点以工业IoT场景为例，评测实时决策效率、网络时延、资源利用率等关键指标，并与传统静态网络或分层AI框架对照，突出自治系统在动态适应与协同控制方面的优势。",
+        "inferred_application": "研究主要面向工业物联网、智能制造和大规模网络化自动化系统等高实时性、动态环境下的应用，目标用户为电信运营商、工业自动化厂商及智能制造解决方案提供商。"
+      },
+      "paperKeywords": [
+        "6G",
+        "自演化通信系统",
+        "AI内生网络",
+        "多智能体协作",
+        "工业物联网",
+        "智能制造",
+        "网络自治"
+      ]
+    },
+    {
+      "id": "2505.01885",
+      "title": "Securing 5G and Beyond-Enabled UAV Networks: Resilience Through Multiagent Learning and Transformers Detection",
+      "url": "http://arxiv.org/abs/2505.01885v1",
+      "authors": [
+        "Joseanne Viana",
+        "Hamed Farkhari",
+        "Victor P Gil Jimenez"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-03",
+      "snippet": "本论文针对5G及未来6G网络中无人机（UAV）通信的抗干扰和高可靠性挑战，提出了DET-FAIR-WINGS架构。该方案融合多智能体强化学习（MARL）与Transformer检测机制，实现对网络攻击的高效识别及资源调度优化。系统通过离散与连续参数协同调整，实现UAV链路动态自适应。实验表明，AI驱动的自适应重传决策显著降低了通信时延，提升了网络鲁棒性与可靠性。",
+      "interpretation": {
+        "core_contribution": "提出了基于多智能体强化学习与Transformer检测的DET-FAIR-WINGS架构，能够在5G及未来6G UAV网络场景下有效识别攻击，实现动态资源调度与抗干扰自适应通信，显著增强了UAV通信系统的弹性和鲁棒性。",
+        "methodology_summary": "方法核心为多智能体强化学习驱动的链路自适应与决策，每个智能体内嵌Transformer模型进行攻击识别和特征提取。系统在动态环境中基于检测结果调整带宽、重传、波束等参数，实现空间与频谱资源的最优分配，提高通信链路的安全与可靠性。",
+        "performance_evaluation": "通过将AI自适应重传与固定重传做对比，评估了系统在真实5G网络环境下的时延、可靠性等性能指标。实验结果显示，DET-FAIR-WINGS显著降低了端到端延迟，并提升了UAV网络在受攻击情况下的服务质量。",
+        "inferred_application": "该技术适用于城市、复杂地形等高风险、强对抗环境下的无人机通信系统，尤其面向需要高可靠、低时延与高安全保障的应急通信、物流运输、城市巡检等UAV应用领域。"
+      },
+      "paperKeywords": [
+        "UAV通信",
+        "5G/6G网络",
+        "多智能体学习",
+        "Transformer检测",
+        "网络安全",
+        "鲁棒性增强",
+        "自适应通信"
+      ]
+    },
+    {
       "id": "2505.22311",
       "title": "From Large AI Models to Agentic AI: A Tutorial on Future Intelligent Communications",
       "url": "http://arxiv.org/abs/2505.22311v1",
@@ -94,7 +187,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-20T09:22:58.311Z",
+  "lastUpdate": "2025-06-23T02:34:06.804Z",
   "keywords": {
     "manual": [
       "通信",
@@ -104,10 +197,10 @@
       "语义通信"
     ],
     "hot": [
-      "多模态模型",
       "6G",
+      "多模态模型",
       "智能通信"
     ]
   },
-  "lastAutoUpdateDate": "2025/6/20"
+  "lastAutoUpdateDate": "2025/6/23"
 }
