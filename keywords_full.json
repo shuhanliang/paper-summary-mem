@@ -1,11 +1,11 @@
 [
   {
-    "keyword": "多模态模型",
+    "keyword": "6G",
     "count": 2
   },
   {
-    "keyword": "6G",
-    "count": 1
+    "keyword": "多模态模型",
+    "count": 2
   },
   {
     "keyword": "智能通信",
@@ -77,6 +77,86 @@
   },
   {
     "keyword": "模型泛化",
+    "count": 1
+  },
+  {
+    "keyword": "AI-RAN",
+    "count": 1
+  },
+  {
+    "keyword": "6G网络架构",
+    "count": 1
+  },
+  {
+    "keyword": "数字孪生",
+    "count": 1
+  },
+  {
+    "keyword": "智能反射面（IRS）",
+    "count": 1
+  },
+  {
+    "keyword": "生成式AI",
+    "count": 1
+  },
+  {
+    "keyword": "区块链",
+    "count": 1
+  },
+  {
+    "keyword": "智能编排与资源优化",
+    "count": 1
+  },
+  {
+    "keyword": "自演化通信系统",
+    "count": 1
+  },
+  {
+    "keyword": "AI内生网络",
+    "count": 1
+  },
+  {
+    "keyword": "多智能体协作",
+    "count": 1
+  },
+  {
+    "keyword": "工业物联网",
+    "count": 1
+  },
+  {
+    "keyword": "智能制造",
+    "count": 1
+  },
+  {
+    "keyword": "网络自治",
+    "count": 1
+  },
+  {
+    "keyword": "UAV通信",
+    "count": 1
+  },
+  {
+    "keyword": "5G/6G网络",
+    "count": 1
+  },
+  {
+    "keyword": "多智能体学习",
+    "count": 1
+  },
+  {
+    "keyword": "Transformer检测",
+    "count": 1
+  },
+  {
+    "keyword": "网络安全",
+    "count": 1
+  },
+  {
+    "keyword": "鲁棒性增强",
+    "count": 1
+  },
+  {
+    "keyword": "自适应通信",
     "count": 1
   }
 ]
