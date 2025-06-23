@@ -331,7 +331,7 @@ jobs:
               console.log("--- 步骤 8: 更新核心分析记忆库 (小库) ---");
               const combinedPapers = [...processedPapers, ...existingData.papers];
               // ---【新增修改】---: 在裁剪前，按发表日期对所有论文进行降序排列
-              combinedPapers.sort((a, b) => b.publicationDate.localeCompare(a.publicationDate));
+              // combinedPapers.sort((a, b) => b.publicationDate.localeCompare(a.publicationDate));
               const finalPapers = combinedPapers.slice(0, MAX_PAPERS_TO_KEEP);
               console.log(`将保留最新的 ${finalPapers.length} 篇论文到核心分析记忆库。`);
               const newData = { papers: finalPapers, lastUpdate: new Date().toISOString(), keywords: { manual: manualKeywords, hot: newHotKeywords }, lastAutoUpdateDate: new Date().toLocaleDateString('zh-CN', {timeZone: 'Asia/Shanghai'})};
