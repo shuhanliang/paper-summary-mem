@@ -1,6 +1,97 @@
 {
   "papers": [
     {
+      "id": "2506.07880",
+      "title": "Diffusion-RL for Scalable Resource Allocation for 6G Networks",
+      "url": "http://arxiv.org/abs/2506.07880v1",
+      "authors": [
+        "Salar Nouri",
+        "Mojdeh Karbalaee Motalleb",
+        "Vahid Shah-Mansouri"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-09",
+      "snippet": "本文提出了一种融合扩散模型与强化学习（Diffusion-RL）的新颖资源分配方法，特别针对开放无线接入网（O-RAN）中面向eMBB、URLLC和mMTC等6G典型服务场景下的多样化需求。相比主流机器学习技术，Diffusion-RL在物理资源分配及能耗优化方面展现出卓越的效率、可扩展性与稳健性，并通过与穷举算法、深度Q网络（DQN）及半监督VAE等基线的对比实验，在吞吐量和时延等核心指标上均取得领先表现，为动态异构6G网络提供了具备实际可行性的AI驱动分配方案。",
+      "interpretation": {
+        "core_contribution": "将生成式AI中的扩散模型机制创新性地引入到强化学习框架下，提出Diffusion-RL算法，以更高效和更稳健的方式优化6G O-RAN的资源块及能耗配置，实现多服务类型的通用、可扩展资源调度。",
+        "methodology_summary": "方法核心在于Diffusion-RL模型对物理资源块与功率分配进行决策，每一轮迭代引入控制噪声与微扰，增强策略空间探索能力，从而在保证QoS约束下，为eMBB、URLLC、mMTC等不同需求动态分配资源；此外，还系统比较了主流机器学习方法的适用性与优势。",
+        "performance_evaluation": "采用包括穷举搜索、DQN、SS-VAE等多个机器学习基线在O-RAN场景下进行对比，主要使用系统吞吐量、用户时延等指标针对不同服务类型进行评估。实验表明Diffusion-RL在效率、可扩展性和鲁棒性上均优于其他方法。",
+        "inferred_application": "最直接应用于未来6G和O-RAN中的动态资源管理系统，尤其适合需要适应多样化业务类型（如eMBB、URLLC、mMTC）的自动化无线网络运营，以及面向高密度、弹性业务场景的运营商与智能无线网络管理者。"
+      },
+      "paperKeywords": [
+        "Diffusion-based Reinforcement Learning",
+        "Resource Allocation",
+        "6G Networks",
+        "Open RAN (O-RAN)",
+        "Network Slicing",
+        "Quality of Service (QoS)",
+        "Generative AI"
+      ]
+    },
+    {
+      "id": "2506.05111",
+      "title": "An SCMA Receiver for 6G NTN based on Multi-Task Learning",
+      "url": "http://arxiv.org/abs/2506.05111v1",
+      "authors": [
+        "Bruno De Filippo",
+        "Carla Amatetti",
+        "Riccardo Campana",
+        "Alessandro Guidotti",
+        "Alessandro Vanelli-Coralli"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-05",
+      "snippet": "本文提出了一种基于多任务学习（MTL）的AI增强型SCMA接收机方案，旨在提升6G非地面网络（NTN）场景中SCMA信号的分离与接收性能。通过在仿真链路级别测试，所提模型在10%块错误率（BLER）目标下，较基准算法可实现3.5dB的Eb/N0增益，揭示了其在提升上行吞吐量与干扰抑制方面的潜力。论文还分析了该AI模型在低轨卫星上部署时的复杂度挑战。",
+      "interpretation": {
+        "core_contribution": "本研究首次将多任务学习（MTL）框架引入6G NTN的SCMA接收机设计，在增强干扰信号分离能力的同时，有效提升了信号检测性能，为AI赋能的6G非地面网络多址接入提供了支撑。",
+        "methodology_summary": "采用AI多任务学习模型，对重叠的稀疏码多址（SCMA）信号进行端到端分离与解调优化，通过联合学习提升信号恢复与检测的精度，克服传统接收机在非正交场景下的干扰瓶颈。",
+        "performance_evaluation": "通过链路级仿真，使用块错误率（BLER）和链路吞吐量（理论速率）作评估指标，在给定Eb/N0条件下与传统基线接收机算法对比分析AI模型的性能提升。",
+        "inferred_application": "该方案面向6G NTN环境下的边缘计算、低轨卫星通信与广域物联网接入，服务于对高效上行链路和强抗干扰能力有需求的空间组网及MEC场景。"
+      },
+      "paperKeywords": [
+        "6G",
+        "NTN",
+        "SCMA",
+        "多任务学习",
+        "AI接收机",
+        "块错误率（BLER）",
+        "边缘计算"
+      ]
+    },
+    {
+      "id": "2506.07647",
+      "title": "Foundation Model Empowered Synesthesia of Machines (SoM): AI-native Intelligent Multi-Modal Sensing-Communication Integration",
+      "url": "http://arxiv.org/abs/2506.07647v1",
+      "authors": [
+        "Xiang Cheng",
+        "Boxun Liu",
+        "Xuanyu Liu",
+        "Ensong Liu",
+        "Ziwei Huang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-09",
+      "snippet": "本论文针对面向未来6G网络的智能多功能通信需求，首次系统化提出“机器通感共感”（SoM）范式，并以大模型（Foundation Models, FMs）赋能为核心，解决SoM中通用性、泛化性及任务适应性不足等难题。作者将FMs分为通用、LLM和无线领域三类，构建SoM系统设计的双路线图，展示了FMs超越任务专用模型的显著技术优势，并为6G感知-通信一体化提供了实现路径和未来研究方向。",
+      "interpretation": {
+        "core_contribution": "本论文核心贡献在于首次提出并系统性梳理了基于大模型赋能的SoM（机器共感）设计范式，填补了SoM领域缺乏系统设计框架的空白；明确界定了FMs三大类型及其在SoM系统中的应用，并提出了LLM和无线领域大模型赋能SoM的双路径设计方法，推动了6G下感知-通信一体化的理论与工程实用化进程。",
+        "methodology_summary": "主要技术路径包括：基于FMs的SoM系统分层架构设计，将FMs分为通用类、LLM类和面向无线通信的领域大模型；提出并实现LLM4PG（路径损耗生成）、LLM4SG（散射体生成）、WiCo（无线信道大模型）、LLM4WM（无线多任务SoM收发器）、WiFo（SoM增强收发器）、WiPo（协作感知大模型）等代表性方案。为每一路线提供端到端的设计框架与案例分析，并提炼出针对SoM挑战的FM赋能关键特性。",
+        "performance_evaluation": "论文通过典型应用案例的实验对比，实证展示了FMs在数据稀缺、泛化能力、复杂性建模等方面对比传统任务专用AI模型的明显优势；评估内容涵盖信道建模精度、多模态数据处理能力、协作感知任务成功率等，主流基线为当前SoM专用AI模型，且通过理论分析和工程验证双轮驱动。",
+        "inferred_application": "最直接应用场景为6G通信系统下的AI原生多模态感知-通信-控制一体化网络，包括智慧工业物联网、高动态复杂场景下的无线系统协同、大规模智能机器人群体和智能网联车路协同等面向未来的泛在智能基础设施。目标用户为通信系统设计者、AI/通信行业研发团队与标准制定机构。"
+      },
+      "paperKeywords": [
+        "6G",
+        "通感一体化",
+        "大模型（Foundation Model）",
+        "多模态融合",
+        "语义通信",
+        "无线智能",
+        "系统性架构"
+      ]
+    },
+    {
       "id": "2506.09512",
       "title": "A Survey on the Role of Artificial Intelligence and Machine Learning in 6G-V2X Applications",
       "url": "http://arxiv.org/abs/2506.09512v1",
@@ -560,7 +651,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T04:13:39.281Z",
+  "lastUpdate": "2025-06-23T05:24:50.116Z",
   "keywords": {
     "manual": [
       "通信",
@@ -570,8 +661,8 @@
       "语义通信"
     ],
     "hot": [
-      "语义通信",
       "6G",
+      "语义通信",
       "大语言模型"
     ]
   },
