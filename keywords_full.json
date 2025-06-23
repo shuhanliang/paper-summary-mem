@@ -1,11 +1,11 @@
 [
   {
     "keyword": "6G",
-    "count": 10
+    "count": 12
   },
   {
     "keyword": "语义通信",
-    "count": 8
+    "count": 11
   },
   {
     "keyword": "大语言模型",
@@ -17,6 +17,10 @@
   },
   {
     "keyword": "多智能体系统",
+    "count": 2
+  },
+  {
+    "keyword": "6G通信",
     "count": 2
   },
   {
@@ -32,6 +36,10 @@
     "count": 2
   },
   {
+    "keyword": "知识蒸馏",
+    "count": 2
+  },
+  {
     "keyword": "深度强化学习",
     "count": 2
   },
@@ -44,11 +52,19 @@
     "count": 2
   },
   {
+    "keyword": "多任务学习",
+    "count": 2
+  },
+  {
     "keyword": "6G无线通信",
     "count": 2
   },
   {
     "keyword": "信道估计",
+    "count": 2
+  },
+  {
+    "keyword": "车联网",
     "count": 2
   },
   {
@@ -93,10 +109,6 @@
   },
   {
     "keyword": "大规模人工智能模型",
-    "count": 1
-  },
-  {
-    "keyword": "6G通信",
     "count": 1
   },
   {
@@ -181,10 +193,6 @@
   },
   {
     "keyword": "自适应通信",
-    "count": 1
-  },
-  {
-    "keyword": "知识蒸馏",
     "count": 1
   },
   {
@@ -488,10 +496,6 @@
     "count": 1
   },
   {
-    "keyword": "多任务学习",
-    "count": 1
-  },
-  {
     "keyword": "AI接收机",
     "count": 1
   },
@@ -545,10 +549,6 @@
   },
   {
     "keyword": "自适应推理",
-    "count": 1
-  },
-  {
-    "keyword": "车联网",
     "count": 1
   },
   {
@@ -645,6 +645,138 @@
   },
   {
     "keyword": "QuaDRiGa信道建模",
+    "count": 1
+  },
+  {
+    "keyword": "潜变量扩散模型",
+    "count": 1
+  },
+  {
+    "keyword": "去噪",
+    "count": 1
+  },
+  {
+    "keyword": "随机微分方程",
+    "count": 1
+  },
+  {
+    "keyword": "信道鲁棒性",
+    "count": 1
+  },
+  {
+    "keyword": "零样本泛化",
+    "count": 1
+  },
+  {
+    "keyword": "边缘人工智能",
+    "count": 1
+  },
+  {
+    "keyword": "模型选择",
+    "count": 1
+  },
+  {
+    "keyword": "保型风险控制",
+    "count": 1
+  },
+  {
+    "keyword": "实时推理",
+    "count": 1
+  },
+  {
+    "keyword": "延迟与准确率保障",
+    "count": 1
+  },
+  {
+    "keyword": "无线信道自适应",
+    "count": 1
+  },
+  {
+    "keyword": "集成感知",
+    "count": 1
+  },
+  {
+    "keyword": "安全通信",
+    "count": 1
+  },
+  {
+    "keyword": "扩展卡尔曼滤波",
+    "count": 1
+  },
+  {
+    "keyword": "优化算法",
+    "count": 1
+  },
+  {
+    "keyword": "协同计算",
+    "count": 1
+  },
+  {
+    "keyword": "大规模AI模型",
+    "count": 1
+  },
+  {
+    "keyword": "信道自适应",
+    "count": 1
+  },
+  {
+    "keyword": "信息瓶颈",
+    "count": 1
+  },
+  {
+    "keyword": "模型压缩",
+    "count": 1
+  },
+  {
+    "keyword": "低延迟",
+    "count": 1
+  },
+  {
+    "keyword": "基础模型",
+    "count": 1
+  },
+  {
+    "keyword": "I/Q信号",
+    "count": 1
+  },
+  {
+    "keyword": "自监督学习",
+    "count": 1
+  },
+  {
+    "keyword": "无线通信",
+    "count": 1
+  },
+  {
+    "keyword": "数据增强",
+    "count": 1
+  },
+  {
+    "keyword": "扩散模型",
+    "count": 1
+  },
+  {
+    "keyword": "干扰消除",
+    "count": 1
+  },
+  {
+    "keyword": "无线语义通信",
+    "count": 1
+  },
+  {
+    "keyword": "极大后验估计",
+    "count": 1
+  },
+  {
+    "keyword": "联合后验分解",
+    "count": 1
+  },
+  {
+    "keyword": "感知质量提升",
+    "count": 1
+  },
+  {
+    "keyword": "信号重建",
     "count": 1
   }
 ]
