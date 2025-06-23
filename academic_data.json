@@ -1,6 +1,190 @@
 {
   "papers": [
     {
+      "id": "2506.05710",
+      "title": "Latent Diffusion Model Based Denoising Receiver for 6G Semantic Communication: From Stochastic Differential Theory to Application",
+      "url": "http://arxiv.org/abs/2506.05710v1",
+      "authors": [
+        "Xiucheng Wang",
+        "Honggang Jia",
+        "Nan Cheng",
+        "Dusit Niyato"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-06",
+      "snippet": "本文提出了一种基于潜变量扩散模型（LDM）的6G语义通信去噪接收机架构，首次从随机微分方程（SDE）理论出发，系统分析了扩散模型在AWGN信道下对语义表征去噪的性能，并推导了信噪比（SNR）与扩散步数的解析关系。为解决接收信号与扩散模型训练分布不匹配的问题，设计了一种无需微调的数学缩放机制，提升了模型在各种信道条件下的稳健性。实验显示，该方法在低SNR及分布外场景均优于传统深度学习语义通信系统，具有高模块化、零训练推理和强泛化能力。",
+      "interpretation": {
+        "core_contribution": "首次将潜变量扩散模型理论性地引入6G语义通信接收机，推导了SNR与扩散步数的解析关系，并提出分布无关的缩放机制，实现推理阶段免训练的高鲁棒去噪。",
+        "methodology_summary": "以VAE对语义信息进行压缩，随后利用预训练扩散模型在潜空间中对AWGN污染信号进行去噪。通过SDE理论推导扩散过程参数，并针对信号分布漂移引入数学缩放，使接收机在不同信道下无需再训练即可保持高性能。",
+        "performance_evaluation": "通过大量仿真实验，将所提方法与主流神经网络语义通信基线模型在不同SNR和分布漂移情况下进行对比，评估指标包括信号重建质量等，实验结果表明在低SNR及分布不匹配场景下显著优于传统方法。",
+        "inferred_application": "适用于未来6G语义通信系统，尤其是面向可靠性要求高、信道变化大和先验知识不足的无线场景，包括O-RAN、卫星通信等需要高鲁棒性和泛化能力的实时智能通信终端。"
+      },
+      "paperKeywords": [
+        "潜变量扩散模型",
+        "语义通信",
+        "去噪",
+        "随机微分方程",
+        "信道鲁棒性",
+        "6G",
+        "零样本泛化"
+      ]
+    },
+    {
+      "id": "2506.11391",
+      "title": "Black-Box Edge AI Model Selection with Conformal Latency and Accuracy Guarantees",
+      "url": "http://arxiv.org/abs/2506.11391v1",
+      "authors": [
+        "Anders E. Kalør",
+        "Tomoaki Ohtsuki"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-13",
+      "snippet": "本文针对6G边缘AI推理中，因黑盒模型复杂性、无线信道不确定性等导致的延迟与准确率保障难题，提出了一种基于保型风险控制与非参数统计的黑盒模型自动选择框架。该方法可根据无线信道实时状况，智能选择特征提取与推理模型组合，实现对任务延迟违反概率和误判概率的双重约束。实验在带有时限的图像分类任务中验证了其可在满足最大误判要求下保证低延迟，展示了为6G提供可靠实时边缘AI服务的潜力。",
+      "interpretation": {
+        "core_contribution": "提出了一套能对延迟违约概率和预期损失作出保型（conformal）统计保证的黑盒模型选择框架，既可固定于统计信道条件下，也能针对实时信道动态自适应，为6G边缘智能任务提供端到端的可靠性与性能保障。",
+        "methodology_summary": "该方法利用保型风险控制与非参数统计，针对黑盒特征提取与推理模型池，依据应用任务的误判概率和延迟约束，动态或静态选择最优模型组合。方案兼顾无线信道统计特征与实时测量，分别实现固定式与自适应式选择过程。",
+        "performance_evaluation": "通过具备时限的图像分类实验，采用最大误判概率与截止时间违约率为核心评估指标，数值结果表明框架在实际场景下可达成所设精度与实时性目标。",
+        "inferred_application": "最直接面向6G下自动驾驶、机器人等需边缘推理的低延迟高可靠智能场景，其它对AI推理延迟与精度均敏感的无线终端同样适用。"
+      },
+      "paperKeywords": [
+        "边缘人工智能",
+        "模型选择",
+        "保型风险控制",
+        "6G通信",
+        "实时推理",
+        "延迟与准确率保障",
+        "无线信道自适应"
+      ]
+    },
+    {
+      "id": "2506.00522",
+      "title": "Integrated Sensing, Computing and Semantic Communication for Vehicular Networks",
+      "url": "http://arxiv.org/abs/2506.00522v1",
+      "authors": [
+        "Yinchao Yang",
+        "Zhaohui Yang",
+        "Chongwen Huang",
+        "Wei Xu",
+        "Zhaoyang Zhang",
+        "Dusit Niyato",
+        "Mohammad Shikh-Bahaei"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-31",
+      "snippet": "本文提出了一套面向车联网的集成感知、计算与语义通信（ISCSC）框架，架构中路侧单元（RSU）与多自动驾驶车辆均搭建本地知识库，实现高效语义通信。该体系在确保通信安全的设计下，RSU利用扩展卡尔曼滤波对车辆进行精确跟踪，并将问题建模为兼顾各车语义保密率最大化与感知精度最小化的联合优化。采用Bernstein型不等式与交替优化算法高效求解，仿真显示在可靠感知、数据吞吐及安全通信方面具有明显优势。",
+      "interpretation": {
+        "core_contribution": "论文首创性地将集成感知、计算与语义通信（ISCSC）框架应用于车联网，将安全语义通信与高效车辆跟踪精准结合，显著提升了关键通信与感知指标。",
+        "methodology_summary": "构建了RSU-多车架构，RSU配备扩展卡尔曼滤波实现多目标跟踪，双方利用本地知识库提升语义通信效率。提出联合优化模型，兼顾车辆的语义保密率（probabilistically constrained semantic secrecy rate）最大化与后验Cramér-Rao下界（PCRB）最小化，采用Bernstein不等式与交替优化算法（BTI+AO）求解复杂非凸问题。",
+        "performance_evaluation": "通过数值仿真，对比传统方法，验证了所提方案在可靠感知、数据吞吐量及安全通信方面的性能提升。核心评测指标包括语义保密率、PCRB总和、通信吞吐量等。",
+        "inferred_application": "该成果重点服务于智能车联网场景，适用于需要高安全通信和高可靠感知的自动驾驶、智能交通基础设施与多车辆协同应用。"
+      },
+      "paperKeywords": [
+        "集成感知",
+        "语义通信",
+        "车联网",
+        "安全通信",
+        "扩展卡尔曼滤波",
+        "优化算法",
+        "协同计算"
+      ]
+    },
+    {
+      "id": "2506.13243",
+      "title": "Lightweight Task-Oriented Semantic Communication Empowered by Large-Scale AI Models",
+      "url": "http://arxiv.org/abs/2506.13243v1",
+      "authors": [
+        "Chuanhong Liu",
+        "Caili Guo",
+        "Yang Yang",
+        "Mingzhe Chen",
+        "Tony Q. S. Quek"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-16",
+      "snippet": "本文针对大规模AI模型在语义通信中的高计算需求，提出了一种基于知识蒸馏和预存压缩的新型轻量化方案，有效降低模型复杂度与延迟。通过引入信道自适应模块和以信息瓶颈为基础的损失函数，实现了在动态信道环境下的高效、可靠通信。仿真结果显示，该方法在任务准确率、模型规模、计算延迟和数据需求等方面均优于现有基线，适用于实时任务导向型语义通信应用。",
+      "interpretation": {
+        "core_contribution": "提出了一种融合知识蒸馏、预存压缩与信道自适应机制的轻量级任务型语义通信方法，显著降低了大模型带来的计算和存储负担，提升了通信适应性与效率。",
+        "methodology_summary": "创新性地采用预存压缩机制防止蒸馏阶段多次推理带来的高延迟，结合信道自适应模块根据信道状态动态调整语义信息传输，同时基于信息瓶颈理论设计损失函数以优化语义压缩和关键特征保留，整体实现端到端高效语义通信。",
+        "performance_evaluation": "通过仿真试验与主流基线模型进行对比，考察了任务准确率、模型参数量、推理时延和训练所需数据量等指标，结果表明所提方法在各项指标上均有优势。",
+        "inferred_application": "面向6G及未来无线通信环境下的实时、资源受限任务驱动型智能终端和车联网、工业互联网等场景，尤其适合对模型大小和通信稳定性要求极高的设备和环境。"
+      },
+      "paperKeywords": [
+        "语义通信",
+        "知识蒸馏",
+        "大规模AI模型",
+        "信道自适应",
+        "信息瓶颈",
+        "模型压缩",
+        "低延迟"
+      ]
+    },
+    {
+      "id": "2506.06718",
+      "title": "IQFM A Wireless Foundational Model for I/Q Streams in AI-Native 6G",
+      "url": "http://arxiv.org/abs/2506.06718v1",
+      "authors": [
+        "Omar Mashaal",
+        "Hatem Abou-Zeid"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-06-07",
+      "snippet": "IQFM提出了首个直接基于原始I/Q信号的无线通信基础模型，实现了无需大量手工特征工程即可支持多任务（调制分类、到达角估计、波束预测和射频指纹识别）。论文创新地引入任务感知的数据增强策略，通过循环时移等通用增强与任务特定增强相结合，在对比自监督学习框架下进行结构化表征学习。实验显示，IQFM在多任务迁移和低样本情况下显著优于传统有监督方法，展现出高效、可复用的多任务学习能力。",
+      "interpretation": {
+        "core_contribution": "本文首次提出能够直接处理原始I/Q数据的基础模型IQFM，显著推动了无线通信信号的通用表征学习及多任务跨域适应能力，实现无需繁琐预处理即可支持多任务。",
+        "methodology_summary": "作者将任务感知增强划分为通用与任务特定两类，结合循环时移等操作，在对比自监督学习框架下对轻量级编码器进行预训练。该模型学习到具备强泛化能力的信号表示，可通过极少标注样本及少量参数更新（如LoRA）高效适应新任务。",
+        "performance_evaluation": "通过在多天线真实I/Q信号上预训练，并测试于调制分类、到达角估计、波束预测及RF指纹识别等任务，分别采用准确率、迁移学习性能为评估指标。实验与若干有监督基线横向对比，表现出最大7倍准确率提升及高效迁移能力。",
+        "inferred_application": "该模型最直接服务于未来AI原生6G系统，适用于需要高效无线信号感知、多模态集成、通信安全认证等场景，目标用户包括通信设备厂商、无线网络运营商及智能终端开发者。"
+      },
+      "paperKeywords": [
+        "基础模型",
+        "I/Q信号",
+        "自监督学习",
+        "多任务学习",
+        "无线通信",
+        "数据增强",
+        "6G"
+      ]
+    },
+    {
+      "id": "2505.19983",
+      "title": "ICDM: Interference Cancellation Diffusion Models for Wireless Semantic Communications",
+      "url": "http://arxiv.org/abs/2505.19983v1",
+      "authors": [
+        "Tong Wu",
+        "Zhiyong Chen",
+        "Dazhi He",
+        "Feng Yang",
+        "Meixia Tao",
+        "Xiaodong Xu",
+        "Wenjun Zhang",
+        "Ping Zhang"
+      ],
+      "affiliations": [],
+      "journal": "arXiv",
+      "publicationDate": "2025-05-26",
+      "snippet": "本文提出了一种针对无线语义通信中干扰消除的新型扩散模型（ICDM）。研究将干扰消除建模为信号与干扰联合后验概率的极大后验（MAP）估计，并证明该建模方法可获得卓越的信号与干扰估计效果。ICDM采用独立扩散模型分别学习信号和干扰的先验概率，结合通道转移概率，通过数值迭代一体化实现高效干扰消除。实验表明，ICDM显著降低均方误差（MSE）并提升感知质量，在典型信道下优于未引入ICDM的方法，为高质量无线语义通信提供了全新解决思路。",
+      "interpretation": {
+        "core_contribution": "提出并理论证明了一种可高效消除无线语义通信中干扰的扩散模型ICDM，并通过将干扰消除问题建模为联合后验概率的MAP估计，创新性地实现了信号与干扰的协同分离和重建。",
+        "methodology_summary": "ICDM将信号与干扰的联合后验通过贝叶斯分解为独立的信号和干扰先验、通道转移概率，各自由扩散模型在各时刻学习其对数梯度。最终，这些梯度通过高效的数值迭代算法集成，实现对原始信号的去噪与干扰抑制。",
+        "performance_evaluation": "性能评估采用CelebA数据集，在瑞利衰落信道、SNR为20dB且SINR为0dB等复杂场景下，与未引入ICDM方法对比，重点指标为均方误差（MSE）和LPIPS感知分数，ICDM分别提升4.54dB和2.47dB，体现出优异的干扰抑制和感知恢复能力。",
+        "inferred_application": "本研究主要面向对干扰鲁棒性要求高的下一代无线语义通信系统，尤其适用于在强干扰环境下需高可靠、低失真数据传输的场景，如6G IoT、工业互联网、卫星通信等。"
+      },
+      "paperKeywords": [
+        "扩散模型",
+        "干扰消除",
+        "无线语义通信",
+        "极大后验估计",
+        "联合后验分解",
+        "感知质量提升",
+        "信号重建"
+      ]
+    },
+    {
       "id": "2506.03167",
       "title": "Distributionally Robust Wireless Semantic Communication with Large AI Models",
       "url": "http://arxiv.org/abs/2506.03167v1",
@@ -839,7 +1023,7 @@
       ]
     }
   ],
-  "lastUpdate": "2025-06-23T06:06:43.596Z",
+  "lastUpdate": "2025-06-23T06:09:42.734Z",
   "keywords": {
     "manual": [
       "通信",
