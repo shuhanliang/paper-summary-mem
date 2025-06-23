@@ -1,11 +1,11 @@
 [
   {
-    "keyword": "语义通信",
-    "count": 6
+    "keyword": "6G",
+    "count": 7
   },
   {
-    "keyword": "6G",
-    "count": 5
+    "keyword": "语义通信",
+    "count": 7
   },
   {
     "keyword": "大语言模型",
@@ -29,6 +29,10 @@
   },
   {
     "keyword": "深度强化学习",
+    "count": 2
+  },
+  {
+    "keyword": "多模态融合",
     "count": 2
   },
   {
@@ -348,10 +352,6 @@
     "count": 1
   },
   {
-    "keyword": "多模态融合",
-    "count": 1
-  },
-  {
     "keyword": "多址接入",
     "count": 1
   },
@@ -441,6 +441,74 @@
   },
   {
     "keyword": "零信任架构",
+    "count": 1
+  },
+  {
+    "keyword": "Diffusion-based Reinforcement Learning",
+    "count": 1
+  },
+  {
+    "keyword": "Resource Allocation",
+    "count": 1
+  },
+  {
+    "keyword": "6G Networks",
+    "count": 1
+  },
+  {
+    "keyword": "Open RAN (O-RAN)",
+    "count": 1
+  },
+  {
+    "keyword": "Network Slicing",
+    "count": 1
+  },
+  {
+    "keyword": "Quality of Service (QoS)",
+    "count": 1
+  },
+  {
+    "keyword": "Generative AI",
+    "count": 1
+  },
+  {
+    "keyword": "NTN",
+    "count": 1
+  },
+  {
+    "keyword": "SCMA",
+    "count": 1
+  },
+  {
+    "keyword": "多任务学习",
+    "count": 1
+  },
+  {
+    "keyword": "AI接收机",
+    "count": 1
+  },
+  {
+    "keyword": "块错误率（BLER）",
+    "count": 1
+  },
+  {
+    "keyword": "边缘计算",
+    "count": 1
+  },
+  {
+    "keyword": "通感一体化",
+    "count": 1
+  },
+  {
+    "keyword": "大模型（Foundation Model）",
+    "count": 1
+  },
+  {
+    "keyword": "无线智能",
+    "count": 1
+  },
+  {
+    "keyword": "系统性架构",
     "count": 1
   }
 ]
