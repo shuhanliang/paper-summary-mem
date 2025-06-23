@@ -5,7 +5,7 @@
   },
   {
     "keyword": "6G",
-    "count": 3
+    "count": 5
   },
   {
     "keyword": "大语言模型",
@@ -17,6 +17,10 @@
   },
   {
     "keyword": "多智能体系统",
+    "count": 2
+  },
+  {
+    "keyword": "生成式AI",
     "count": 2
   },
   {
@@ -105,10 +109,6 @@
   },
   {
     "keyword": "智能反射面（IRS）",
-    "count": 1
-  },
-  {
-    "keyword": "生成式AI",
     "count": 1
   },
   {
@@ -365,6 +365,82 @@
   },
   {
     "keyword": "资源分配",
+    "count": 1
+  },
+  {
+    "keyword": "V2X",
+    "count": 1
+  },
+  {
+    "keyword": "人工智能",
+    "count": 1
+  },
+  {
+    "keyword": "机器学习",
+    "count": 1
+  },
+  {
+    "keyword": "深度学习",
+    "count": 1
+  },
+  {
+    "keyword": "联邦学习",
+    "count": 1
+  },
+  {
+    "keyword": "智能交通",
+    "count": 1
+  },
+  {
+    "keyword": "边缘AI",
+    "count": 1
+  },
+  {
+    "keyword": "超低时延",
+    "count": 1
+  },
+  {
+    "keyword": "网络架构",
+    "count": 1
+  },
+  {
+    "keyword": "5G性能评估",
+    "count": 1
+  },
+  {
+    "keyword": "分布式应用",
+    "count": 1
+  },
+  {
+    "keyword": "网络演进",
+    "count": 1
+  },
+  {
+    "keyword": "O-RAN安全",
+    "count": 1
+  },
+  {
+    "keyword": "5G加密",
+    "count": 1
+  },
+  {
+    "keyword": "接口下投攻击",
+    "count": 1
+  },
+  {
+    "keyword": "AI驱动安全",
+    "count": 1
+  },
+  {
+    "keyword": "密钥管理",
+    "count": 1
+  },
+  {
+    "keyword": "3GPP安全标准",
+    "count": 1
+  },
+  {
+    "keyword": "零信任架构",
     "count": 1
   }
 ]
