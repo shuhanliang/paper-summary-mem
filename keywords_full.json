@@ -1,22 +1,26 @@
 [
   {
     "keyword": "语义通信",
-    "count": 14
+    "count": 19
   },
   {
     "keyword": "6G",
-    "count": 12
+    "count": 13
   },
   {
     "keyword": "大语言模型",
     "count": 4
   },
   {
-    "keyword": "多模态融合",
+    "keyword": "深度学习",
+    "count": 4
+  },
+  {
+    "keyword": "边缘智能",
     "count": 3
   },
   {
-    "keyword": "深度学习",
+    "keyword": "多模态融合",
     "count": 3
   },
   {
@@ -52,7 +56,23 @@
     "count": 2
   },
   {
+    "keyword": "Transformer",
+    "count": 2
+  },
+  {
     "keyword": "深度强化学习",
+    "count": 2
+  },
+  {
+    "keyword": "自适应控制",
+    "count": 2
+  },
+  {
+    "keyword": "资源分配",
+    "count": 2
+  },
+  {
+    "keyword": "联邦学习",
     "count": 2
   },
   {
@@ -65,6 +85,22 @@
   },
   {
     "keyword": "车联网",
+    "count": 2
+  },
+  {
+    "keyword": "信道自适应",
+    "count": 2
+  },
+  {
+    "keyword": "信息瓶颈",
+    "count": 2
+  },
+  {
+    "keyword": "自监督学习",
+    "count": 2
+  },
+  {
+    "keyword": "扩散模型",
     "count": 2
   },
   {
@@ -232,10 +268,6 @@
     "count": 1
   },
   {
-    "keyword": "Transformer",
-    "count": 1
-  },
-  {
     "keyword": "协议仿真",
     "count": 1
   },
@@ -316,10 +348,6 @@
     "count": 1
   },
   {
-    "keyword": "自适应控制",
-    "count": 1
-  },
-  {
     "keyword": "信息冗余抑制",
     "count": 1
   },
@@ -360,10 +388,6 @@
     "count": 1
   },
   {
-    "keyword": "边缘智能",
-    "count": 1
-  },
-  {
     "keyword": "语义分析",
     "count": 1
   },
@@ -384,10 +408,6 @@
     "count": 1
   },
   {
-    "keyword": "资源分配",
-    "count": 1
-  },
-  {
     "keyword": "V2X",
     "count": 1
   },
@@ -397,10 +417,6 @@
   },
   {
     "keyword": "机器学习",
-    "count": 1
-  },
-  {
-    "keyword": "联邦学习",
     "count": 1
   },
   {
@@ -716,14 +732,6 @@
     "count": 1
   },
   {
-    "keyword": "信道自适应",
-    "count": 1
-  },
-  {
-    "keyword": "信息瓶颈",
-    "count": 1
-  },
-  {
     "keyword": "模型压缩",
     "count": 1
   },
@@ -740,19 +748,11 @@
     "count": 1
   },
   {
-    "keyword": "自监督学习",
-    "count": 1
-  },
-  {
     "keyword": "无线通信",
     "count": 1
   },
   {
     "keyword": "数据增强",
-    "count": 1
-  },
-  {
-    "keyword": "扩散模型",
     "count": 1
   },
   {
@@ -917,6 +917,106 @@
   },
   {
     "keyword": "智能射频系统",
+    "count": 1
+  },
+  {
+    "keyword": "边缘推理",
+    "count": 1
+  },
+  {
+    "keyword": "联合源信道编码（JSCC）",
+    "count": 1
+  },
+  {
+    "keyword": "自适应压缩",
+    "count": 1
+  },
+  {
+    "keyword": "Lyapunov优化",
+    "count": 1
+  },
+  {
+    "keyword": "客户选择",
+    "count": 1
+  },
+  {
+    "keyword": "物联网",
+    "count": 1
+  },
+  {
+    "keyword": "异构分布",
+    "count": 1
+  },
+  {
+    "keyword": "图像重建",
+    "count": 1
+  },
+  {
+    "keyword": "集成感知与通信",
+    "count": 1
+  },
+  {
+    "keyword": "多普勒干扰抑制",
+    "count": 1
+  },
+  {
+    "keyword": "MIMO-OFDM",
+    "count": 1
+  },
+  {
+    "keyword": "高分辨率目标估计",
+    "count": 1
+  },
+  {
+    "keyword": "广义似然比检验",
+    "count": 1
+  },
+  {
+    "keyword": "低空无线网络",
+    "count": 1
+  },
+  {
+    "keyword": "三维分层架构",
+    "count": 1
+  },
+  {
+    "keyword": "空地融合",
+    "count": 1
+  },
+  {
+    "keyword": "集成感知与通信（ISAC）",
+    "count": 1
+  },
+  {
+    "keyword": "跨层协同",
+    "count": 1
+  },
+  {
+    "keyword": "跨模态生成",
+    "count": 1
+  },
+  {
+    "keyword": "点云传输",
+    "count": 1
+  },
+  {
+    "keyword": "端侧信息融合",
+    "count": 1
+  },
+  {
+    "keyword": "实时通信",
+    "count": 1
+  },
+  {
+    "keyword": "少标注学习",
+    "count": 1
+  },
+  {
+    "keyword": "无线信道",
+    "count": 1
+  },
+  {
+    "keyword": "对比学习",
     "count": 1
   }
 ]
