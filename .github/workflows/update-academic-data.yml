@@ -143,9 +143,12 @@ jobs:
 
             // ---【修改点】---: 调整日期范围为“过去24小时”
             const now = new Date();
-            const yesterday = new Date();
+            // const yesterday = new Date();
             // 1. 计算出24小时前的精确时间点
-            yesterday.setHours(now.getHours() - 24);
+            // yesterday.setHours(now.getHours() - 24);
+            const monthAgo = new Date(now);
+            monthAgo.setMonth(now.getMonth() - 1); 
+        
 
             // 2. 创建一个能格式化到分钟的帮助函数
             const formatDateTime = (date) => {
@@ -161,7 +164,8 @@ jobs:
             const dateFilter = `submittedDate:[${formatDateTime(yesterday)} TO ${formatDateTime(now)}]`;
             // --- 修改结束 ---
 
-            // const searchQuery = `${coreTopicsQuery} AND (${crossTopicsQuery}) AND ${dateFilter}`;
+
+
             const searchQuery = `${coreTopicsQuery} AND ${dateFilter}`;
             const url = `http://export.arxiv.org/api/query?search_query=${encodeURIComponent(searchQuery)}&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
             console.log(`向 arXiv API 查询 (请求 ${limit} 篇): ${searchQuery}`);
