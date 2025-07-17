@@ -130,7 +130,7 @@ jobs:
           // --- 拉取“大库”函数 ---
           async function fetchStagingPapers(limit = STAGING_AREA_LIMIT, maxRetries = 3) {
             const { XMLParser } = await import('fast-xml-parser');
-            const coreTopicsQuery = '(((all:"AI" OR all:"ML" OR all:"LLM")" AND all:"6G") OR all:"Semantic Communication" OR all:"Semantic Communications")' 
+            const coreTopicsQuery = '(((all:"AI" OR all:"ML" OR all:"LLM") AND all:"6G") OR all:"Semantic Communication" OR all:"Semantic Communications")';
             // const coreTopicsQuery = '((all:"AI" AND all:"6G") OR all:"Semantic Communication")';
             const crossTopics = ["Agent", "Memory Management"];
             const crossTopicsQuery = crossTopics.map(t => `all:"${t}"`).join(' OR ');
