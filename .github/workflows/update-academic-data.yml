@@ -1,5 +1,4 @@
 name: Update Academic Data
-
 on:
   schedule:
     # 每个工作日（周一至周五）北京时间早上8:00运行（UTC时间0:00）
@@ -161,7 +160,7 @@ jobs:
             };
 
             // 3. 构建精确到分钟的日期过滤器
-            const dateFilter = `submittedDate:[${formatDateTime(yesterday)} TO ${formatDateTime(now)}]`;
+            const dateFilter = `submittedDate:[${formatDateTime(monthAgo)} TO ${formatDateTime(now)}]`;
             // --- 修改结束 ---
 
 
