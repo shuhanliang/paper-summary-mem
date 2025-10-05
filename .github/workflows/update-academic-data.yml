@@ -387,7 +387,8 @@ jobs:
             仓库：${{ github.repository }}
             
             此邮件由GitHub Actions自动发送，请勿回复。
-          to: blumanchu111@gmail.com, chenhui.a.ye@nokia-sbell.com
+          to: blumanchu111@gmail.com
           from: 学术周报自动更新 <13937372851@163.com>
           nodemailerlog: true
           nodemailerdebug: true
+
